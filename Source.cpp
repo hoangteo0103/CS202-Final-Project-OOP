@@ -43,9 +43,15 @@ public:
         }
     }
 };
-
+#include "Game.h"
+using namespace sf;
 int main()
 {
+
+    srand(time(0));
+    Game game;
+    game.run();
+    return 0; 
     sf::RenderWindow _window(sf::VideoMode(600, 600), "Hello World");
     sf::Texture _texture;
     sf::Vector2i source(DIRECTION_X_DOWN_INITAL, DIRECTION_Y_DOWN_INITAL);

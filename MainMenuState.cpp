@@ -66,31 +66,7 @@ bool MainMenuState::checkSaved()
 }
 void MainMenuState::updateButtons()
 {
-    for (auto& it : this->buttons)
-    {
-        it.second->update(this->mousePosView);
-    }
-    if (this->buttons["GAME_STATE_BTN"]->isPressed())
-    {
-        this->states->push(new SelectionState(this->app, this->states));
-    }
-    if (this->buttons["HIGH_SCORE_BTN"]->isPressed())
-    {
-        this->states->push(new LeaderboardState(this->app, this->states));
-    }
-    if (this->buttons["GAME_QUIT_BTN"]->isPressed())
-    {
-        this->quit = true;
-    }
-    if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
-    {
-        if (this->checkSaved())
-            this->states->push(new GameState(this->app, this->states, 0, 0, 0, 1));
-    }
-    if (this->buttons["AUTHOR_STATE_BTN"]->isPressed())
-    {
-        this->states->push(new AuthorState(this->app, this->states));
-    }
+    
 }
 
 void MainMenuState::update()

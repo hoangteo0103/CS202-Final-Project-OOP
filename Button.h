@@ -5,6 +5,7 @@
 #include <SFML/System.hpp>
 #include <time.h>
 #include<iostream>
+#include<fstream>
 
 using namespace sf;
 using namespace std;
