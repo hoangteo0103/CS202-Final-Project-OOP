@@ -7,7 +7,7 @@ void MainMenuState::initFonts()
 
     }
 
-    t.loadFromFile("External/images/mainmenu.jpg");
+    //t.loadFromFile("External/images/mainmenu.jpg");
     this->background.setTexture(t);
 }
 void MainMenuState::initButtons()
@@ -66,7 +66,14 @@ bool MainMenuState::checkSaved()
 }
 void MainMenuState::updateButtons()
 {
-    
+    for (auto& it : this->buttons)
+    {
+        it.second->update(this->mousePosView);
+    }
+    if (this->buttons["GAME_STATE_BTN"]->isPressed())
+    {
+        this->states->push(new ChooseModeState(this->app, this->states));
+    }
 }
 
 void MainMenuState::update()
