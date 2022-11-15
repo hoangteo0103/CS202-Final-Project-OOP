@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChooseModeState.cpp" />
     <ClCompile Include="CPEOPLE.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="ChooseModeState.h" />
     <ClInclude Include="CPEOPLE.h" />
     <ClInclude Include="Game.h" />
