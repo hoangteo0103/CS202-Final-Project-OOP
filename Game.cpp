@@ -10,12 +10,7 @@ void Game::initWindow()
     ifstream ifs("Data/window.ini");
     string title = "NONE";
 
-    VideoMode Size(400, 400);
-    if (ifs.is_open())
-    {
-        getline(ifs, title);
-        ifs >> Size.width >> Size.height;
-    }
+    VideoMode Size(1280, 720);
     this->app = new RenderWindow(Size, title);
 }
 void Game::initStates()

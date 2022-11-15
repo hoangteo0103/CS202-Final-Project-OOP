@@ -2,12 +2,12 @@
 
 void MainMenuState::initFonts()
 {
-    if (!this->font.loadFromFile("font/Contb.ttf"))
+    if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
     }
 
-    t.loadFromFile("images/mainmenu.png");
+    t.loadFromFile("External/images/mainmenu.jpg");
     this->background.setTexture(t);
 }
 void MainMenuState::initButtons()
