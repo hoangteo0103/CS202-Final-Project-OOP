@@ -51,6 +51,9 @@
     <ClCompile Include="LeaderBoardState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPEOPLE.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Base.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
