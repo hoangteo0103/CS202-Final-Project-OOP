@@ -1,7 +1,8 @@
 #pragma once
-class CPEOPLE
+#include "Base.h"
+class CPEOPLE : public Object
 {
 private:
-		
+	void mode();
 };
 

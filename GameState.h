@@ -1,7 +1,6 @@
 #ifndef GameState_H
 #define GameState_H
-#include "State.h"
-#include "Button.h"
+#include "Base.h"
 #include "PauseState.h"
 #include "WinState.h"
 #include "LoseState.h"
@@ -65,14 +64,14 @@ private:
     Sprite background;
     bool isUpdated;
     bool ok;
+    vector<Object*> obstacle;
+    Object* Player;
     int previousTime;
-    int sizeX, sizeY;
-    int numberOfBombs;
     void initFonts();
     void initButtons();
 
 public:
-    GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved);
+    GameState(RenderWindow* app, stack<State*>* states,int mode , bool saved);
     virtual ~GameState();
     // Functions
     void Reset();

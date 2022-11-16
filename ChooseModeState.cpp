@@ -66,7 +66,7 @@ void ChooseModeState::updateButtons()
     
     if (this->buttons["EASY_STATE"]->isPressed())
     {
-        //this->states->push(new GameState(this->app, this->states, 10, 10, 10, 0));
+        //this->states->push(new GameState(this->app, this->states, 0, 0));
         // this->states->push(new GameState(this->app , this->states , 9 , 9 ,8)) ;
         this->quit = true;
     }

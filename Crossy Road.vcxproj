@@ -118,12 +118,14 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChooseModeState.cpp" />
+    <ClCompile Include="COBSTACLE.cpp" />
     <ClCompile Include="CPEOPLE.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LeaderBoardState.cpp" />
     <ClCompile Include="LoseState.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayAgainState.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -134,12 +136,14 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ChooseModeState.h" />
+    <ClInclude Include="COBSTACLE.h" />
     <ClInclude Include="CPEOPLE.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="LeaderBoardState.h" />
     <ClInclude Include="LoseState.h" />
     <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayAgainState.h" />
     <ClInclude Include="State.h" />
