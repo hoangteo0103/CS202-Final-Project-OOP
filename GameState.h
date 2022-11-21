@@ -71,7 +71,7 @@ private:
     void initButtons();
 
 public:
-    GameState(RenderWindow* app, stack<State*>* states,int mode , bool saved);
+    GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved);
     virtual ~GameState();
     // Functions
     void Reset();

@@ -18,8 +18,8 @@ void GameState::initFonts()
     //texture.loadFromFile("images/game1.png");
     this->background.setTexture(texture);
 }
-GameState::GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved)
-    :State(app, states)
+
+GameState::GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved) : State(app, states)
 {
     // Init
     this->ok = false;
