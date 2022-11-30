@@ -13,7 +13,6 @@ public:
 private:
 	
 	int row;
-	float speed;
 	int face_direction; // 0 - down, 1 - left, 2 - right, 3 - up
 };
 

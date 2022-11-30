@@ -28,9 +28,8 @@ private:
 public:
 	Texture texture;
 	Sprite sprite;
-	Animation animation;
 	float speed;
-
+	Animation animation;
 	Object(string path, Vector2u image_contain, float switch_time, float speed);
 	void draw(sf::RenderWindow& window);
 	void render(RenderTarget* target);

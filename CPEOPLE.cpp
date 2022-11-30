@@ -3,7 +3,6 @@
 
 CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed) : Object(path , image_contain , switch_time , speed ) {
 	row = 0;
-	this->speed = speed;
 	face_direction = 0;
 }
 
