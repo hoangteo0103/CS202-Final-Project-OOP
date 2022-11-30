@@ -1,14 +1,40 @@
 #pragma once
 #include "Base.h"
+
+class Animation {
+private:
+	float total_time, switch_time;
+	sf::Vector2u image_contain;
+	sf::Vector2u current_image;
+
+public:
+	void update(int row, float delta_time /*int direction*/);
+	sf::IntRect uv_rect;
+	Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time);
+	Animation();
+
+};
+
+
+class Mouvment {
+public:
+	Mouvment() {};
+	void goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time);
+};
+
 class Object
 {
 private:
+public:
 	Texture texture;
 	Sprite sprite;
-public:
-	void loadSprite(string path);
+	Animation animation;
+	float speed;
+
+	Object(string path, Vector2u image_contain, float switch_time, float speed);
+	void draw(sf::RenderWindow& window);
 	void render(RenderTarget* target);
-	void loadFrame();
+	//void move(float delta_time);
 	void updateEvent();
 	bool collide(Object& other);
 };
