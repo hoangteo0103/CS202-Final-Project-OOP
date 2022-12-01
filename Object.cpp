@@ -72,5 +72,8 @@ bool Object::collide(Object& other)
 
 
 sf::Vector2f Object::getPosition() {
-	return sprite.getPosition();
+	sf::Vector2f pos = sprite.getPosition();
+	pos.x += animation.uv_rect.width / 2;
+	pos.y += animation.uv_rect.height / 2;
+	return pos;
 }
