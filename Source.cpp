@@ -4,6 +4,7 @@
 #include <iostream>
 #include "CPEOPLE.h"
 #include "COBSTACLE.h"
+#include "CView.h"
 
 #define SPRITE_WIDTH 47
 #define SPRITE_HEIGHT 62
@@ -33,10 +34,19 @@ int main()
 
     float delta_time = 0.0f;
 
+    sf::Texture map;
+    if (!map.loadFromFile("map.jpg"))
+        cout << "Couldn't load map" << endl;
+    sf::Sprite smap(map);
+
+    CView _view(sf::Vector2f(600, 600));
+
     while (_window.isOpen())
     {
         sf::Event _event;
         delta_time = clock.restart().asSeconds();
+
+
 
         while (_window.pollEvent(_event))
         {
@@ -50,14 +60,23 @@ int main()
         
         player.move(delta_time);
         test.move(delta_time);
-     
+        // ===============================================
+
+
+        _view.update(_window, player);
+
+
+
+        // ==================================================
         _window.clear();
+        _window.draw(smap);
         player.draw(_window);
         test.draw(_window);
         if (test.collide(player))
         {
             cout << "DUMB"; 
         }
+        cout << "player position x: " << player.getPosition().x << endl;
         _window.display();
     }
 }
