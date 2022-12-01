@@ -9,9 +9,10 @@ CView::CView(const sf::Vector2f& window_size) {
 }
 
 void CView::update(sf::RenderWindow& window, Object& player) {
-	if (player.getPosition().x > 300)
+	int temp_size = 740;
+	if (player.getPosition().x > window_size.x / 2 && player.getPosition().x < temp_size - window_size.x/2)
 		position.x = player.getPosition().x;
-	if (player.getPosition().y > 300)
+	if (player.getPosition().y > window_size.y / 2 && player.getPosition().y < temp_size - window_size.y / 2)
 		position.y = player.getPosition().y;
 	_view.setCenter(position);
 	window.setView(_view);
