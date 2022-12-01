@@ -70,3 +70,7 @@ bool Object::collide(Object& other)
 		//return this->animation.uv_rect.intersects(other.animation.uv_rect);
 }	
 
+
+sf::Vector2f Object::getPosition() {
+	return sprite.getPosition();
+}
