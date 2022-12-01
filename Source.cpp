@@ -28,7 +28,7 @@ int main()
     sf::RenderWindow _window(sf::VideoMode(600, 600), "Hello World");
    
     CPEOPLE player("rex.png", sf::Vector2u(4, 4), 0.3f, 100.0f , Vector2f(100,100));
-    COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.1f, 100.0f, Vector2f(200, 200) ,2);
+    COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.001f, 10.0f, Vector2f(0,200) ,2);
     sf::Clock clock;
 
     float delta_time = 0.0f;
@@ -54,6 +54,10 @@ int main()
         _window.clear();
         player.draw(_window);
         test.draw(_window);
+        if (test.collide(player))
+        {
+            cout << "DUMB"; 
+        }
         _window.display();
     }
 }

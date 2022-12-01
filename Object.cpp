@@ -64,7 +64,9 @@ void Object::draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
 
+bool Object::collide(Object& other)
+{
+	return this->sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
+		//return this->animation.uv_rect.intersects(other.animation.uv_rect);
+}	
 
-sf::Vector2f Object::getPosition() {
-	return sprite.getPosition();
-}
