@@ -6,7 +6,7 @@ class CPEOPLE : public Object
 {
 public:
 	
-	CPEOPLE(string path, sf::Vector2u image_contain, float switch_time, float speed);
+	CPEOPLE(string path, sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos);
 	void move(float delta_time);
 	//void update(float delta_time);
 

@@ -20,7 +20,7 @@ class Mouvment {
 public:
 	Mouvment() {};
 	void goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time);
-};
+};	
 
 class Object
 {
@@ -30,7 +30,7 @@ public:
 	Sprite sprite;
 	float speed;
 	Animation animation;
-	Object(string path, Vector2u image_contain, float switch_time, float speed);
+	Object(string path, Vector2u image_contain, float switch_time, float speed, Vector2f pos);
 	void draw(sf::RenderWindow& window);
 	void render(RenderTarget* target);
 	//void move(float delta_time);

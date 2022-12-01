@@ -1,7 +1,7 @@
 #include "CPEOPLE.h"
 
 
-CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed) : Object(path , image_contain , switch_time , speed ) {
+CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos) : Object(path , image_contain , switch_time , speed , pos) {
 	row = 0;
 	face_direction = 0;
 }
@@ -24,8 +24,7 @@ void CPEOPLE::move(float delta_time) {
 		mouvment.goDirection(1, sprite, speed, delta_time);
 		row = 0;
 	}
-	cout << speed << endl; 
-	cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl; 
+	//cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl; 
 	this->animation.update(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
 }

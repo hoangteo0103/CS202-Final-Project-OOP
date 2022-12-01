@@ -48,7 +48,7 @@ void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed,
 	}
 }
 
-Object::Object(string path, Vector2u image_contain, float switch_time, float speed)
+Object::Object(string path, Vector2u image_contain, float switch_time, float speed , Vector2f pos)
 {
 	if (!(texture.loadFromFile(path)))
 	{
@@ -56,6 +56,7 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 	}
 	this->speed = speed; 
 	sprite.setTexture(texture);
+	this->sprite.setPosition(pos);
 	this->animation = Animation(&texture, image_contain, switch_time); 
 }
 
