@@ -63,3 +63,8 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 void Object::draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
+
+
+sf::Vector2f Object::getPosition() {
+	return sprite.getPosition();
+}
