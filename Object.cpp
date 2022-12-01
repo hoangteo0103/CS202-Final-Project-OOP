@@ -63,3 +63,9 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 void Object::draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
+
+bool Object::collide(Object& other)
+{
+	return this->sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
+		//return this->animation.uv_rect.intersects(other.animation.uv_rect);
+}	
