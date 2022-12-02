@@ -9,7 +9,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, Vector2f pos)
 	for (int i = 1; i <= num; i++)
 	{
 		cout << "EE" << typeObstacle << endl;
-		COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle],100.f,  speed, nowPos, dir); 
+		COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle],0.1f,  speed, nowPos, dir); 
 		nowPos.x += sizeTexture[typeObstacle];
 		obstacle.push_back(now);
 	}
