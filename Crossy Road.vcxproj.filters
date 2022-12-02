@@ -63,6 +63,9 @@
     <ClCompile Include="CView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPEOPLE.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

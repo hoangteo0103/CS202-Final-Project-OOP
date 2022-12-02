@@ -1,6 +1,4 @@
-#ifndef ChooseModeState_H
-#define ChooseModeState_H
-#include "Base.h"
+#pragma once
 #include "GameState.h"
 
 class ChooseModeState :
@@ -26,6 +24,6 @@ public:
     void renderButtons(RenderTarget* target = NULL);
 
 };
-#endif
+
 
 

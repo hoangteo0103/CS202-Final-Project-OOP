@@ -123,6 +123,7 @@
     <ClCompile Include="CView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LeaderBoardState.cpp" />
     <ClCompile Include="LoseState.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="CView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Lane.h" />
     <ClInclude Include="LeaderBoardState.h" />
     <ClInclude Include="LoseState.h" />
     <ClInclude Include="MainMenuState.h" />
