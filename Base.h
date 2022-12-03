@@ -3,5 +3,5 @@
 #include "Button.h"
 #include "State.h"
 #include "Object.h"
-
+#include "CMap.h"
 
