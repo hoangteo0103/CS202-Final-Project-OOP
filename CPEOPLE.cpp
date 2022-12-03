@@ -6,11 +6,11 @@ CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, fl
 	face_direction = 0;
 }
 
-void CPEOPLE::move(float delta_time) {
+void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	Mouvment mouvment;
-	int temp_size = 740;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		if (this->getPosition().x < temp_size) {
+		if (this->getPosition().x < map_size.x) {
 			mouvment.goDirection(2, sprite, speed, delta_time);
 			row = 2;
 		}
@@ -28,7 +28,7 @@ void CPEOPLE::move(float delta_time) {
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		if (this->getPosition().y < temp_size) {
+		if (this->getPosition().y < map_size.y) {
 			mouvment.goDirection(1, sprite, speed, delta_time);
 			row = 0;
 		}
