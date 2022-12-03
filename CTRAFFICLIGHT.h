@@ -3,6 +3,7 @@
 class CTRAFFICLIGHT
 {
 private :
+	int state;
 	float now_time; 
 	float red_time, yellow_time, green_time; 
 	Sprite sprite;
@@ -12,5 +13,9 @@ public :
 	void draw(RenderWindow& window);
 	void render(RenderTarget* target);
 	void transition(float delta_time);
+	bool isVehiclePass()
+	{
+		return now_time <= red_time + yellow_time;
+	}
 };
-
+	
