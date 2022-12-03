@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChooseModeState.cpp" />
+    <ClCompile Include="CMap.cpp" />
     <ClCompile Include="COBSTACLE.cpp" />
     <ClCompile Include="CPEOPLE.cpp" />
     <ClCompile Include="CTRAFFICLIGHT.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ChooseModeState.h" />
+    <ClInclude Include="CMap.h" />
     <ClInclude Include="COBSTACLE.h" />
     <ClInclude Include="CPEOPLE.h" />
     <ClInclude Include="CTRAFFICLIGHT.h" />

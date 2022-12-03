@@ -17,3 +17,4 @@ public:
 	sf::Vector2u getSize() const;
 };
 
+

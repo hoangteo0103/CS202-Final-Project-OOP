@@ -1,2 +1,14 @@
-﻿  CTRAFFICLIGHT.cpp
-  Crossy Road.vcxproj -> D:\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
+﻿  ChooseModeState.cpp
+  CMap.cpp
+  COBSTACLE.cpp
+  CPEOPLE.cpp
+  CTRAFFICLIGHT.cpp
+  CView.cpp
+  Game.cpp
+  GameState.cpp
+  Lane.cpp
+  MainMenuState.cpp
+  Object.cpp
+  Source.cpp
+  Generating Code...
+  Crossy Road.vcxproj -> C:\Users\asus\source\repos\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
