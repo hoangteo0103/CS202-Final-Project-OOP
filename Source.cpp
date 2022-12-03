@@ -80,7 +80,7 @@ int main()
         //{
         //    cout << "DUMB"; 
         //}
-        cout << "player position x: " << player.getPosition().x << endl;
+        //cout << "player position x: " << player.getPosition().x << endl;
         _window.display();
     }
 }
