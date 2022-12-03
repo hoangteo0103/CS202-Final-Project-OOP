@@ -30,17 +30,15 @@ int main()
     sf::RenderWindow _window(sf::VideoMode(600, 600), "Hello World");
 
     CPEOPLE player("rex.png", sf::Vector2u(4, 4), 0.3f, 100.0f, Vector2f(100, 100));
-    COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.001f, 10.0f, Vector2f(0, 200), 2);
+    //COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.001f, 10.0f, Vector2f(0, 200), 2);
     sf::Clock clock;
 
     float delta_time = 0.0f;
 
-    sf::Texture map;
-    if (!map.loadFromFile("map.jpg"))
-        cout << "Couldn't load map" << endl;
-    sf::Sprite smap(map);
+    CMap map("dup_map.png");
 
-    CView _view(sf::Vector2f(600, 600));
+
+    CView _view(_window.getSize(), map.getSize());
     Lane testLane(0, 2, 3, 10.f, Vector2f(0,300));
 
     while (_window.isOpen())
@@ -60,7 +58,7 @@ int main()
             }
         }
         
-        player.move(delta_time);
+        player.move(delta_time, map.getSize());
         //test.move(delta_time);
         testLane.move(delta_time);
         // ===============================================
@@ -72,7 +70,9 @@ int main()
 
         // ==================================================
         _window.clear();
-        _window.draw(smap);
+        
+        map.draw(_window);
+
         player.draw(_window);
         //test.draw(_window);
         testLane.draw(_window);
