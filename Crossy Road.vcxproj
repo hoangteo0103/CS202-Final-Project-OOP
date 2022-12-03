@@ -120,6 +120,7 @@
     <ClCompile Include="ChooseModeState.cpp" />
     <ClCompile Include="COBSTACLE.cpp" />
     <ClCompile Include="CPEOPLE.cpp" />
+    <ClCompile Include="CTRAFFICLIGHT.cpp" />
     <ClCompile Include="CView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="ChooseModeState.h" />
     <ClInclude Include="COBSTACLE.h" />
     <ClInclude Include="CPEOPLE.h" />
+    <ClInclude Include="CTRAFFICLIGHT.h" />
     <ClInclude Include="CView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
