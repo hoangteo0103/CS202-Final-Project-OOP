@@ -1,12 +1,15 @@
 #include "CView.h"
 
-CView::CView(const sf::Vector2u& window_size, const sf::Vector2u& map_size) {
-	this->window_size = window_size;
+CView::CView(sf::RenderWindow& window, const sf::Vector2u& map_size) {
+	this->window_size.x = window.getSize().x;
+	this->window_size.y = window.getSize().y;
 	this->map_size = map_size;
-	_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
-	_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
 	this->position.x = this->window_size.x / 2;
 	this->position.y = this->window_size.y / 2;
+	_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
+	_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
+	_view.setCenter(sf::Vector2f(map_size.x/2, map_size.y - 50));
+	window.setView(_view);
 }
 
 void CView::update(sf::RenderWindow& window, Object& player) {
