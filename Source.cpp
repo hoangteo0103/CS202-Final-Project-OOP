@@ -79,10 +79,10 @@ int main()
         player.draw(_window);
         //test.draw(_window);
         testLane.draw(_window);
-        //if (test.collide(player))
-        //{
-        //    cout << "DUMB"; 
-        //}
+        if (player.isCollision(testLane))
+        {
+            cout << "DUMB"; 
+        }
         //cout << "player position x: " << player.getPosition().x << endl;
         _window.display();
     }

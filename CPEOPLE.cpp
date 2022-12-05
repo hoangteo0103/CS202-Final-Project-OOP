@@ -37,3 +37,12 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	this->animation.update(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
 }
+
+
+bool CPEOPLE::isCollision(const Lane &lane) {
+	for (auto obstacle : lane.obstacle)
+		if (this->sprite.getGlobalBounds().intersects(obstacle->sprite.getGlobalBounds()))
+			return true;
+	return false;
+
+}

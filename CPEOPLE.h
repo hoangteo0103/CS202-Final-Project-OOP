@@ -1,6 +1,6 @@
 #pragma once
 #include "Base.h"
-
+#include "Lane.h"
 
 class CPEOPLE : public Object
 {
@@ -9,6 +9,7 @@ public:
 	CPEOPLE(string path, sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos);
 	void move(float delta_time, const sf::Vector2u map_size);
 	//void update(float delta_time);
+	bool isCollision(const Lane& lane);
 
 private:
 	
