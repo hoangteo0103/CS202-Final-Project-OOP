@@ -33,9 +33,15 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 			row = 0;
 		}
 	}
+	else {
+		if (row < 4)
+			row += 4;
+	}
+	cout << "row: " << row << endl;
 	//cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl; 
 	this->animation.update(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
+	
 }
 
 
