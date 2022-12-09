@@ -50,7 +50,7 @@ class GameState :
     public State
 {
 private:
-    PauseState pausemenu;
+    //PauseState pausemenu;
     //WinState winState;
     LoseState loseState;
     PlayAgainState againState;
