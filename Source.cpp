@@ -39,10 +39,10 @@ int main()
 
     Lane testLane(0, 2, 3, 10.f, Vector2f(0,300));
 
-    CPEOPLE player("girl.png", sf::Vector2u(6, 9), 0.1f, 100.0f, Vector2f(map.getSize().x/2, map.getSize().y-500));
+    CPEOPLE player("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x/2, map.getSize().y-500));
     CView _view(_window, map.getSize());
     
-    
+    bool endgame = false;
 
     while (_window.isOpen())
     {
@@ -61,28 +61,30 @@ int main()
             }
         }
         
-        player.move(delta_time, map.getSize());
-        //test.move(delta_time);
-        testLane.move(delta_time);
-        // ===============================================
 
 
-        _view.update(_window, player);
+         player.update(delta_time, map.getSize());
+         //test.move(delta_time);
+         testLane.move(delta_time);
 
 
 
-        // ==================================================
-        _window.clear();
-        
-        map.draw(_window);
+         _view.update(_window, player);
 
-        player.draw(_window);
-        //test.draw(_window);
-        testLane.draw(_window);
-        if (player.isCollision(testLane))
-        {
-            cout << "DUMB"; 
-        }
+
+         _window.clear();
+
+         map.draw(_window);
+
+         player.draw(_window);
+         //test.draw(_window);
+         testLane.draw(_window);
+         if (player.isCollision(testLane))
+         {
+             endgame = true;
+             cout << "DUMB";
+         }
+
         //cout << "player position x: " << player.getPosition().x << endl;
         _window.display();
     }

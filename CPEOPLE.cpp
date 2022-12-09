@@ -4,7 +4,7 @@
 CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos) : Object(path , image_contain , switch_time , speed , pos) {
 	row = 0;
 	face_direction = 0;
-	
+	state = PLAYERSTATE::IDLE;
 }
 
 void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
@@ -47,10 +47,25 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 }
 
 
+void CPEOPLE::update(float delta_time, const sf::Vector2u map_size) {
+	switch (state) {
+	case 0 : case 1:
+		move(delta_time, map_size);
+		break;
+
+	case 2:
+		row = 8;
+		this->animation.update(row, delta_time);
+		this->sprite.setTextureRect(this->animation.uv_rect);
+		break;
+	}
+}
+
+
 bool CPEOPLE::isCollision(const Lane &lane) {
 	for (auto obstacle : lane.obstacle)
 		if (this->sprite.getGlobalBounds().intersects(obstacle->sprite.getGlobalBounds())) {
-			//this->animation.update(8, 0);
+			state = PLAYERSTATE::DEATH;
 			return true;
 		}
 	return false;

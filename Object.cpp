@@ -15,15 +15,19 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float swi
 void Animation::update(int row, float delta_time) {
 	current_image.y = row;
 	total_time += delta_time;
+
+	int frames = (row < 4) ? image_contain.x : image_contain.x - 2;
+
 	if (total_time >= switch_time) {
+		
 		total_time -= switch_time;
 		++current_image.x;
 		
-		int frames = (row < 4) ? image_contain.x : image_contain.x - 2;
-
 		if (current_image.x >= frames) {
 			current_image.x = 0;
 		}
+
+		
 	}
 
 	uv_rect.left = current_image.x * uv_rect.width;
