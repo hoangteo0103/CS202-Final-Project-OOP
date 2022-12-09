@@ -39,7 +39,7 @@ int main()
 
     Lane testLane(0, 2, 3, 10.f, Vector2f(0,300));
 
-    CPEOPLE player("traveller.png", sf::Vector2u(6, 8), 0.3f, 100.0f, Vector2f(map.getSize().x/2, map.getSize().y-500));
+    CPEOPLE player("girl.png", sf::Vector2u(6, 9), 0.1f, 100.0f, Vector2f(map.getSize().x/2, map.getSize().y-500));
     CView _view(_window, map.getSize());
     
     
