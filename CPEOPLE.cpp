@@ -10,25 +10,25 @@ CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, fl
 void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	Mouvment mouvment;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		if (this->getPosition().x < map_size.x) {
 			mouvment.goDirection(2, sprite, speed, delta_time);
 			row = 2;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		if (this->getPosition().x > 0) {
 			mouvment.goDirection(3, sprite, speed, delta_time);
 			row = 1;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		if (this->getPosition().y > 0) {
 			mouvment.goDirection(0, sprite, speed, delta_time);
 			row = 3;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		if (this->getPosition().y < map_size.y) {
 			mouvment.goDirection(1, sprite, speed, delta_time);
 			row = 0;
