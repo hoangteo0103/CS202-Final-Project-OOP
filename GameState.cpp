@@ -20,7 +20,7 @@ void GameState::initFonts()
 }
 
 GameState::GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved) : State(app, states)
-, pmenu(app, states)
+, pausemenu(app, states)
 {
     // Init
     this->ok = false;
@@ -54,7 +54,7 @@ void GameState::endState()
 
 void GameState::updatePaused()
 {
-    this->pmenu.updateMousePositions();
+    this->pausemenu.updateMousePositions();
 }
 
 bool cmp(pair<int, int > a, pair<int, int > b)

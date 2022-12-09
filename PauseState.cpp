@@ -1,4 +1,5 @@
 #include "PauseState.h"
+#include "MainMenuState.h"
 
 void PauseState::initFonts()
 {
