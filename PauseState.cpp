@@ -51,6 +51,8 @@ void PauseState::updateKeyBinds()
 
 void PauseState::endState()
 {
+	this->quit = true;
+
 }
 
 void PauseState::updateButtons()
