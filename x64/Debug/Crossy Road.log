@@ -1,2 +1,18 @@
-﻿  Source.cpp
-  Crossy Road.vcxproj -> C:\Users\asus\source\repos\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
+﻿  ChooseModeState.cpp
+  CMap.cpp
+  COBSTACLE.cpp
+  CPEOPLE.cpp
+  CTRAFFICLIGHT.cpp
+  CView.cpp
+  Game.cpp
+  GameState.cpp
+D:\CS202-Final-Project-OOP\GameState.cpp(24,1): error C2512: 'CPEOPLE': no appropriate default constructor available
+D:\CS202-Final-Project-OOP\CPEOPLE.h(7,7): message : see declaration of 'CPEOPLE'
+D:\CS202-Final-Project-OOP\GameState.cpp(24,1): error C2512: 'CView': no appropriate default constructor available
+D:\CS202-Final-Project-OOP\CView.h(5,7): message : see declaration of 'CView'
+  Lane.cpp
+  MainMenuState.cpp
+  Object.cpp
+  PauseState.cpp
+  Source.cpp
+  Generating Code...

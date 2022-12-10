@@ -9,6 +9,7 @@ private:
 	sf::Vector2u window_size, map_size;
 	sf::Vector2f position;
 public:
+	CView() {};
 	CView(sf::RenderWindow& window, const sf::Vector2u& map_size);
 	void update(sf::RenderWindow& window, Object& player);
 	

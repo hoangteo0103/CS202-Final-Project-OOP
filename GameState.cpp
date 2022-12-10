@@ -19,7 +19,7 @@ void GameState::initFonts()
     this->background.setTexture(texture);
 }
 
-GameState::GameState(RenderWindow* app, stack<State*>* states, int sizeX, int sizeY, int numberOfBombs, bool saved) : State(app, states)
+GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : State(app, states)
 //, pausemenu(app, states)
 {
     // Init

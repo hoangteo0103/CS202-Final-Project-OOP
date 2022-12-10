@@ -1,7 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <time.h>
-#include <string>
-#include <iostream>
+
 #include "CPEOPLE.h"
 #include "COBSTACLE.h"
 #include "CView.h"
@@ -27,6 +24,15 @@ using std::endl;
 using namespace sf;
 int main()
 {
+
+    Game game; 
+    game.run();
+
+
+
+
+    exit(0); 
+
     sf::RenderWindow _window(sf::VideoMode(600, 600), "Hello World");
 
     

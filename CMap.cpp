@@ -3,7 +3,7 @@
 
 using namespace std;
 
-CMap::CMap(const string& dir) {
+CMap::CMap(string dir) {
 	if (!texture.loadFromFile(dir)) {
 		cout << "Could Not Load Map" << endl;
 	}

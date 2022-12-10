@@ -11,7 +11,8 @@ private:
 	
 
 public:
-	CMap(const std::string& dir);
+	CMap() {};
+	CMap(std::string dir);
 
 	void draw(sf::RenderWindow& window);
 	sf::Vector2u getSize() const;
