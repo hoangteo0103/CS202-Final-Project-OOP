@@ -27,6 +27,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int sizeX, int si
     this->isUpdated = false;
     this->clock.Start();
     this->initFonts();
+    this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getPosition().x - 500.0, this->app->getPosition().y - 500.0, 500.0, 500.0,
+        &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
 }
 
 GameState ::~GameState()
@@ -138,6 +140,11 @@ void GameState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
+    if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
+    {
+        this->states->push(new PauseState(this->app, this->states));
+        this->quit = true;
+    }
 }
 
 void GameState::update()
@@ -145,7 +152,7 @@ void GameState::update()
 
     this->updateMousePositions();
     this->updateKeyBinds();
-  
+    this->updateButtons();
 }
 
 void GameState::renderButtons(RenderTarget* target)
@@ -158,5 +165,10 @@ void GameState::renderButtons(RenderTarget* target)
 
 void GameState::render(RenderTarget* target)
 {
+    if (!target)
+		target = this->app;
+
+	target->draw(this->background);
+	this->renderButtons(target);
 }
 

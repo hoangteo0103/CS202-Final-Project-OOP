@@ -27,7 +27,7 @@ using std::endl;
 using namespace sf;
 int main()
 {
-    sf::RenderWindow _window(sf::VideoMode(600, 600), "Hello World");
+    sf::RenderWindow _window(sf::VideoMode(1080, 720), "Hello World", sf::Style::Titlebar|sf::Style::Close);
 
     
     //COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.001f, 10.0f, Vector2f(0, 200), 2);
