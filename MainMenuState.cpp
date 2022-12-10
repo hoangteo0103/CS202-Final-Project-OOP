@@ -38,6 +38,10 @@ MainMenuState::MainMenuState(RenderWindow* app, stack<State*>* states)
         &this->font, "Exit", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 
+    this->buttons["TEST GAME"] = new Button(680, 500, 400, 50,
+        &this->font, "TEST GAME", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+
 }
 MainMenuState ::~MainMenuState()
 {
@@ -73,6 +77,11 @@ void MainMenuState::updateButtons()
     if (this->buttons["GAME_STATE_BTN"]->isPressed())
     {
         this->states->push(new ChooseModeState(this->app, this->states));
+    }
+
+    if (this->buttons["TEST GAME"]->isPressed())
+    {
+        this->states->push(new GameState(this->app, this->states, false));
     }
 }
 

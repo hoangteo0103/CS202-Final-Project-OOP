@@ -11,7 +11,7 @@ void GameState::Reset()
 
 void GameState::initFonts()
 {
-    if (!this->font.loadFromFile("font/Contb.ttf"))
+    if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
     }
@@ -29,7 +29,13 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->initFonts();
     this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getPosition().x - 500.0, this->app->getPosition().y - 500.0, 500.0, 500.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
+    
+    map.init("dup_map.png"); 
+    _view.init((*app), map.getSize());
+
+    player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
 }
+
 
 GameState ::~GameState()
 {
@@ -59,12 +65,6 @@ void GameState::updatePaused()
     //this->pausemenu.updateMousePositions();
 }
 
-bool cmp(pair<int, int > a, pair<int, int > b)
-{
-    if (a.first != b.first)
-        return a.first > b.first;
-    return a.second < b.second;
-}
 void GameState::updateBeginner(int time_now)
 {
     ifstream ifs("Leaderboard/leaderboardBeginner.ini");

@@ -31,12 +31,9 @@ private:
     bool isUpdated;
     bool ok;
     CMap map; 
-    
-
-
-    CPEOPLE player; 
+    CPEOPLE *player; 
     // ("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
-    CView _view; 
+    CView _view;
 
     int previousTime;
     void initFonts();
