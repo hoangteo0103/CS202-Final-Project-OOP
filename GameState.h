@@ -23,6 +23,8 @@ private:
     st::Timer clock;
     Time t;
     Text lblTime;
+    float delta_time = 0.0f;
+    Clock delta_clock;
     //ostringstream ssTime;
     map<string, Button* > buttons;
     Font font;

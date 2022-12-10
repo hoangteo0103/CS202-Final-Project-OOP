@@ -153,6 +153,10 @@ void GameState::update()
     this->updateMousePositions();
     this->updateKeyBinds();
     this->updateButtons();
+    delta_time = delta_clock.restart().asSeconds();
+
+    player->update(delta_time, map.getSize());
+    _view.update(*app, *player);
 }
 
 void GameState::renderButtons(RenderTarget* target)
@@ -167,8 +171,10 @@ void GameState::render(RenderTarget* target)
 {
     if (!target)
 		target = this->app;
-
+    
 	target->draw(this->background);
-	this->renderButtons(target);
+    map.draw(*this->app);
+    player->draw(*this->app); 
+    this->renderButtons(target);
 }
 

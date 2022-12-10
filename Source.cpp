@@ -38,7 +38,6 @@ int main()
     
     //COBSTACLE test("test1.png", sf::Vector2u(8, 1), 0.001f, 10.0f, Vector2f(0, 200), 2);
     sf::Clock clock;
-
     float delta_time = 0.0f;
 
     CMap map("dup_map.png");
