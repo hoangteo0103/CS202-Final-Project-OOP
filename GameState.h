@@ -10,6 +10,7 @@
 #include "COBSTACLE.h"
 #include "CView.h"
 #include "Lane.h"
+#include "CTRAFFICLIGHT.h"
 
 
 class GameState :
@@ -36,6 +37,7 @@ private:
     CPEOPLE *player; 
     // ("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
     CView _view;
+    CTRAFFICLIGHT *test;
 
     int previousTime;
     void initFonts();

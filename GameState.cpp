@@ -32,7 +32,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     
     map.init("dup_map.png"); 
     _view.init((*app), map.getSize());
-
+    
+    test = new CTRAFFICLIGHT(Vector2f(map.getSize().x / 2, map.getSize().y - 500),  2.0f, 2.0f,  2.0f);
     player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
 }
 
@@ -157,6 +158,7 @@ void GameState::update()
 
     player->update(delta_time, map.getSize());
     _view.update(*app, *player);
+    test->transition(delta_time);
 }
 
 void GameState::renderButtons(RenderTarget* target)
@@ -175,6 +177,7 @@ void GameState::render(RenderTarget* target)
 	target->draw(this->background);
     map.draw(*this->app);
     player->draw(*this->app); 
+    test->draw(*this->app);
     this->renderButtons(target);
 }
 

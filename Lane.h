@@ -1,12 +1,13 @@
 #pragma once
 #include "COBSTACLE.h"
-
+#include "CTRAFFICLIGHT.h"
 
 
 class Lane
 {
 private :
 	vector<COBSTACLE*> obstacle;
+	vector<CTRAFFICLIGHT> lights; 
 	int num; 
 public :
 	
