@@ -13,6 +13,6 @@ public:
 	CView(sf::RenderWindow& window, const sf::Vector2u& map_size);
 	void init(sf::RenderWindow& window, const sf::Vector2u& map_size);
 	void update(sf::RenderWindow& window, Object& player);
-	
+	sf::Vector2f getCenter();
 };
 

@@ -27,7 +27,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->isUpdated = false;
     this->clock.Start();
     this->initFonts();
-    this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getPosition().x - 500.0, this->app->getPosition().y - 500.0, 500.0, 500.0,
+    this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getSize().x - 500.0, this->app->getSize().y - 500.0, 500.0, 500.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
     map.init("dup_map.png"); 
@@ -157,7 +157,14 @@ void GameState::update()
     delta_time = delta_clock.restart().asSeconds();
 
     player->update(delta_time, map.getSize());
+    Vector2f beforeView = _view.getCenter();
     _view.update(*app, *player);
+    Vector2f afterView = _view.getCenter();
+    Vector2f dis = beforeView - afterView;
+    for (auto& it : this->buttons)
+    {
+        it.second->move(dis);
+    }
     test->transition(delta_time);
 }
 

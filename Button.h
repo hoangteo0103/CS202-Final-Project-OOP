@@ -33,5 +33,6 @@ public:
     virtual void setOutline(Color color);
     void update(const Vector2f mousePos);
     void render(RenderTarget* target);
+    void move(const Vector2f distance);
 };
 #endif // BUTTON_H

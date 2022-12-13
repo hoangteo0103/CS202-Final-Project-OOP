@@ -33,3 +33,8 @@ void CView::update(sf::RenderWindow& window, Object& player) {
 	_view.setCenter(position);
 	window.setView(_view);
 }
+
+sf::Vector2f CView::getCenter()
+{
+	return _view.getCenter();
+}

@@ -20,6 +20,7 @@ Button::Button(float x, float y, float width, float height, Font* font,
     this->hoverColor = hoverColor;
     this->activeColor = activeColor;
     this->shape.setFillColor(this->idleColor);
+    this->setOutline(Color::Red);
 }
 Button::~Button()
 {
@@ -27,7 +28,8 @@ Button::~Button()
 }
 void Button::setOutline(Color  color)
 {
-    this->shape.setOutlineColor(Color::Red);
+    this->shape.setOutlineThickness(1.0f);
+    this->shape.setOutlineColor(color);
 }
 void Button::updateText(string t)
 {
@@ -76,3 +78,7 @@ void Button::render(RenderTarget* target)
     target->draw(this->text);
 }
 
+void Button::move(const Vector2f distance)
+{
+    this->shape.move(distance);
+}
