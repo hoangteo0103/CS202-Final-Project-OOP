@@ -8,7 +8,7 @@ class Lane
 private:
 	vector<COBSTACLE*> obstacle;
 	int num;
-	vector<CTRAFFICLIGHT> lights;
+	vector<CTRAFFICLIGHT*> lights;
 	int numTrafficLight; 
 	Texture texture;
 	Sprite sprite;

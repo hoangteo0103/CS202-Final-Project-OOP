@@ -11,10 +11,9 @@ CTRAFFICLIGHT::CTRAFFICLIGHT(Vector2f pos, float red_time, float yellow_time, fl
 	sprite.setTexture(texture);
 	sprite.setPosition(pos);
 }
-
+ 
 void CTRAFFICLIGHT::draw(RenderWindow& window)
 {
-	cout << state << endl; 
 	IntRect rect; 
 	rect.height = 48;
 	rect.width = float(198) / 4.f; // depend on the texture 
@@ -33,7 +32,6 @@ void CTRAFFICLIGHT::render(RenderTarget* target)
 void CTRAFFICLIGHT::transition(float delta_time)
 {
 	now_time += delta_time;
-	cout << now_time << ' ' << red_time << ' ' << green_time << ' ' << red_time << endl;
 	if (now_time <= red_time)
 	{
 		state = 0;

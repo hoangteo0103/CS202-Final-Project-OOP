@@ -20,7 +20,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 	float start = 400.f;
 	for (int i = 0; i < numTrafficLight; i++)
 	{
-		CTRAFFICLIGHT tmp(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
+		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
 		start += 200.f;
 		lights.push_back(tmp); 
 	}
@@ -45,7 +45,7 @@ void Lane::draw(sf::RenderWindow& window)
 
 	for (int i = 0; i < numTrafficLight; i++)
 	{
-		lights[i].draw(window);
+		lights[i]->draw(window);
 	}
 }
 
@@ -59,7 +59,7 @@ void Lane::update(float delta_time)
 
 	for (int i = 0; i < numTrafficLight; i++)
 	{
-		lights[i].transition(delta_time); 
+		lights[i]->transition(delta_time); 
 	}
 }
 //void render(RenderTarget* target)
