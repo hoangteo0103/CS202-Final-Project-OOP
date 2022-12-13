@@ -29,6 +29,7 @@ public:
 	Texture texture;
 	Sprite sprite;
 	float speed;
+	float origin_speed; 
 	Animation animation;
 	Object() {};
 	Object(string path, Vector2u image_contain, float switch_time, float speed, Vector2f pos);

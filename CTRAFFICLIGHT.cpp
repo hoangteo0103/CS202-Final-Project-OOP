@@ -29,6 +29,11 @@ void CTRAFFICLIGHT::render(RenderTarget* target)
 
 }
 
+float CTRAFFICLIGHT::getPos()
+{
+	return this->sprite.getPosition().x;
+}
+
 void CTRAFFICLIGHT::transition(float delta_time)
 {
 	now_time += delta_time;

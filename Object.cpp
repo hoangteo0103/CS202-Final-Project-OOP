@@ -61,6 +61,7 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 		cout << "Could Not Load File.." << endl;
 	}
 	this->speed = speed; 
+	this->origin_speed = speed; 
 	sprite.setTexture(texture);
 	this->sprite.setPosition(pos);
 	this->animation = Animation(&texture, image_contain, switch_time); 

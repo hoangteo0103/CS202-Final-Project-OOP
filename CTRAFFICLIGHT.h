@@ -17,5 +17,6 @@ public :
 	{
 		return now_time <= red_time + yellow_time;
 	}
+	float getPos();
 };
 	

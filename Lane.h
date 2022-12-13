@@ -18,8 +18,8 @@ public:
 	Lane(int typeObstacle ,int dir,int num, float speed, string texture_dir, Vector2f pos);
 	void draw(sf::RenderWindow& window);
 	void update(float delta_time);
+	void updateSpeed();
 	//void render(RenderTarget* target);
-
 
 	friend class CPEOPLE;
 };

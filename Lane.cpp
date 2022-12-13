@@ -1,12 +1,13 @@
 #include "Lane.h"
 vector<Vector2u> imageContainVc = { Vector2u(14,1) };
 vector<string> pathTexture = { "Skin1.png" };
-vector<int> sizeTexture = { 24 };
+vector<int> sizeTexture = { 120};
 
 
 Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, Vector2f pos)
 {
 	this->num = num;
+	cout << pos.x << endl; 
 	Vector2f nowPos = { pos.x - (num - 1) * sizeTexture[typeObstacle], pos.y };
 	for (int i = 1; i <= num; i++)
 	{
@@ -15,13 +16,13 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 		obstacle.push_back(now);
 	}
 
-	numTrafficLight = 3; 
+	numTrafficLight = 1; 
 
 	float start = 400.f;
 	for (int i = 0; i < numTrafficLight; i++)
 	{
-		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
-		start += 200.f;
+		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 20.0f);
+		start += 500.f;
 		lights.push_back(tmp); 
 	}
 
@@ -32,6 +33,22 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 	position = pos;
 	sprite.setTexture(texture);
 	this->sprite.setPosition(position);
+}
+
+void Lane::updateSpeed()
+{
+	for (int i = 0; i < num; i++)
+	{
+
+		obstacle[i]->setSpeed(obstacle[i]->origin_speed);
+		for (int j = 0; j < numTrafficLight; j++)
+		{
+			cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
+			if ( (obstacle[i]->sprite.getPosition().x  > lights[i]->getPos() + 48.f )  || lights[i]->isVehiclePass()) continue;
+			int dis = lights[i]->getPos() + 48.f -  (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
+			obstacle[i]->setSpeed(dis);
+		}
+	}
 }
 
 void Lane::draw(sf::RenderWindow& window)
@@ -48,6 +65,7 @@ void Lane::draw(sf::RenderWindow& window)
 		lights[i]->draw(window);
 	}
 }
+
 
 void Lane::update(float delta_time)
 {
