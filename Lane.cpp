@@ -1,7 +1,14 @@
 #include "Lane.h"
+
+
 vector<Vector2u> imageContainVc = {Vector2u(14,1)};
 vector<string> pathTexture = { "Skin1.png" };
 vector<int> sizeTexture = { 24 };
+
+void Lane::init() {
+}
+
+
 Lane::Lane(int typeObstacle, int dir, int num, float speed, Vector2f pos)
 {
 	this->num = num;
