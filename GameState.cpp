@@ -30,17 +30,18 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->isUpdated = false;
     this->clock.Start();
     this->initFonts();
-    this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getSize().x - 500.0, this->app->getSize().y - 500.0, 500.0, 500.0,
-        &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
     this->win_line_y = 200;
     this->current_level = 1;
 
     map.init("grasses.png"); 
     _view.init((*app), map.getSize());
-    
+
     test = new CTRAFFICLIGHT(Vector2f(map.getSize().x / 2, map.getSize().y - 500),  2.0f, 2.0f,  2.0f);
     player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
+
+    this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
+        &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
     //road = new Lane(0, 2, 3, 10.f,"clayroad.png", sf::Vector2f(0, 600));
     lane_management = new LanePack;
@@ -170,17 +171,15 @@ void GameState::update()
     this->updateButtons();
     delta_time = delta_clock.restart().asSeconds();
 
+    Vector2f beforePos = player->getPosition();
     player->update(delta_time, map.getSize());
+
+    this->updateMovingButton(player->getPosition() - beforePos);
+
     //road->update(delta_time);
     lane_management->update(delta_time);
-    Vector2f beforeView = _view.getCenter();
     _view.update(*app, *player);
-    Vector2f afterView = _view.getCenter();
-    Vector2f dis = beforeView - afterView;
-    for (auto& it : this->buttons)
-    {
-        it.second->move(dis);
-    }
+    
     test->transition(delta_time);
 
     if (player->getPosition().y < win_line_y)
@@ -211,3 +210,13 @@ void GameState::render(RenderTarget* target)
     this->renderButtons(target);
 }
 
+void GameState::updateMovingButton(Vector2f& distance)
+{
+    for (auto& it : this->buttons)
+    {
+        if (player->getPosition().x > app->getSize().x / 2 && player->getPosition().x < map.getSize().x - app->getSize().x / 2)
+            it.second->move(Vector2f(distance.x, 0));
+        if (player->getPosition().y > app->getSize().y / 2 && player->getPosition().y < map.getSize().y - app->getSize().y / 2)
+            it.second->move(Vector2f(0, distance.y));
+    }
+}

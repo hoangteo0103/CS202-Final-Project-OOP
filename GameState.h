@@ -66,7 +66,7 @@ public:
     void update();
     void render(RenderTarget* target = NULL);
     void renderButtons(RenderTarget* target = NULL);
-
+    void updateMovingButton(Vector2f& distance);
 };
 #endif
 

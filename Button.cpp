@@ -81,4 +81,5 @@ void Button::render(RenderTarget* target)
 void Button::move(const Vector2f distance)
 {
     this->shape.move(distance);
+    this->text.move(distance);
 }
