@@ -2,7 +2,9 @@
 vector<Vector2u> imageContainVc = { Vector2u(14,1) };
 vector<string> pathTexture = { "Skin1.png" };
 vector<int> sizeTexture = { 24 };
-Lane::Lane(int typeObstacle, int dir, int num, float speed, Vector2f pos)
+
+
+Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, Vector2f pos)
 {
 	this->num = num;
 	Vector2f nowPos = { pos.x - (num - 1) * sizeTexture[typeObstacle], pos.y };
@@ -22,10 +24,19 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, Vector2f pos)
 		start += 200.f;
 		lights.push_back(tmp); 
 	}
+
+	if (!(texture.loadFromFile(texture_dir)))
+	{
+		cout << "Could Not Load Lane File.." << endl;
+	}
+	position = pos;
+	sprite.setTexture(texture);
+	this->sprite.setPosition(position);
 }
 
 void Lane::draw(sf::RenderWindow& window)
 {
+	window.draw(this->sprite);
 	for (int i = 0; i < num; i++)
 	{
 		//cout << obstacle[i]->sprite.getPosition().x << ' ' << obstacle[i]->sprite.getPosition().y << endl;
@@ -51,7 +62,7 @@ void Lane::update(float delta_time)
 		lights[i].transition(delta_time); 
 	}
 }
-void render(RenderTarget* target)
-{
-
-}
+//void render(RenderTarget* target)
+//{
+//
+//}
