@@ -7,6 +7,9 @@ void GameState::Reset()
     this->clock.Reset();
     this->paused = false;
     this->previousTime = 0;
+
+
+
 }
 
 void GameState::initFonts()
@@ -30,11 +33,19 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->buttons["PAUSE_STATE_BTN"] = new Button(this->app->getSize().x - 500.0, this->app->getSize().y - 500.0, 500.0, 500.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
-    map.init("dup_map.png"); 
+    this->win_line_y = 200;
+    this->current_level = 1;
+
+    map.init("grasses.png"); 
     _view.init((*app), map.getSize());
     
     test = new CTRAFFICLIGHT(Vector2f(map.getSize().x / 2, map.getSize().y - 500),  2.0f, 2.0f,  2.0f);
-    player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
+    player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
+    
+    //road = new Lane(0, 2, 3, 10.f,"clayroad.png", sf::Vector2f(0, 600));
+    lane_management = new LanePack;
+
+    lane_management->init(this->current_level, map.getSize(), this->win_line_y);
 }
 
 
@@ -46,6 +57,9 @@ GameState ::~GameState()
     {
         delete it->second;
     }
+
+    delete player;
+    delete lane_management;
 }
 
 
@@ -157,6 +171,8 @@ void GameState::update()
     delta_time = delta_clock.restart().asSeconds();
 
     player->update(delta_time, map.getSize());
+    //road->update(delta_time);
+    lane_management->update(delta_time);
     Vector2f beforeView = _view.getCenter();
     _view.update(*app, *player);
     Vector2f afterView = _view.getCenter();
@@ -166,6 +182,11 @@ void GameState::update()
         it.second->move(dis);
     }
     test->transition(delta_time);
+
+    if (player->getPosition().y < win_line_y)
+        exit(1);
+
+
 }
 
 void GameState::renderButtons(RenderTarget* target)
@@ -183,6 +204,8 @@ void GameState::render(RenderTarget* target)
     
 	target->draw(this->background);
     map.draw(*this->app);
+    //road->draw(*this->app);
+    lane_management->draw(*this->app);
     player->draw(*this->app); 
     test->draw(*this->app);
     this->renderButtons(target);

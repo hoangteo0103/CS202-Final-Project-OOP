@@ -9,7 +9,7 @@
 #include "CPEOPLE.h"
 #include "COBSTACLE.h"
 #include "CView.h"
-#include "Lane.h"
+#include "LanePack.h"
 #include "CTRAFFICLIGHT.h"
 
 
@@ -34,11 +34,14 @@ private:
     bool isUpdated;
     bool ok;
     CMap map; 
-    CPEOPLE *player; 
-    // ("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - 500));
+    CPEOPLE *player;
     CView _view;
     CTRAFFICLIGHT *test;
+    //Lane* road;
+    LanePack* lane_management;
 
+    int current_level;
+    int win_line_y;
     int previousTime;
     void initFonts();
     void initButtons();
