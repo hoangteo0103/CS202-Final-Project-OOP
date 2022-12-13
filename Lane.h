@@ -8,6 +8,7 @@ class Lane
 private :
 	vector<COBSTACLE*> obstacle;
 	vector<CTRAFFICLIGHT> lights;
+	int numTrafficLight; 
 	Texture texture;
 	Sprite sprite;
 	int num;
@@ -16,7 +17,7 @@ public :
 	void init();
 	Lane(int typeObstacle ,int dir,int num, float speed, Vector2f pos);
 	void draw(sf::RenderWindow& window);
-	void move(float delta_time);
+	void update(float delta_time);
 	void render(RenderTarget* target);
 
 
