@@ -35,7 +35,6 @@ private:
     CMap map; 
     CPEOPLE *player;
     CView _view;
-    //Lane* road;
     LanePack* lane_management;
 
     int current_level;

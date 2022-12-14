@@ -39,7 +39,6 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
-    //road = new Lane(0, 2, 3, 10.f,"clayroad.png", sf::Vector2f(0, 600));
     lane_management = new LanePack;
 
     lane_management->init(this->current_level, map.getSize(), this->win_line_y);
