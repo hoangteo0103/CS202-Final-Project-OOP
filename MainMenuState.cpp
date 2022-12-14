@@ -13,36 +13,35 @@ void MainMenuState::initFonts()
 }
 void MainMenuState::initButtons()
 {
+    this->buttons["GAME_STATE_BTN"] = new Button(app->getSize().x/2 - 200.0, 200 , 400, 50,
+        &this->font, "New Game", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 
+    this->buttons["CONTINUE_STATE_BTN"] = new Button(app->getSize().x / 2 - 200.0, 260, 400, 50,
+        &this->font, "Continue", Color(70, 70, 70, 200)
+        , Color(100, 100, 100, 255), Color(20, 20, 20, 200));
+
+    this->buttons["HIGH_SCORE_BTN"] = new Button(app->getSize().x / 2 - 200.0, 320, 400, 50,
+        &this->font, "High Score", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+
+    this->buttons["AUTHOR_STATE_BTN"] = new Button(app->getSize().x / 2 - 200.0, 380, 400, 50,
+        &this->font, "Author", Color(70, 70, 70, 200)
+        , Color(100, 100, 100, 255), Color(20, 20, 20, 200));
+
+    this->buttons["GAME_QUIT_BTN"] = new Button(app->getSize().x / 2 - 200.0, 440, 400, 50,
+        &this->font, "Exit", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+
+    this->buttons["TEST GAME"] = new Button(app->getSize().x / 2 - 200.0, 500, 400, 50,
+        &this->font, "TEST GAME", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 }
 MainMenuState::MainMenuState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
     this->initFonts();
-    this->buttons["GAME_STATE_BTN"] = new Button(680, 200, 400, 50,
-        &this->font, "New Game", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-
-    this->buttons["CONTINUE_STATE_BTN"] = new Button(680, 260, 400, 50,
-        &this->font, "Continue", Color(70, 70, 70, 200)
-        , Color(100, 100, 100, 255), Color(20, 20, 20, 200));
-
-    this->buttons["HIGH_SCORE_BTN"] = new Button(680, 320, 400, 50,
-        &this->font, "High Score", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-
-    this->buttons["AUTHOR_STATE_BTN"] = new Button(680, 380, 400, 50,
-        &this->font, "Author", Color(70, 70, 70, 200)
-        , Color(100, 100, 100, 255), Color(20, 20, 20, 200));
-
-    this->buttons["GAME_QUIT_BTN"] = new Button(680, 440, 400, 50,
-        &this->font, "Exit", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-
-    this->buttons["TEST GAME"] = new Button(680, 500, 400, 50,
-        &this->font, "TEST GAME", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-
+    this->initButtons();
 }
 MainMenuState ::~MainMenuState()
 {

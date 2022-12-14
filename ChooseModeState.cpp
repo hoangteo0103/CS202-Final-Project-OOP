@@ -8,25 +8,25 @@ void ChooseModeState::initFonts()
     {
 
     }
-    //texture.loadFromFile("images/select1.png");
+    texture.loadFromFile("External/images/mainmenu.jpg");
     this->background.setTexture(texture);
+    this->background.setScale(4.f, 4.f);
 }
 void ChooseModeState::initButtons()
 {
-    this->buttons["BACK_TO_MENU_STATE"] = new Button(374, 580, 450, 50,
-        &this->font, "Back to Menu", Color(0, 0, 0, 0)
-        , Color(10, 10, 10, 10), Color(20, 20, 20, 200));
-
-    this->buttons["EASY_STATE"] = new Button(220, 200, 350, 50,
+    this->buttons["EASY_STATE"] = new Button(app->getSize().x / 2 - 200.0, 260, 400, 50,
         &this->font, "EASY", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 
-    this->buttons["MEDIUM_STATE"] = new Button(220, 260, 350, 50,
+    this->buttons["MEDIUM_STATE"] = new Button(app->getSize().x / 2 - 200.0, 320, 400, 50,
         &this->font, "MEDIUM", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 
-    this->buttons["HARD_STATE"] = new Button(220, 320, 350, 50,
+    this->buttons["HARD_STATE"] = new Button(app->getSize().x / 2 - 200.0, 380, 400, 50,
         &this->font, "HARD", Color(70, 70, 70, 200)
+        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+    this->buttons["BACK_TO_MENU_STATE"] = new Button(app->getSize().x / 2 - 200.0, 440, 400, 50,
+        &this->font, "Back to Menu", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 }
 ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
@@ -39,8 +39,7 @@ ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
 
 ChooseModeState ::~ChooseModeState()
 {
-    auto it = this->buttons.begin();
-    for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
+    for (auto& it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
         delete it->second;
     }
@@ -59,11 +58,7 @@ void ChooseModeState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
-    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
-    {
-        this->quit = true;
-    }
-    
+   
     if (this->buttons["EASY_STATE"]->isPressed())
     {
         //this->states->push(new GameState(this->app, this->states, 0, 0));
@@ -82,7 +77,11 @@ void ChooseModeState::updateButtons()
         //this->states->push(new GameState(this->app, this->states, 30, 16, 99, 0));
         this->quit = true;
     }
-    
+
+    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
+    {
+        this->quit = true;
+    }
 }
 
 void ChooseModeState::update()
