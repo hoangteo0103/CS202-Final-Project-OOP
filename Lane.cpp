@@ -7,7 +7,6 @@ vector<int> sizeTexture = { 120};
 Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, Vector2f pos)
 {
 	this->num = num;
-	cout << pos.x << endl; 
 	Vector2f nowPos = { pos.x - (num - 1) * sizeTexture[typeObstacle], pos.y };
 	for (int i = 1; i <= num; i++)
 	{
@@ -21,7 +20,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 	float start = 400.f;
 	for (int i = 0; i < numTrafficLight; i++)
 	{
-		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 20.0f);
+		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
 		start += 500.f;
 		lights.push_back(tmp); 
 	}
@@ -65,8 +64,17 @@ void Lane::draw(sf::RenderWindow& window)
 		lights[i]->draw(window);
 	}
 }
+void Lane::checkEnd()
+{
+	int typeObstacle = 0;
+	if (obstacle[num - 1]->getPosition().x < 2880.f) return;
+	Vector2f nowPos = { position.x - (num - 1) * sizeTexture[typeObstacle], position.y };
+	for (int i = 0; i < num; i++)
+	{
+		obstacle[i]->sprite.setPosition(nowPos);
+	}
 
-
+}
 void Lane::update(float delta_time)
 {
 	
@@ -74,7 +82,7 @@ void Lane::update(float delta_time)
 	{
 		obstacle[i]->move(delta_time);
 	}
-
+	checkEnd(); 
 	for (int i = 0; i < numTrafficLight; i++)
 	{
 		lights[i]->transition(delta_time); 

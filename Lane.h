@@ -19,6 +19,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void update(float delta_time);
 	void updateSpeed();
+	void checkEnd();
 	//void render(RenderTarget* target);
 
 	friend class CPEOPLE;

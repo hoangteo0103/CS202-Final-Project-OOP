@@ -27,7 +27,7 @@ void LanePack::init(int level, sf::Vector2u map_size, int win_line_y)
 	int factor = map_size.y / (numberLane + 4);
 	for (int i = 0; i < numberLane; ++i) {
 		int y_position = factor * i + win_line_y;
-		Lane *new_lane = new Lane(0, 2, 1, 50.f, "clayroad.png", sf::Vector2f(0, y_position));
+		Lane *new_lane = new Lane(0, 2, 1, 200.f, "clayroad.png", sf::Vector2f(0, y_position));
 		lanes.push_back(new_lane);
 	}
 
