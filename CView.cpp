@@ -1,5 +1,6 @@
 #include "CView.h"
-
+#include <iostream>
+using namespace std;
 CView::CView(sf::RenderWindow& window, const sf::Vector2u& map_size) {
 	this->window_size.x = window.getSize().x;
 	this->window_size.y = window.getSize().y;
@@ -32,9 +33,20 @@ void CView::update(sf::RenderWindow& window, Object& player) {
 		position.y = player.getPosition().y;
 	_view.setCenter(position);
 	window.setView(_view);
+	//cout << "position.x " << position.x << " position.y" << position.y << endl;
 }
 
 sf::Vector2f CView::getCenter()
 {
 	return _view.getCenter();
+}
+
+void CView::reset(sf::RenderWindow& window, Object& player) {
+	//
+	//this->position.x = this->window_size.x / 2;
+	//this->position.y = this->window_size.y / 2;
+	//_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
+	//_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
+	//_view.setCenter(sf::Vector2f(map_size.x / 2, map_size.y - 50));
+	////this->update(window, player);
 }

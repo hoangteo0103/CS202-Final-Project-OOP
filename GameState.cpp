@@ -32,7 +32,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->current_level = 1;
 
     map.init("grasses.png"); 
-    _view.init((*app), map.getSize());
+    view = new CView;
+    view->init((*app), map.getSize());
 
     player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
 
@@ -54,6 +55,7 @@ GameState ::~GameState()
         delete it->second;
     }
 
+    delete view;
     delete player;
     delete lane_management;
 }
@@ -173,17 +175,17 @@ void GameState::update()
 
     //road->update(delta_time);
     lane_management->update(delta_time);
-    _view.update(*app, *player);
+    view->update(*app, *player);
     
 
     if (player->isCollision(lane_management)) {
         cout << "game_over" << endl;
     }
 
-    //if (player->getPosition().y < win_line_y)
-    //    player->reset();
-
-
+    if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
+        player->reset();
+        view->reset(*this->app, *player);
+    }
 }
 
 void GameState::endGame()

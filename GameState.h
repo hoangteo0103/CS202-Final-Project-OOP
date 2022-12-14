@@ -34,7 +34,7 @@ private:
     bool paused = false;
     CMap map; 
     CPEOPLE *player;
-    CView _view;
+    CView* view;
     LanePack* lane_management;
 
     int current_level;

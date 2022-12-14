@@ -14,5 +14,6 @@ public:
 	void init(sf::RenderWindow& window, const sf::Vector2u& map_size);
 	void update(sf::RenderWindow& window, Object& player);
 	sf::Vector2f getCenter();
+	void reset(sf::RenderWindow& window, Object& player);
 };
 
