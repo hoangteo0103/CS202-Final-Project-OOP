@@ -197,17 +197,18 @@ void GameState::render(RenderTarget* target)
 {
     if (!target)
 		target = this->app;
-    
+    if (this->paused)
+    {
+        this->pmenu.render(*target);
+        return; 
+    }
 	target->draw(this->background);
     map.draw(*this->app);
     //road->draw(*this->app);
     lane_management->draw(*this->app);
     player->draw(*this->app); 
     this->renderButtons(target);
-    if (this->paused)
-    {
-        this->pmenu.render(*target);
-    }
+    
 }
 
 void GameState::updateMovingButton(Vector2f& distance)

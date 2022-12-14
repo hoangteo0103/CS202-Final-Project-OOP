@@ -15,12 +15,12 @@ void PauseState::initState(RenderWindow& app)
         Vector2f(
             static_cast<float> (app.getSize().x),
             static_cast<float> (app.getSize().y)));
-    this->background.setFillColor(Color(20, 20, 20, 100));
+    this->background.setFillColor(Color::White);
     // Init container
     this->container.setSize(
         Vector2f(
             static_cast<float> (app.getSize().x) / 2.f,
-            static_cast<float> (app.getSize().y) / 3.f));
+            static_cast<float> (app.getSize().y) / 3.f)); 
     this->container.setFillColor(Color::Black);
     this->container.setPosition(
         Vector2f(static_cast<float>(app.getSize().x) / 2.f - this->container.getSize().x / 2.f, 240.f));
@@ -76,6 +76,7 @@ void PauseState::update()
 
 void PauseState::render(RenderTarget& target)
 {
+
     target.draw(background);
     target.draw(container);
     target.draw(menutext);

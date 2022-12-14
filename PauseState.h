@@ -1,5 +1,5 @@
-#ifndef PauseState_H
-#define PauseState_H
+#ifndef PAUSESTATE.H
+#define PAUSESTATE_H
 #include "Button.h"
 class PauseState
 {
