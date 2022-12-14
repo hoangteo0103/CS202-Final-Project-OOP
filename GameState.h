@@ -17,13 +17,11 @@ class GameState :
     public State
 {
 private:
-    //PauseState pausemenu;
-    //WinState winState;
+    PauseState pmenu;
+    WinState winState;
     LoseState loseState;
     PlayAgainState againState;
-    st::Timer clock;
-    Time t;
-    Text lblTime;
+
     float delta_time = 0.0f;
     Clock delta_clock;
     //ostringstream ssTime;
@@ -33,10 +31,10 @@ private:
     Sprite background;
     bool isUpdated;
     bool ok;
+    bool paused = false;
     CMap map; 
     CPEOPLE *player;
     CView _view;
-    CTRAFFICLIGHT *test;
     //Lane* road;
     LanePack* lane_management;
 
@@ -63,6 +61,7 @@ public:
     const bool& getLose() const;
     const bool& getWin() const;
     void endState();
+    void endGame();
     void update();
     void render(RenderTarget* target = NULL);
     void renderButtons(RenderTarget* target = NULL);

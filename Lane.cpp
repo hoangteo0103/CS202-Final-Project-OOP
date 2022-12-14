@@ -75,6 +75,8 @@ void Lane::checkEnd()
 	}
 
 }
+
+
 void Lane::update(float delta_time)
 {
 	

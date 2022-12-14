@@ -1,30 +1,28 @@
 #ifndef PauseState_H
 #define PauseState_H
-#include "GameState.h"
-
-class PauseState : public State
+#include "Button.h"
+class PauseState
 {
 private:
-	Texture t;
-	Sprite background;
-	Font font;
-	map<string, Button*> buttons;
+    RectangleShape background;
+    RectangleShape container;
+    Font font;
+    Text menutext;
+    Vector2i mousePosWindow;
+    Vector2f mousePosView;
 
-private:
-	void initFonts();
-	void initButtons();
-
+    map<string, Button* > buttons;
+    bool resume;
+    void initFonts();
 public:
-	PauseState(RenderWindow* app, stack<State*>* states);
-	virtual ~PauseState();
-
-public:
-	void updateKeyBinds();
-	void updateButtons();
-	void endState();
-	void update();
-	void render(RenderTarget* target = NULL);
-	void renderButtons(RenderTarget* target = NULL);
+    PauseState();
+    virtual ~PauseState();
+    //functions
+    void initState(RenderWindow& app);
+    void updateButtons();
+    const bool& getResume() const;
+    void updateMousePositions(Vector2f mousePosView);
+    void update();
+    void render(RenderTarget& target);
 };
-
 #endif // PauseState_H

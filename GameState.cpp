@@ -4,12 +4,7 @@ void GameState::Reset()
 {
     this->ok = false;
     this->isUpdated = false;
-    this->clock.Reset();
     this->paused = false;
-    this->previousTime = 0;
-
-
-
 }
 
 void GameState::initFonts()
@@ -23,12 +18,11 @@ void GameState::initFonts()
 }
 
 GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : State(app, states)
-//, pausemenu(app, states)
+//, PauseState(app, states)
 {
     // Init
     this->ok = false;
     this->isUpdated = false;
-    this->clock.Start();
     this->initFonts();
     
     this->win_line_y = 200;
@@ -37,7 +31,6 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     map.init("grasses.png"); 
     _view.init((*app), map.getSize());
 
-    test = new CTRAFFICLIGHT(Vector2f(map.getSize().x / 2, map.getSize().y - 500),  2.0f, 2.0f,  2.0f);
     player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
 
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
@@ -78,7 +71,7 @@ void GameState::endState()
 
 void GameState::updatePaused()
 {
-    //this->pausemenu.updateMousePositions();
+    //this->PauseState.updateMousePositions();
 }
 
 void GameState::updateBeginner(int time_now)
@@ -158,8 +151,8 @@ void GameState::updateButtons()
     }
     if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
     {
-        this->states->push(new PauseState(this->app, this->states));
-        this->quit = true;
+        this->paused = true;
+        this->pmenu.initState(*app);
     }
 }
 
@@ -180,11 +173,15 @@ void GameState::update()
     lane_management->update(delta_time);
     _view.update(*app, *player);
     
-    test->transition(delta_time);
 
     if (player->getPosition().y < win_line_y)
         exit(1);
 
+
+}
+
+void GameState::endGame()
+{
 
 }
 
@@ -206,8 +203,11 @@ void GameState::render(RenderTarget* target)
     //road->draw(*this->app);
     lane_management->draw(*this->app);
     player->draw(*this->app); 
-    test->draw(*this->app);
     this->renderButtons(target);
+    if (this->paused)
+    {
+        this->pmenu.render(*target);
+    }
 }
 
 void GameState::updateMovingButton(Vector2f& distance)
