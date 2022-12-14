@@ -31,11 +31,15 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->win_line_y = 200;
     this->current_level = 1;
 
+
     map.init("grasses.png"); 
     view = new CView;
     view->init((*app), map.getSize());
 
-    player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
+    starting_position = sf::Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y);
+
+
+    player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
@@ -169,12 +173,14 @@ void GameState::update()
     delta_time = delta_clock.restart().asSeconds();
 
     Vector2f beforePos = player->getPosition();
-    player->update(delta_time, map.getSize());
+    
 
     this->updateMovingButton(player->getPosition() - beforePos);
 
     //road->update(delta_time);
     lane_management->update(delta_time);
+
+    player->update(delta_time, map.getSize());
     view->update(*app, *player);
     
 
@@ -183,7 +189,7 @@ void GameState::update()
     }
 
     if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
-        player->reset();
+        player->reset(starting_position);
         view->reset(*this->app, *player);
     }
 }

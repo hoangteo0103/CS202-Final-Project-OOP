@@ -37,6 +37,7 @@ private:
     CView* view;
     LanePack* lane_management;
 
+    sf::Vector2f starting_position;
     int current_level;
     int win_line_y;
     int previousTime;

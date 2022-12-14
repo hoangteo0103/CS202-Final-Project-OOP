@@ -42,11 +42,6 @@ sf::Vector2f CView::getCenter()
 }
 
 void CView::reset(sf::RenderWindow& window, Object& player) {
-	//
-	//this->position.x = this->window_size.x / 2;
-	//this->position.y = this->window_size.y / 2;
-	//_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
-	//_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
-	//_view.setCenter(sf::Vector2f(map_size.x / 2, map_size.y - 50));
-	////this->update(window, player);
+	_view.setCenter(player.getPosition());
+	window.setView(_view);
 }

@@ -76,6 +76,6 @@ bool CPEOPLE::isCollision(LanePack*& lane_management) {
 }
 
 
-void CPEOPLE::reset() {
-	this->setPosition(sf::Vector2f(500, 500));
+void CPEOPLE::reset(sf::Vector2f pos) {
+	this->setPosition(pos);
 }
