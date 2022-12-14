@@ -15,8 +15,8 @@ CTRAFFICLIGHT::CTRAFFICLIGHT(Vector2f pos, float red_time, float yellow_time, fl
 void CTRAFFICLIGHT::draw(RenderWindow& window)
 {
 	IntRect rect; 
-	rect.height = 48;
-	rect.width = float(198) / 4.f; // depend on the texture 
+	rect.height = texture.getSize().y;
+	rect.width = texture.getSize().x / 4.f; // depend on the texture 
 	rect.top = 0;
 	rect.left = state * rect.width; 
 	sprite.setTextureRect(rect);
