@@ -10,6 +10,7 @@ private:
 
 public:
 	void update(int row, float delta_time /*int direction*/);
+	void updatePlayer(int row, float delta_time /*int direction*/);
 	sf::IntRect uv_rect;
 	Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time);
 	Animation();

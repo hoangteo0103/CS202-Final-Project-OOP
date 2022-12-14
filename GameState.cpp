@@ -34,7 +34,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     map.init("grasses.png"); 
     _view.init((*app), map.getSize());
 
-    player = new CPEOPLE("girl.png", sf::Vector2u(6, 9), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
+    player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y));
 
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
@@ -213,6 +213,7 @@ void GameState::render(RenderTarget* target)
     this->renderButtons(target);
     if (this->paused)
     {
+        cout << 1; 
         this->pmenu.render(*target);
     }
 }

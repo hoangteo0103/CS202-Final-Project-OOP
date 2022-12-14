@@ -1,5 +1,7 @@
 #include "Object.h"
 
+vector<int> stateFrames = { 4 , 9 , 4 };
+
 Animation::Animation() {}
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time) {
@@ -10,6 +12,7 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float swi
 
 	uv_rect.width = texture->getSize().x / float(image_contain.x);
 	uv_rect.height = texture->getSize().y / float(image_contain.y);
+
 }
 
 void Animation::update(int row, float delta_time) {
@@ -17,7 +20,7 @@ void Animation::update(int row, float delta_time) {
 	current_image.y = row;
 	total_time += delta_time;
 
-	int frames = (row < 4) ? image_contain.x : image_contain.x - 2;
+	int frames = ((row < 4) ? image_contain.x : image_contain.x - 2);
 
 	if (total_time >= switch_time) {
 		
@@ -33,6 +36,26 @@ void Animation::update(int row, float delta_time) {
 	uv_rect.top = current_image.y * uv_rect.height;
 }
 
+void Animation::updatePlayer(int row, float delta_time) {
+
+	current_image.y = row;
+	total_time += delta_time;
+
+	int frames = stateFrames[row];
+
+	if (total_time >= switch_time) {
+
+		total_time -= switch_time;
+		++current_image.x;
+
+		if (current_image.x >= frames) {
+			current_image.x = 0;
+		}
+	}
+
+	uv_rect.left = current_image.x * uv_rect.width;
+	uv_rect.top = current_image.y * uv_rect.height;
+}
 
 void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time)
 {

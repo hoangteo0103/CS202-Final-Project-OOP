@@ -13,36 +13,38 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		if (this->getPosition().x < map_size.x) {
 			mouvment.goDirection(2, sprite, speed, delta_time);
-			row = 2;
+			face_direction = 0;
+			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		if (this->getPosition().x > 0) {
 			mouvment.goDirection(3, sprite, speed, delta_time);
-			row = 1;
+			face_direction = 1;
+			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		if (this->getPosition().y > 0) {
 			mouvment.goDirection(0, sprite, speed, delta_time);
-			row = 3;
+			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		if (this->getPosition().y < map_size.y) {
 			mouvment.goDirection(1, sprite, speed, delta_time);
-			row = 0;
+			state = row = 1;
 		}
 	}
 	else {
-		if (row < 4) {
-			row += 4;
-		}
+		row = 0;
+		state = 0;
 	}
-	//cout << "row: " << row << endl;
-	//cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl; 
-	this->animation.update(row, delta_time);
+	/*cout << "row: " << row << endl;
+	cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl;*/ 
+	this->animation.updatePlayer(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
+	this->sprite.setScale( (face_direction == 1 ) ? -1.f : 1.f, 1.f); 
 	
 }
 
@@ -54,8 +56,8 @@ void CPEOPLE::update(float delta_time, const sf::Vector2u map_size) {
 		break;
 
 	case 2:
-		row = 8;
-		this->animation.update(row, delta_time);
+		row = 2;
+		this->animation.updatePlayer(row, delta_time);
 		this->sprite.setTextureRect(this->animation.uv_rect);
 		break;
 	}
