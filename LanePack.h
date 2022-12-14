@@ -17,6 +17,6 @@ public:
 	void draw(sf::RenderWindow& window);
 	void reset();
 
-
+	friend class CPEOPLE;
 };
 

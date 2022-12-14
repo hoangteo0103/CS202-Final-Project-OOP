@@ -13,6 +13,7 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float swi
 }
 
 void Animation::update(int row, float delta_time) {
+
 	current_image.y = row;
 	total_time += delta_time;
 
@@ -26,8 +27,6 @@ void Animation::update(int row, float delta_time) {
 		if (current_image.x >= frames) {
 			current_image.x = 0;
 		}
-
-		
 	}
 
 	uv_rect.left = current_image.x * uv_rect.width;
@@ -71,11 +70,11 @@ void Object::draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
 
-bool Object::collide(Object& other)
-{
-	return this->sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
-		//return this->animation.uv_rect.intersects(other.animation.uv_rect);
-}	
+//bool Object::collide(Object& other)
+//{
+//	return this->sprite.getGlobalBounds().intersects(other.sprite.getGlobalBounds());
+//		//return this->animation.uv_rect.intersects(other.animation.uv_rect);
+//}	
 
 
 sf::Vector2f Object::getPosition() {
@@ -83,4 +82,8 @@ sf::Vector2f Object::getPosition() {
 	pos.x += animation.uv_rect.width / 2;
 	pos.y += animation.uv_rect.height / 2;
 	return pos;
+}
+
+void Object::setPosition(sf::Vector2f pos) {
+	this->sprite.setPosition(pos);
 }

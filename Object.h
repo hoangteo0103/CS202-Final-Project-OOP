@@ -6,6 +6,7 @@ private:
 	float total_time, switch_time;
 	sf::Vector2u image_contain;
 	sf::Vector2u current_image;
+	int player_state;
 
 public:
 	void update(int row, float delta_time /*int direction*/);
@@ -37,7 +38,8 @@ public:
 	void render(RenderTarget* target);
 	//void move(float delta_time);
 	void updateEvent();
-	bool collide(Object& other);
+	//bool collide(Object& other);
 	sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f pos);
 };
 

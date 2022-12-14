@@ -48,7 +48,7 @@ public:
     GameState(RenderWindow* app, stack<State*>* states, bool saved);
     virtual ~GameState();
     // Functions
-    void Reset();
+    void Reset(int level = 1);
     void updatePaused();
     void updateKeyBinds();
     void updateBeginner(int time_now);

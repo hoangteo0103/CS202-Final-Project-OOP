@@ -59,15 +59,21 @@ void CPEOPLE::update(float delta_time, const sf::Vector2u map_size) {
 		this->sprite.setTextureRect(this->animation.uv_rect);
 		break;
 	}
+	
 }
 
 
-bool CPEOPLE::isCollision(const Lane &lane) {
-	for (auto obstacle : lane.obstacle)
-		if (this->sprite.getGlobalBounds().intersects(obstacle->sprite.getGlobalBounds())) {
-			state = PLAYERSTATE::DEATH;
-			return true;
-		}
+bool CPEOPLE::isCollision(LanePack*& lane_management) {
+	for (auto lane : lane_management->lanes)
+		for (auto obstacle : lane->obstacle)
+			if (this->sprite.getGlobalBounds().intersects(obstacle->sprite.getGlobalBounds())) {
+				state = PLAYERSTATE::DEATH;
+				return true;
+			}
 	return false;
+}
 
+
+void CPEOPLE::reset() {
+	this->setPosition(sf::Vector2f(500, 500));
 }

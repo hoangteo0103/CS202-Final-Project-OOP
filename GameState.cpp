@@ -1,10 +1,13 @@
 #include "GameState.h"
 
-void GameState::Reset()
+void GameState::Reset(int level)
 {
     this->ok = false;
     this->isUpdated = false;
     this->paused = false;
+
+    this->current_level = level;
+
 }
 
 void GameState::initFonts()
@@ -174,8 +177,12 @@ void GameState::update()
     _view.update(*app, *player);
     
 
-    if (player->getPosition().y < win_line_y)
-        exit(1);
+    if (player->isCollision(lane_management)) {
+        cout << "game_over" << endl;
+    }
+
+    //if (player->getPosition().y < win_line_y)
+    //    player->reset();
 
 
 }
