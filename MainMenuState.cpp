@@ -79,6 +79,11 @@ void MainMenuState::updateButtons()
         this->states->push(new ChooseModeState(this->app, this->states));
     }
 
+    if (this->buttons["GAME_QUIT_BTN"]->isPressed())
+    {
+        this->app->close();
+    }
+
     if (this->buttons["TEST GAME"]->isPressed())
     {
         this->states->push(new GameState(this->app, this->states, false));

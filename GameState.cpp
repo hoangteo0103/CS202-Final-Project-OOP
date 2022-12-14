@@ -172,17 +172,16 @@ void GameState::update()
     this->updateButtons();
     delta_time = delta_clock.restart().asSeconds();
 
-    Vector2f beforePos = player->getPosition();
-    
-
-    this->updateMovingButton(player->getPosition() - beforePos);
 
     //road->update(delta_time);
     lane_management->update(delta_time);
 
+    Vector2f beforePos = player->getPosition();
+
     player->update(delta_time, map.getSize());
     view->update(*app, *player);
     
+    this->updateMovingButton(player->getPosition() - beforePos);
 
     if (player->isCollision(lane_management)) {
         cout << "game_over" << endl;
