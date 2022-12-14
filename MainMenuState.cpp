@@ -9,6 +9,7 @@ void MainMenuState::initFonts()
 
     t.loadFromFile("External/images/mainmenu.jpg");
     this->background.setTexture(t);
+    this->background.setScale(4.f, 4.f);
 }
 void MainMenuState::initButtons()
 {

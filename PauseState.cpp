@@ -61,7 +61,7 @@ void PauseState::updateButtons()
 	{
 		it.second->update(this->mousePosView);
 	}
-	if (this->buttons["CONTINUE_STATE_BUTTON"]->isPressed())
+	if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
 	{
 		this->quit = true;
 	}

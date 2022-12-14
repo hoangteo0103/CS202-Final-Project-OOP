@@ -42,7 +42,7 @@ void Lane::updateSpeed()
 		obstacle[i]->setSpeed(obstacle[i]->origin_speed);
 		for (int j = 0; j < numTrafficLight; j++)
 		{
-			cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
+			//cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
 			if ( (obstacle[i]->sprite.getPosition().x  > lights[i]->getPos() + 48.f )  || lights[i]->isVehiclePass()) continue;
 			int dis = lights[i]->getPos() + 48.f -  (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
 			obstacle[i]->setSpeed(dis);
