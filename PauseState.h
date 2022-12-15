@@ -19,7 +19,8 @@ public:
     PauseState();
     virtual ~PauseState();
     //functions
-    void initState(RenderWindow& app, CPEOPLE* player);
+    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+    void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
     void updateButtons();
     const bool& getResume() const;
     void updateMousePositions(Vector2f mousePosView);
