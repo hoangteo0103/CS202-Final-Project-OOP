@@ -1,6 +1,7 @@
 #ifndef PLAYAGAINSTATE_H
 #define PLAYAGAINSTATE_H
 #include "Button.h"
+#include "CPEOPLE.h"
 class PlayAgainState
 {
 private:
@@ -17,12 +18,14 @@ public:
     PlayAgainState();
     virtual ~PlayAgainState();
     //functions
-    void initState(RenderWindow& app);
+    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+    void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
     void updateButtons();
     const bool& getYes() const;
     const bool& getNo() const;
     void updateMousePositions(Vector2f mousePosView);
     void update();
-    void render(RenderTarget& target);
+    void renderButtons(RenderTarget* target);
+    void render(RenderTarget* target);
 };
 #endif // PAUSEMENU_H

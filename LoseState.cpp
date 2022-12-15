@@ -9,7 +9,6 @@ void LoseState::initFonts()
 }
 void LoseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
-    this->initFonts();
     this->ok = false;
     //Init background
 
@@ -34,7 +33,7 @@ void LoseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         Vector2f(
             static_cast<float> (app.getSize().x),
             static_cast<float> (app.getSize().y)));
-    this->background.setFillColor(Color(30, 20, 20, 100));
+    this->background.setFillColor(Color(20, 20, 20, 100));
     this->background.setPosition(setPos);
     // Init container
     this->container.setSize(
@@ -43,11 +42,13 @@ void LoseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
             static_cast<float> (app.getSize().y) / 1.5f));
     this->container.setFillColor(Color::Black);
     this->container.setPosition(
-        Vector2f(15.f, static_cast<float>(app.getSize().y) / 2.f - this->container.getSize().y / 2.f));
+        background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
-    this->buttons["OK"] = new Button(520, 350, 200, 50,
+    
+    this->buttons["OK"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2a, 400, 75,
         &this->font, "OK", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+    
     // Init Text
     this->menutext.setFont(font);
     this->menutext.setFillColor(Color(255, 255, 255, 200));
@@ -100,14 +101,18 @@ void LoseState::update()
     }
 }
 
+void LoseState::renderButtons(RenderTarget* target)
+{
+    for (auto& it : this->buttons)
+    {
+        it.second->render(target);
+    }
+}
+
 void LoseState::render(RenderTarget* target)
 {
     target->draw(background);
     target->draw(container);
-
     target->draw(menutext);
-    for (auto& i : this->buttons)
-    {
-        i.second->render(target);
-    }
+    this->renderButtons(target);
 }

@@ -26,7 +26,7 @@ public:
     const bool& getOk() const;
     void updateMousePositions(Vector2f mousePosView);
     void update();
+    void renderButtons(RenderTarget* target);
     void render(RenderTarget* target);
 };
-#endif // PAUSEMENU_H
-
+#endif 

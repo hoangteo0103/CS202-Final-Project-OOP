@@ -13,8 +13,7 @@
 #include "CTRAFFICLIGHT.h"
 
 
-class GameState :
-    public State
+class GameState : public State
 {
 private:
     PauseState pmenu;
@@ -31,12 +30,14 @@ private:
     Sprite background;
     bool isUpdated;
     bool ok;
+    bool resume;
     bool paused = false;
     CMap map; 
     CPEOPLE *player;
     CView* view;
     LanePack* lane_management;
 
+private:
     sf::Vector2f starting_position;
     int current_level;
     int win_line_y;

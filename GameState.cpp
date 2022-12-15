@@ -151,7 +151,7 @@ void GameState::updateLeaderBoard()
 void GameState::updateWinState()
 {
     
-}
+}   
 
 void GameState::updateLoseState()
 {
@@ -180,7 +180,7 @@ void GameState::updateLoseState()
         if (this->loseState.getOk())
         {
             this->ok = true;
-            this->againState.initState(*app);
+            this->againState.initState(*app,player,&map);
         }
     }
 }
@@ -230,6 +230,7 @@ void GameState::updateUnpaused()
     else {
         if (this->player->isDeadFrameEnd())
         {
+            this->buttons.erase("PAUSE_STATE_BTN");
             updateLoseState();
         }
         else {
@@ -240,6 +241,7 @@ void GameState::updateUnpaused()
 }
 void GameState::updatePaused()
 {
+
     
 }
 

@@ -59,9 +59,7 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->menutext.setString("PAUSED");
     this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
         this->container.getPosition().y + 20.f);
-
 }
-
 
 void PauseState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
@@ -102,9 +100,9 @@ void PauseState::update()
     this->updateButtons();
     if (this->buttons["RESUME"]->isPressed())
     {
-       /* this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + app->getSize().x / 2 - 50.0, player->getPosition().y - app->getSize().y / 2, 50.0, 50.0,
+        /*this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + app->getSize().x / 2 - 50.0, player->getPosition().y - app->getSize().y / 2, 50.0, 50.0,
             &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));*/
-        
+        this->resume = true;
     }
 }
 
