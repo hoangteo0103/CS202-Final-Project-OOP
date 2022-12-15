@@ -86,7 +86,6 @@ void Animation::resetFrameDead()
 bool Animation::isFrameEnd(int state)
 {
 	int frames = stateFrames[state];
-	cout << frames << ' ' << current_image.x << endl;
 	if (current_image.x >= frames)
 		return true;
 	return false; 

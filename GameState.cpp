@@ -157,7 +157,7 @@ void GameState::updateLoseState()
 {
     if (!this->isUpdated)
     {
-        this->loseState.initState(*app);
+        this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }
     if (this->ok)
@@ -174,7 +174,6 @@ void GameState::updateLoseState()
     }
     else
     {
-
         this->loseState.updateMousePositions(mousePosView);
         this->loseState.update();
 
@@ -231,7 +230,7 @@ void GameState::updateUnpaused()
     else {
         if (this->player->isDeadFrameEnd())
         {
-
+            updateLoseState();
         }
         else {
             player->updateAfterDead(delta_time, map.getSize());
@@ -287,6 +286,23 @@ void GameState::render(RenderTarget* target)
     lane_management->draw(*this->app);
     player->draw(*this->app); 
     this->renderButtons(target);
+    if (this->getLose())
+    {
+        if (!this->ok)
+        {
+            cout << 1; 
+            this->loseState.render(target);
+        }
+            //else
+        //    this->againState.render(target);
+    }
+    /*if (this->getWin())
+    {
+        if (!this->ok)
+            this->winState.render(*target);
+        else
+            this->againState.render(*target);
+    }*/
     if (this->paused)
     {
         this->pmenu.render(target);
