@@ -41,6 +41,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
 
     player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
+    this->buttons.clear();
+
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
@@ -53,8 +55,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
 GameState ::~GameState()
 {
     //delete this->pmenu;
-    auto it = this->buttons.begin();
-    for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
+    for (auto it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
         delete it->second;
     }
@@ -157,10 +158,15 @@ void GameState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
-    if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
+    if (this->buttons.find("PAUSE_STATE_BTN") != this->buttons.end())
     {
-        this->paused = true;
-        this->pmenu.initState(*app, player, &map);
+        if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
+        {
+            this->buttons.erase("PAUSE_STATE_BTN");
+            this->paused = true;
+            this->pmenu.initState(*app, player, &map);
+
+        }
     }
 }
 
@@ -226,11 +232,11 @@ void GameState::render(RenderTarget* target)
 
 void GameState::updateMovingButton(Vector2f& distance)
 {
-    for (auto& it : this->buttons)
+    for (auto it = this->buttons.begin();it!=this->buttons.end();++it)
     {
         if (player->getPosition().x > app->getSize().x / 2 && player->getPosition().x < map.getSize().x - app->getSize().x / 2)
-            it.second->move(Vector2f(distance.x, 0));
+            it->second->move(Vector2f(distance.x, 0));
         if (player->getPosition().y > app->getSize().y / 2 && player->getPosition().y < map.getSize().y - app->getSize().y / 2)
-            it.second->move(Vector2f(0, distance.y));
+            it->second->move(Vector2f(0, distance.y));
     }
 }
