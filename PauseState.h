@@ -1,6 +1,7 @@
 #ifndef PauseState_H
 #define PauseState_H
 #include "Button.h"
+#include "CPEOPLE.h"
 class PauseState
 {
 private:
@@ -18,7 +19,7 @@ public:
     PauseState();
     virtual ~PauseState();
     //functions
-    void initState(RenderWindow& app);
+    void initState(RenderWindow& app, CPEOPLE* player);
     void updateButtons();
     const bool& getResume() const;
     void updateMousePositions(Vector2f mousePosView);

@@ -160,7 +160,7 @@ void GameState::updateButtons()
     if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
     {
         this->paused = true;
-        this->pmenu.initState(*app);
+        this->pmenu.initState(*app, player);
     }
 }
 

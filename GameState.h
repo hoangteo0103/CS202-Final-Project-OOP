@@ -42,7 +42,7 @@ private:
     int win_line_y;
     int previousTime;
     void initFonts();
-    void initButtons();
+    //void initButtons();
 
 public:
     GameState(RenderWindow* app, stack<State*>* states, bool saved);
