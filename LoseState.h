@@ -1,6 +1,7 @@
 #ifndef LOSESTATE_H
 #define LOSESTATE_H
 #include "Button.h"
+#include "CPEOPLE.h"
 class LoseState
 {
 private:
@@ -19,12 +20,13 @@ public:
     LoseState();
     virtual ~LoseState();
     //functions
-    void initState(RenderWindow& app);
+    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+    void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
     void updateButtons();
     const bool& getOk() const;
     void updateMousePositions(Vector2f mousePosView);
     void update();
-    void render(RenderTarget& target);
+    void render(RenderTarget* target);
 };
 #endif // PAUSEMENU_H
 
