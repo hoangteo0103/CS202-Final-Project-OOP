@@ -57,6 +57,14 @@ void Animation::updatePlayer(int row, float delta_time) {
 	uv_rect.top = current_image.y * uv_rect.height;
 }
 
+bool Animation::isFrameEnd(int state)
+{
+	int frames = stateFrames[state];
+	if (current_image.x == frames)
+		return true;
+	return false; 
+}
+
 void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time)
 {
 	float dis = speed * delta_time;

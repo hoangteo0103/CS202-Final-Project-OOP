@@ -49,7 +49,6 @@ public:
     virtual ~GameState();
     // Functions
     void Reset(int level = 1);
-    void updatePause(bool stop);
     void updateKeyBinds();
     void updateBeginner(int time_now);
     void updateIntermediate(int time_now);
@@ -58,6 +57,10 @@ public:
     void updateButtons();
     void updateWinState();
     void updateLoseState();
+
+    void updateUnpaused();
+    void updatePaused();
+
     const bool& getLose() const;
     const bool& getWin() const;
     void endState();

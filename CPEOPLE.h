@@ -16,7 +16,7 @@ public:
 	bool isCollision(LanePack*& lane_management);
 	void reset(sf::Vector2f pos);
 	bool isDead();
-	void stopMove(bool stop);
+	bool isDeadFrameEnd();
 
 private:
 	int state;

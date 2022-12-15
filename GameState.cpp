@@ -78,10 +78,6 @@ void GameState::endState()
     cout << "End MainMenu" << endl;
 }
 
-void GameState::updatePause(bool stop)
-{
-    this->player->stopMove(stop);
-}
 
 void GameState::updateBeginner(int time_now)
 {
@@ -165,28 +161,21 @@ void GameState::updateButtons()
             this->buttons.erase("PAUSE_STATE_BTN");
             this->paused = true;
             this->pmenu.initState(*app, player, &map);
-            this->updatePause(this->paused);
         }
     }
 }
 
-void GameState::update()
+void GameState::updateUnpaused()
 {
-
-    this->updateMousePositions();
-    this->updateKeyBinds();
-    this->updateButtons();
     delta_time = delta_clock.restart().asSeconds();
 
-
-    //road->update(delta_time);
     lane_management->update(delta_time);
 
     Vector2f beforePos = player->getPosition();
 
     player->update(delta_time, map.getSize());
     view->update(*app, *player);
-    
+
     this->updateMovingButton(player->getPosition() - beforePos);
 
     if (player->isCollision(lane_management)) {
@@ -197,6 +186,27 @@ void GameState::update()
         player->reset(starting_position);
         view->reset(*this->app, *player);
     }
+}
+void GameState::updatePaused()
+{
+    
+}
+
+void GameState::update()
+{
+
+    this->updateMousePositions();
+    this->updateKeyBinds();
+    this->updateButtons();
+    
+    if (!this->paused)
+    {
+        updateUnpaused();
+    }
+    else {
+        updatePaused(); 
+    }
+
 }
 
 void GameState::endGame()
@@ -225,7 +235,6 @@ void GameState::render(RenderTarget* target)
     this->renderButtons(target);
     if (this->paused)
     {
-        cout << 1; 
         this->pmenu.render(target);
     }
 }
