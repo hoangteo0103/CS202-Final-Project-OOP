@@ -25,6 +25,7 @@ public:
     const bool& getResume() const;
     void updateMousePositions(Vector2f mousePosView);
     void update();
-    void render(RenderTarget& target);
+    void renderButtons(RenderTarget* target);
+    void render(RenderTarget* target);
 };
 #endif // PauseState_H

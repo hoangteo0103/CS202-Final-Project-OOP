@@ -16,11 +16,12 @@ public:
 	bool isCollision(LanePack*& lane_management);
 	void reset(sf::Vector2f pos);
 	bool isDead();
+	void stopMove(bool stop);
 
 private:
 	int state;
 	int row;
 	int face_direction; // 0 - down, 1 - left, 2 - right, 3 - up
-	
+	bool pause;
 };
 

@@ -78,9 +78,9 @@ void GameState::endState()
     cout << "End MainMenu" << endl;
 }
 
-void GameState::updatePaused()
+void GameState::updatePause(bool stop)
 {
-    //this->PauseState.updateMousePositions();
+    this->player->stopMove(stop);
 }
 
 void GameState::updateBeginner(int time_now)
@@ -165,7 +165,7 @@ void GameState::updateButtons()
             this->buttons.erase("PAUSE_STATE_BTN");
             this->paused = true;
             this->pmenu.initState(*app, player, &map);
-
+            this->updatePause(this->paused);
         }
     }
 }
@@ -226,7 +226,7 @@ void GameState::render(RenderTarget* target)
     if (this->paused)
     {
         cout << 1; 
-        this->pmenu.render(*target);
+        this->pmenu.render(target);
     }
 }
 

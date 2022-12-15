@@ -5,48 +5,50 @@ CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, fl
 	row = 0;
 	face_direction = 0;
 	state = PLAYERSTATE::IDLE;
+	pause = false;
 }
 
 void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	Mouvment mouvment;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		if (this->getPosition().x < map_size.x) {
-			mouvment.goDirection(2, sprite, speed, delta_time);
-			face_direction = 0;
-			state = row = 1;
+	if (!pause)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			if (this->getPosition().x < map_size.x) {
+				mouvment.goDirection(2, sprite, speed, delta_time);
+				face_direction = 0;
+				state = row = 1;
+			}
 		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		if (this->getPosition().x > 0) {
-			mouvment.goDirection(3, sprite, speed, delta_time);
-			face_direction = 1;
-			state = row = 1;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+			if (this->getPosition().x > 0) {
+				mouvment.goDirection(3, sprite, speed, delta_time);
+				face_direction = 1;
+				state = row = 1;
+			}
 		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		if (this->getPosition().y > 0) {
-			mouvment.goDirection(0, sprite, speed, delta_time);
-			state = row = 1;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			if (this->getPosition().y > 0) {
+				mouvment.goDirection(0, sprite, speed, delta_time);
+				state = row = 1;
+			}
 		}
-	}								
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		if (this->getPosition().y < map_size.y) {
-			mouvment.goDirection(1, sprite, speed, delta_time);
-			state = row = 1;
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			if (this->getPosition().y < map_size.y) {
+				mouvment.goDirection(1, sprite, speed, delta_time);
+				state = row = 1;
+			}
 		}
+		else {
+			row = 0;
+			state = 0;
+		}
+		/*cout << "row: " << row << endl;
+		cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl;*/
+		this->animation.updatePlayer(row, delta_time);
+		this->sprite.setTextureRect(this->animation.uv_rect);
+		this->sprite.setOrigin(this->animation.uv_rect.width / 2, this->animation.uv_rect.height / 2);
+		this->sprite.setScale((face_direction == 1) ? -1.f : 1.f, 1.f);
 	}
-	else {
-		row = 0;
-		state = 0;
-	}
-	/*cout << "row: " << row << endl;
-	cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl;*/ 
-	this->animation.updatePlayer(row, delta_time);
-	this->sprite.setTextureRect(this->animation.uv_rect);
-	this->sprite.setOrigin(this->animation.uv_rect.width / 2, this->animation.uv_rect.height / 2);
-	this->sprite.setScale( (face_direction == 1 ) ? -1.f : 1.f, 1.f); 
-	
 }
 
 
@@ -83,4 +85,9 @@ bool CPEOPLE::isDead()
 
 void CPEOPLE::reset(sf::Vector2f pos) {
 	this->setPosition(pos);
+}
+
+void CPEOPLE::stopMove(bool stop)
+{
+	this->pause = stop;
 }

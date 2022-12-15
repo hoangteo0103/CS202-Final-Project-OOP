@@ -102,17 +102,26 @@ void PauseState::update()
     this->updateButtons();
     if (this->buttons["RESUME"]->isPressed())
     {
-        this->resume = true;
+       /* this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + app->getSize().x / 2 - 50.0, player->getPosition().y - app->getSize().y / 2, 50.0, 50.0,
+            &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));*/
+        
     }
 }
 
-void PauseState::render(RenderTarget& target)
+void PauseState::renderButtons(RenderTarget* target)
 {
-    target.draw(background);
-    target.draw(container);
-    target.draw(menutext);
-    for (auto& i : this->buttons)
+    for (auto& it : this->buttons)
     {
-        i.second->render(&target);
+        it.second->render(target);
     }
+}
+
+void PauseState::render(RenderTarget* target)
+{
+    
+    target->draw(background);
+    target->draw(container);
+    target->draw(menutext);
+    this->renderButtons(target);
+
 }
