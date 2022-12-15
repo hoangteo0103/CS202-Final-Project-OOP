@@ -65,6 +65,15 @@ GameState ::~GameState()
     delete lane_management;
 }
 
+const bool& GameState::getLose() const
+{
+    return this->player->isDead();
+}
+
+const bool& GameState::getWin() const
+{
+    //pass 
+}
 
 
 void GameState::updateKeyBinds()
@@ -145,7 +154,35 @@ void GameState::updateWinState()
 
 void GameState::updateLoseState()
 {
-   
+    if (!this->isUpdated)
+    {
+        this->loseState.initState(*app);
+        this->isUpdated = true;
+    }
+    if (this->ok)
+    {
+        this->againState.updateMousePositions(mousePosView);
+        this->againState.update();
+        if (this->againState.getYes())
+        {
+            this->Reset();
+        }
+        if (this->againState.getNo())
+            this->endState();
+
+    }
+    else
+    {
+
+        this->loseState.updateMousePositions(mousePosView);
+        this->loseState.update();
+
+        if (this->loseState.getOk())
+        {
+            this->ok = true;
+            this->againState.initState(*app);
+        }
+    }
 }
 
 void GameState::updateButtons()
@@ -192,6 +229,11 @@ void GameState::updatePaused()
     
 }
 
+void GameState::endGame()
+{
+
+}
+
 void GameState::update()
 {
 
@@ -209,10 +251,7 @@ void GameState::update()
 
 }
 
-void GameState::endGame()
-{
 
-}
 
 void GameState::renderButtons(RenderTarget* target)
 {
