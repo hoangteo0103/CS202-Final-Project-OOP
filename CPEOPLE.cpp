@@ -61,7 +61,13 @@ void CPEOPLE::update(float delta_time, const sf::Vector2u map_size) {
 		this->sprite.setTextureRect(this->animation.uv_rect);
 		break;
 	}
-	
+}
+
+
+void CPEOPLE::updateAfterDead(float delta_time, const sf::Vector2u map_size) {
+	row = 2;
+	this->animation.updatePlayerAfterDead(row, delta_time);
+	this->sprite.setTextureRect(this->animation.uv_rect);
 }
 
 

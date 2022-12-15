@@ -73,6 +73,7 @@ const bool& GameState::getLose() const
 const bool& GameState::getWin() const
 {
     //pass 
+    return true;
 }
 
 
@@ -202,26 +203,40 @@ void GameState::updateButtons()
     }
 }
 
+
 void GameState::updateUnpaused()
 {
     delta_time = delta_clock.restart().asSeconds();
 
-    lane_management->update(delta_time);
+    if (!this->getLose())
+    {
+        lane_management->update(delta_time);
 
-    Vector2f beforePos = player->getPosition();
+        Vector2f beforePos = player->getPosition();
 
-    player->update(delta_time, map.getSize());
-    view->update(*app, *player);
+        player->update(delta_time, map.getSize());
+        view->update(*app, *player);
 
-    this->updateMovingButton(player->getPosition() - beforePos);
+        this->updateMovingButton(player->getPosition() - beforePos);
 
-    if (player->isCollision(lane_management)) {
-        cout << "game_over" << endl;
+        if (player->isCollision(lane_management)) {
+            player->animation.resetFrameDead();
+        }
+
+        if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
+            player->reset(starting_position);
+            view->reset(*this->app, *player);
+        }
     }
+    else {
+        if (this->player->isDeadFrameEnd())
+        {
 
-    if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
-        player->reset(starting_position);
-        view->reset(*this->app, *player);
+        }
+        else {
+            player->updateAfterDead(delta_time, map.getSize());
+        }
+
     }
 }
 void GameState::updatePaused()

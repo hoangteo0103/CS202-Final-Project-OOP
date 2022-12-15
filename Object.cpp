@@ -57,10 +57,37 @@ void Animation::updatePlayer(int row, float delta_time) {
 	uv_rect.top = current_image.y * uv_rect.height;
 }
 
+void Animation::updatePlayerAfterDead(int row, float delta_time) {
+
+	current_image.y = row;
+	total_time += delta_time;
+
+	int frames = stateFrames[row];
+
+	if (total_time >= switch_time) {
+
+		total_time -= switch_time;
+		++current_image.x;
+
+		if (current_image.x >= frames) {
+			return; 
+		}
+	}
+
+	uv_rect.left = current_image.x * uv_rect.width;
+	uv_rect.top = current_image.y * uv_rect.height;
+}
+
+void Animation::resetFrameDead()
+{
+	current_image.x = 0; 
+}
+
 bool Animation::isFrameEnd(int state)
 {
 	int frames = stateFrames[state];
-	if (current_image.x == frames)
+	cout << frames << ' ' << current_image.x << endl;
+	if (current_image.x >= frames)
 		return true;
 	return false; 
 }

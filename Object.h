@@ -11,7 +11,9 @@ private:
 public:
 	void update(int row, float delta_time /*int direction*/);
 	void updatePlayer(int row, float delta_time /*int direction*/);
+	void updatePlayerAfterDead(int row, float delta_time);
 	bool isFrameEnd(int state);
+	void resetFrameDead();
 	sf::IntRect uv_rect;
 	Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time);
 	Animation();
