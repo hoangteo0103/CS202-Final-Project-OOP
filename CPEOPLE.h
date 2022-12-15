@@ -15,6 +15,7 @@ public:
 	void update(float delta_time, const sf::Vector2u map_size);
 	bool isCollision(LanePack*& lane_management);
 	void reset(sf::Vector2f pos);
+	bool isDead();
 
 private:
 	int state;

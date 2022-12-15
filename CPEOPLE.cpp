@@ -29,7 +29,7 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 			mouvment.goDirection(0, sprite, speed, delta_time);
 			state = row = 1;
 		}
-	}
+	}								
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		if (this->getPosition().y < map_size.y) {
 			mouvment.goDirection(1, sprite, speed, delta_time);
@@ -44,6 +44,7 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 	cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl;*/ 
 	this->animation.updatePlayer(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
+	this->sprite.setOrigin(this->animation.uv_rect.width / 2, this->animation.uv_rect.height / 2);
 	this->sprite.setScale( (face_direction == 1 ) ? -1.f : 1.f, 1.f); 
 	
 }
@@ -75,6 +76,10 @@ bool CPEOPLE::isCollision(LanePack*& lane_management) {
 	return false;
 }
 
+bool CPEOPLE::isDead()
+{
+	return this->state == PLAYERSTATE::DEATH;
+}
 
 void CPEOPLE::reset(sf::Vector2f pos) {
 	this->setPosition(pos);
