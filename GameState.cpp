@@ -294,8 +294,8 @@ void GameState::render(RenderTarget* target)
         {
             this->loseState.render(target);
         }
-            //else
-        //    this->againState.render(target);
+           else
+                this->againState.render(target);
     }
     /*if (this->getWin())
     {
