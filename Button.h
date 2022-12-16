@@ -31,6 +31,7 @@ public:
     const bool isPressed() const;
     void updateText(string t);
     virtual void setOutline(Color color);
+    void setTextColor(Color color);
     void update(const Vector2f mousePos);
     void render(RenderTarget* target);
     void move(const Vector2f distance);

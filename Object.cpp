@@ -144,3 +144,11 @@ sf::Vector2f Object::getPosition() {
 void Object::setPosition(sf::Vector2f pos) {
 	this->sprite.setPosition(pos);
 }
+
+sf::Vector2f Object::getSize()
+{
+	sf::Vector2f size;
+	size.x = animation.uv_rect.width;
+	size.y = animation.uv_rect.height;
+	return size;
+}

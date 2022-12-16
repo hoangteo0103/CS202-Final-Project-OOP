@@ -70,7 +70,10 @@ public:
     void update();
     void render(RenderTarget* target = NULL);
     void renderButtons(RenderTarget* target = NULL);
+
     void updateMovingButton(Vector2f& distance);
+    void hideButton(bool hide);
+    void resetButton(RenderWindow* app);
 };
 #endif
 

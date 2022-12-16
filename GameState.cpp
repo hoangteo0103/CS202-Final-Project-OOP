@@ -47,6 +47,11 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
+    this->buttons["CURRENT_LEVEL_BTN"] = new Button(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0,
+        &this->font, "LV:     ", Color::White, Color::White, Color::White);
+    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
+    it->second->setTextColor(Color::Black);
+
     lane_management = new LanePack;
 
     lane_management->init(this->current_level, map.getSize(), this->win_line_y);
@@ -158,8 +163,7 @@ void GameState::updateLoseState()
 {
     if (!this->isUpdated)
     {
-        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(51.f, 0));
+        this->hideButton(true);
         this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }
@@ -220,10 +224,12 @@ void GameState::updateUnpaused()
         }
 
         if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
+            this->resetButton(app);
             ++this->current_level;
             player->reset(starting_position);
             view->reset(*this->app, *player);
             lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
+            
         }
     }
     else {
@@ -241,8 +247,7 @@ void GameState::updatePaused()
 {
     if (!this->isUpdated)
     {
-        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(51.f, 0));
+        this->hideButton(true);
         this->pmenu.initState(*app, player, &map);
         this->isUpdated = true;
     }  
@@ -254,8 +259,7 @@ void GameState::updatePaused()
         if (this->pmenu.getResume())
         {
             this->pmenu.Reset();
-            std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-            it->second->move(Vector2f(-51.f, 0));
+            this->hideButton(false);
             this->Reset();
         }
         if (this->pmenu.getExit())
@@ -339,5 +343,32 @@ void GameState::updateMovingButton(Vector2f& distance)
             it->second->move(Vector2f(distance.x, 0));
         if (player->getPosition().y > app->getSize().y / 2 && player->getPosition().y < map.getSize().y - app->getSize().y / 2)
             it->second->move(Vector2f(0, distance.y));
+    }
+}
+
+void GameState::hideButton(bool hide)
+{
+    if (hide)
+    {
+        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+        it->second->move(Vector2f(+51.f, 0));
+        it = this->buttons.find("CURRENT_LEVEL_BTN");
+        it->second->move(Vector2f(-76.f, 0));
+    }
+    else
+    {
+        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+        it->second->move(Vector2f(-51.f, 0));
+        it = this->buttons.find("CURRENT_LEVEL_BTN");
+        it->second->move(Vector2f(+76.f, 0));
+    }
+   
+}
+
+void GameState::resetButton(RenderWindow* app)
+{
+    for (auto& it : this->buttons)
+    {
+        it.second->move(Vector2f(0,this->map.getSize().y - app->getSize().y*1.5f + this->player->getSize().y/2.f));
     }
 }

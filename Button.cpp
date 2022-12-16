@@ -10,10 +10,10 @@ Button::Button(float x, float y, float width, float height, Font* font,
     this->text.setFont(*this->font);
     this->text.setString(text);
     this->text.setFillColor(Color::White);
-    this->text.setCharacterSize(15);
+    this->text.setCharacterSize(16);
     this->text.setPosition(
         this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
-        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
+        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f - 2.f
     );
 
     this->idleColor = idleColor;
@@ -30,6 +30,11 @@ void Button::setOutline(Color  color)
 {
     this->shape.setOutlineThickness(1.0f);
     this->shape.setOutlineColor(color);
+}
+
+void Button::setTextColor(Color color)
+{
+    this->text.setFillColor(color);
 }
 void Button::updateText(string t)
 {
