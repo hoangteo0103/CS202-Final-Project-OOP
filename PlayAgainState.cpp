@@ -1,7 +1,7 @@
 #include "PlayAgainState.h"
 void PlayAgainState::initFonts()
 {
-    if (!this->font.loadFromFile("font/Contb.ttf"))
+    if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
     }
