@@ -35,7 +35,8 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 }
 
 void Lane::updateSpeed()
-{
+{	
+
 	for (int i = 0; i < num; i++)
 	{
 
@@ -43,11 +44,12 @@ void Lane::updateSpeed()
 		for (int j = 0; j < numTrafficLight; j++)
 		{
 			//cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
-			if ( (obstacle[i]->sprite.getPosition().x  > lights[i]->getPos() + 48.f )  || lights[i]->isVehiclePass()) continue;
-			int dis = lights[i]->getPos() + 48.f -  (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
+			if ( (obstacle[i]->sprite.getPosition().x  > lights[j]->getPos() + 48.f )  || lights[j]->isVehiclePass()) continue;
+			int dis = lights[j]->getPos() + 48.f -  (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
 			obstacle[i]->setSpeed(dis);
 		}
 	}
+
 }
 
 void Lane::draw(sf::RenderWindow& window)
