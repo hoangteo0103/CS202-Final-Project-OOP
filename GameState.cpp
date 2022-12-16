@@ -158,6 +158,8 @@ void GameState::updateLoseState()
 {
     if (!this->isUpdated)
     {
+        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+        it->second->move(Vector2f(51.f, 0));
         this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }
@@ -191,13 +193,10 @@ void GameState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
-    if (this->buttons.find("PAUSE_STATE_BTN") != this->buttons.end())
-    {
-        if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
+    if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
         {
             this->paused = true;
         }
-    }
 }
 
 
@@ -242,26 +241,22 @@ void GameState::updatePaused()
 {
     if (!this->isUpdated)
     {
+        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+        it->second->move(Vector2f(51.f, 0));
         this->pmenu.initState(*app, player, &map);
         this->isUpdated = true;
     }  
-    if (this->restart)
-    {
-        this->againState.updateMousePositions(mousePosView);
-        this->againState.update();
-    }
-    else
+    if (this->paused)
     {
         this->pmenu.updateMousePositions(mousePosView);
         this->pmenu.update();
 
         if (this->pmenu.getResume())
         {
-            this->paused = false; 
-        }
-        if (this->pmenu.getRestart())
-        {
-            //
+            this->pmenu.Reset();
+            std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+            it->second->move(Vector2f(-51.f, 0));
+            this->Reset();
         }
     }
 }

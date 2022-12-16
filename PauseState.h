@@ -26,9 +26,12 @@ public:
     void updateButtons();
     const bool& getResume() const;
     const bool& getRestart() const;
+    void setResume();
     void updateMousePositions(Vector2f mousePosView);
     void update();
     void renderButtons(RenderTarget* target);
     void render(RenderTarget* target);
+
+    void Reset();
 };
 #endif // PauseState_H

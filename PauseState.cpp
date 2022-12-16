@@ -90,6 +90,13 @@ const bool& PauseState::getRestart() const
 {
     return this->restart;
 }
+
+void PauseState::Reset()
+{
+    this->resume = false;
+    this->restart = false;
+}
+
 void PauseState::updateMousePositions(Vector2f mousePosView)
 {
     this->mousePosView = mousePosView;
