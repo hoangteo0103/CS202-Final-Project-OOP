@@ -158,7 +158,6 @@ void GameState::updateLoseState()
 {
     if (!this->isUpdated)
     {
-        this->buttons.erase("PAUSE_STATE_BTN");
         this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }
@@ -243,7 +242,6 @@ void GameState::updatePaused()
 {
     if (!this->isUpdated)
     {
-        this->buttons.erase("PAUSE_STATE_BTN");
         this->pmenu.initState(*app, player, &map);
         this->isUpdated = true;
     }  
@@ -259,9 +257,7 @@ void GameState::updatePaused()
 
         if (this->pmenu.getResume())
         {
-            this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0,
-                &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
-            this->Reset();
+            this->paused = false; 
         }
         if (this->pmenu.getRestart())
         {

@@ -87,7 +87,6 @@ void Lane::draw(sf::RenderWindow& window)
 void Lane::checkEnd()
 {
 	int typeObstacle = 0;
-	cout << obstacle[0]->getPosition().x << endl; 
 	if (obstacle[0]->getPosition().x < 2880.f) return;
 	int disBetweenObstacle = 200; 
 	Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] +disBetweenObstacle) , position.y };
