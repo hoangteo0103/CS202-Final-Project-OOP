@@ -7,11 +7,12 @@ vector<int> sizeTexture = { 120};
 Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, Vector2f pos)
 {
 	this->num = num;
-	Vector2f nowPos = { pos.x - (num - 1) * sizeTexture[typeObstacle], pos.y };
+	int disBetweenObstacle = 250;
+	Vector2f nowPos = { pos.x - (num - 1) * ( sizeTexture[typeObstacle]  + disBetweenObstacle)  , pos.y};
 	for (int i = 1; i <= num; i++)
 	{
 		COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle], 0.1f, speed, nowPos, dir);
-		nowPos.x += sizeTexture[typeObstacle];
+		nowPos.x += sizeTexture[typeObstacle] + disBetweenObstacle;
 		obstacle.push_back(now);
 	}
 
@@ -69,11 +70,14 @@ void Lane::draw(sf::RenderWindow& window)
 void Lane::checkEnd()
 {
 	int typeObstacle = 0;
-	if (obstacle[num - 1]->getPosition().x < 2880.f) return;
-	Vector2f nowPos = { position.x - (num - 1) * sizeTexture[typeObstacle], position.y };
+	cout << obstacle[0]->getPosition().x << endl; 
+	if (obstacle[0]->getPosition().x < 2880.f) return;
+	int disBetweenObstacle = 200; 
+	Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] +disBetweenObstacle) , position.y };
 	for (int i = 0; i < num; i++)
 	{
 		obstacle[i]->sprite.setPosition(nowPos);
+		nowPos.x+= sizeTexture[typeObstacle] + disBetweenObstacle;
 	}
 
 }
