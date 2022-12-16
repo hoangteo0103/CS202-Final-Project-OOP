@@ -38,22 +38,22 @@ void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     // Init container
     this->container.setSize(
         Vector2f(
-            static_cast<float> (app.getSize().x) - 50.f,
-            static_cast<float> (app.getSize().y) / 4.f));
+            static_cast<float> (app.getSize().x)/2.f,
+            static_cast<float> (app.getSize().y) / 1.5f));
     this->container.setFillColor(Color::Black);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
-    this->buttons["YES"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 125.0, 400, 75,
+    this->buttons["YES"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 75.0, 400, 75,
         &this->font, "YES", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-    this->buttons["NO"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 75,
-        &this->font, "NO    ", Color(70, 70, 70, 200)
+    this->buttons["NO"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 25.0, 400, 75,
+        &this->font, "NO", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
     // Init Text
     this->menutext.setFont(font);
     this->menutext.setFillColor(Color(255, 255, 255, 200));
     this->menutext.setCharacterSize(40);
-    this->menutext.setString("Do you want to play again");
+    this->menutext.setString("Do you want to play again ?");
     this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
         this->container.getPosition().y + 20.f);
 }

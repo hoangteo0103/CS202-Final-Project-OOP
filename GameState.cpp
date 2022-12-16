@@ -5,7 +5,7 @@ void GameState::Reset(int level)
     this->ok = false;
     this->isUpdated = false;
     this->paused = false;
-
+    this->restart = false;
     this->current_level = level;
 
 }
@@ -24,6 +24,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
 //, PauseState(app, states)
 {
     // Init
+    this->restart = false;
     this->ok = false;
     this->isUpdated = false;
     this->initFonts();
@@ -157,6 +158,7 @@ void GameState::updateLoseState()
 {
     if (!this->isUpdated)
     {
+        this->buttons.erase("PAUSE_STATE_BTN");
         this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }
@@ -170,7 +172,6 @@ void GameState::updateLoseState()
         }
         if (this->againState.getNo())
             this->endState();
-
     }
     else
     {
@@ -195,9 +196,7 @@ void GameState::updateButtons()
     {
         if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
         {
-            this->buttons.erase("PAUSE_STATE_BTN");
             this->paused = true;
-            this->pmenu.initState(*app, player, &map);
         }
     }
 }
@@ -232,7 +231,6 @@ void GameState::updateUnpaused()
     else {
         if (this->player->isDeadFrameEnd())
         {
-            this->buttons.erase("PAUSE_STATE_BTN");
             updateLoseState();
         }
         else {
@@ -243,8 +241,33 @@ void GameState::updateUnpaused()
 }
 void GameState::updatePaused()
 {
+    if (!this->isUpdated)
+    {
+        this->buttons.erase("PAUSE_STATE_BTN");
+        this->pmenu.initState(*app, player, &map);
+        this->isUpdated = true;
+    }  
+    if (this->restart)
+    {
+        this->againState.updateMousePositions(mousePosView);
+        this->againState.update();
+    }
+    else
+    {
+        this->pmenu.updateMousePositions(mousePosView);
+        this->pmenu.update();
 
-    
+        if (this->pmenu.getResume())
+        {
+            this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0,
+                &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
+            this->Reset();
+        }
+        if (this->pmenu.getRestart())
+        {
+            //
+        }
+    }
 }
 
 void GameState::endGame()

@@ -30,6 +30,7 @@ private:
     Sprite background;
     bool isUpdated;
     bool ok;
+    bool restart;
     bool resume;
     bool paused = false;
     CMap map; 
