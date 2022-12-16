@@ -4,7 +4,7 @@ vector<string> pathTexture = { "Skin1.png" };
 vector<int> sizeTexture = { 120};
 
 
-Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, Vector2f pos)
+Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f pos)
 {
 	this->num = num;
 	int disBetweenObstacle = 250;
@@ -16,6 +16,21 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, string texture_dir, 
 		obstacle.push_back(now);
 	}
 
+	string texture_dir;
+
+	random_device rd;
+	mt19937 rng(rd());
+	
+	if (type == 0) {
+		uniform_int_distribution<int> range(0, 1);
+		int random_index = range(rng);
+		texture_dir = ROADTEXTUREPATH[random_index];
+	}
+	else if (type == 1) {
+		uniform_int_distribution<int> range(2, 3);
+		int random_index = range(rng);
+		texture_dir = ROADTEXTUREPATH[random_index];
+	}
 	numTrafficLight = 1; 
 
 	float start = 400.f;

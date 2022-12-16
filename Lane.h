@@ -1,7 +1,9 @@
 #pragma once
 #include "COBSTACLE.h"
 #include "CTRAFFICLIGHT.h"
+#include <random>
 
+const vector<string> ROADTEXTUREPATH = { "asset\\road\\road0.png", "asset\\road\\road1.png" , "asset\\road\\road2.png" , "asset\\road\\road3.png" };
 
 class Lane
 {
@@ -14,8 +16,8 @@ private:
 	Sprite sprite;
 	Vector2f position;
 public:
-	
-	Lane(int typeObstacle ,int dir,int num, float speed, string texture_dir, Vector2f pos);
+	// type = 0 -> road for animal, type = 1 -> road for car
+	Lane(int typeObstacle ,int dir,int num, float speed, int type, Vector2f pos);
 	void draw(sf::RenderWindow& window);
 	void update(float delta_time);
 	void updateSpeed();

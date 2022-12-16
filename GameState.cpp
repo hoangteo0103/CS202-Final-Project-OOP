@@ -223,8 +223,10 @@ void GameState::updateUnpaused()
         }
 
         if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
+            ++this->current_level;
             player->reset(starting_position);
             view->reset(*this->app, *player);
+            lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
         }
     }
     else {
