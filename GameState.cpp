@@ -292,7 +292,6 @@ void GameState::render(RenderTarget* target)
     {
         if (!this->ok)
         {
-            cout << 1; 
             this->loseState.render(target);
         }
             //else

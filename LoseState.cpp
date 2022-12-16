@@ -45,7 +45,7 @@ void LoseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
     
-    this->buttons["OK"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2a, 400, 75,
+    this->buttons["OK"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2, 400, 75,
         &this->font, "OK", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
     
