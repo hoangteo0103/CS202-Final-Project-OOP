@@ -30,16 +30,18 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		uniform_int_distribution<int> range(2, 3);
 		int random_index = range(rng);
 		texture_dir = ROADTEXTUREPATH[random_index];
-	}
-	numTrafficLight = 1; 
 
-	float start = 400.f;
-	for (int i = 0; i < numTrafficLight; i++)
-	{
-		CTRAFFICLIGHT *tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
-		start += 500.f;
-		lights.push_back(tmp); 
+		numTrafficLight = 1;
+
+		float start = 400.f;
+		for (int i = 0; i < numTrafficLight; i++)
+		{
+			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 2.0f, 2.0f);
+			start += 500.f;
+			lights.push_back(tmp);
+		}
 	}
+	
 
 	if (!(texture.loadFromFile(texture_dir)))
 	{
