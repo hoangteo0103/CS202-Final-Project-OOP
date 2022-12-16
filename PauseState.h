@@ -16,6 +16,7 @@ private:
     map<string, Button* > buttons;
     bool resume;
     bool restart;
+    bool exit;
     void initFonts();
 public:
     PauseState();
@@ -26,6 +27,7 @@ public:
     void updateButtons();
     const bool& getResume() const;
     const bool& getRestart() const;
+    const bool& getExit() const;
     void setResume();
     void updateMousePositions(Vector2f mousePosView);
     void update();

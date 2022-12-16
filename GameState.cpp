@@ -258,6 +258,11 @@ void GameState::updatePaused()
             it->second->move(Vector2f(-51.f, 0));
             this->Reset();
         }
+        if (this->pmenu.getExit())
+        {
+            this->pmenu.Reset();
+            this->app->close();
+        }
     }
 }
 

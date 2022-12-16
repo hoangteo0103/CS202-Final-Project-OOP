@@ -11,6 +11,7 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
     this->resume = false;
     this->restart = false;
+    this->exit = false;
 
     // Calculate position
     Vector2f pos = player->getPosition();
@@ -80,6 +81,8 @@ PauseState::~PauseState()
         delete it->second;
     }
     this->resume = false;
+    this->restart = false;
+    this->exit = false;
 }
 const bool& PauseState::getResume() const
 {
@@ -91,10 +94,16 @@ const bool& PauseState::getRestart() const
     return this->restart;
 }
 
+const bool& PauseState::getExit() const
+{
+    return this->exit;
+}
+
 void PauseState::Reset()
 {
     this->resume = false;
     this->restart = false;
+    this->exit = false;
 }
 
 void PauseState::updateMousePositions(Vector2f mousePosView)
@@ -113,13 +122,15 @@ void PauseState::update()
     this->updateButtons();
     if (this->buttons["RESUME"]->isPressed())
     {
-        /*this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + app->getSize().x / 2 - 50.0, player->getPosition().y - app->getSize().y / 2, 50.0, 50.0,
-            &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));*/
         this->resume = true;
     }
     if (this->buttons["RESTART"]->isPressed())
     {
         this->restart = true;
+    }
+    if (this->buttons["EXIT"]->isPressed())
+    {
+        this->exit = true;
     }
 }
 
