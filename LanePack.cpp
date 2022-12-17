@@ -8,7 +8,7 @@ LanePack::~LanePack() {
 		delete lane;
 }
 
-void LanePack::init(int level, sf::Vector2u map_size, int win_line_y)
+void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y)
 {
 	int numberLane;
 	switch (level)
@@ -22,7 +22,7 @@ void LanePack::init(int level, sf::Vector2u map_size, int win_line_y)
 	default:
 		return;
 	}
-
+	this->speed = speed;
 	int factor = map_size.y / (numberLane + 4);
 
 	random_device rd;
@@ -32,7 +32,7 @@ void LanePack::init(int level, sf::Vector2u map_size, int win_line_y)
 		int y_position = factor * i + win_line_y;
 		uniform_int_distribution<int> range(0, 1);
 		int type = range(rng);
-		Lane *new_lane = new Lane(0, 2, 3, 200.f, type, sf::Vector2f(0, y_position));
+		Lane *new_lane = new Lane(0, 2, 3, speed, type, sf::Vector2f(0, y_position));
 		lanes.push_back(new_lane);
 	}
 
@@ -53,11 +53,11 @@ void LanePack::draw(sf::RenderWindow& window) {
 		lane->draw(window);
 }
 
-void LanePack::reset(int level, sf::Vector2u map_size, int win_line_y)
+void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_y)
 {
 	for (auto lane : lanes)
 		delete lane;
 
 	lanes.clear();
-	this->init(level, map_size, win_line_y);
+	this->init(speed , level, map_size, win_line_y);
 }
