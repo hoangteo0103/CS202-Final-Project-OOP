@@ -48,7 +48,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
         &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
     
     this->buttons["CURRENT_LEVEL_BTN"] = new Button(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0,
-        &this->font, "LV:     ", Color::White, Color::White, Color::White);
+        &this->font, "LV: "+to_string(current_level), Color::White, Color::White, Color::White);
     std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
     it->second->setTextColor(Color::Black);
 
@@ -224,12 +224,11 @@ void GameState::updateUnpaused()
         }
 
         if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
-            this->resetButton(app);
             ++this->current_level;
             player->reset(starting_position);
             view->reset(*this->app, *player);
             lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
-            
+            this->resetButton();
         }
     }
     else {
@@ -365,10 +364,11 @@ void GameState::hideButton(bool hide)
    
 }
 
-void GameState::resetButton(RenderWindow* app)
+void GameState::resetButton()
 {
-    for (auto& it : this->buttons)
-    {
-        it.second->move(Vector2f(0,this->map.getSize().y - app->getSize().y*1.5f + this->player->getSize().y/2.f));
-    }
+    std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
+    it->second->setPosition(Vector2f(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2));
+    it = this->buttons.find("CURRENT_LEVEL_BTN");
+    it->second->setPosition(Vector2f(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2));
+    it->second->updateText("LV: " + to_string(current_level));
 }

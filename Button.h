@@ -35,5 +35,6 @@ public:
     void update(const Vector2f mousePos);
     void render(RenderTarget* target);
     void move(const Vector2f distance);
+    void setPosition(const Vector2f pos);
 };
 #endif // BUTTON_H
