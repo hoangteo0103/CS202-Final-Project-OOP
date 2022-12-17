@@ -49,3 +49,4 @@ namespace st {
     };
 }
 
+const int ROADHEIGHT = 150;

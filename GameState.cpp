@@ -8,9 +8,12 @@ void GameState::Reset(int level)
     this->restart = false;
     this->current_level = level;
 
+    lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
     player->reset(starting_position);
     view->reset(*this->app, *player);
-    lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
+   
+    
+    
     this->resetButton();
 }
 
@@ -35,17 +38,24 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     
     this->win_line_y = 200;
     this->current_level = 1;
-
+    this->distance_between_lane = 100;
 
     map.init("grasses.png"); 
     view = new CView;
     view->init((*app), map.getSize());
 
-    starting_position = sf::Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y);
+    lane_management = new LanePack(this->distance_between_lane);
 
+    lane_management->init(this->current_level, map.getSize(), this->win_line_y);
+
+    //starting_position = sf::Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y);
+
+    starting_position.x = map.getSize().x / 2;
+    starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
     player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
+    
     this->buttons.clear();
 
     this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
@@ -56,9 +66,10 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
     it->second->setTextColor(Color::Black);
 
-    lane_management = new LanePack;
+    
 
-    lane_management->init(this->current_level, map.getSize(), this->win_line_y);
+
+    
 }
 
 
@@ -257,7 +268,6 @@ void GameState::updateUnpaused()
         }
 
         if (isPassLevel()) {
-            /////////////////////////
             ++this->current_level;
             this->Reset(this->current_level);
         }
@@ -405,4 +415,9 @@ void GameState::resetButton()
 
 const bool& GameState::isPassLevel() const {
     return (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2);
+}
+
+void GameState::playAgain() {
+    this->Reset();
+
 }

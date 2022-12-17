@@ -42,6 +42,7 @@ private:
     sf::Vector2f starting_position;
     int current_level;
     int win_line_y;
+    int distance_between_lane;
     int previousTime;
     void initFonts();
     //void initButtons();
@@ -76,6 +77,7 @@ public:
     void resetButton();
 
     const bool& isPassLevel() const;
+    void playAgain();
 };
 #endif
 
