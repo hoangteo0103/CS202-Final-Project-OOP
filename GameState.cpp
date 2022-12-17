@@ -8,6 +8,10 @@ void GameState::Reset(int level)
     this->restart = false;
     this->current_level = level;
 
+    player->reset(starting_position);
+    view->reset(*this->app, *player);
+    lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
+    this->resetButton();
 }
 
 void GameState::initFonts()
@@ -252,12 +256,10 @@ void GameState::updateUnpaused()
             player->animation.resetFrameDead();
         }
 
-        if (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2) {
+        if (isPassLevel()) {
+            /////////////////////////
             ++this->current_level;
-            player->reset(starting_position);
-            view->reset(*this->app, *player);
-            lane_management->reset(this->current_level, map.getSize(), this->win_line_y);
-            this->resetButton();
+            this->Reset(this->current_level);
         }
     }
     else {
@@ -398,4 +400,9 @@ void GameState::resetButton()
     it = this->buttons.find("CURRENT_LEVEL_BTN");
     it->second->setPosition(Vector2f(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2));
     it->second->updateText("LV: " + to_string(current_level));
+}
+
+
+const bool& GameState::isPassLevel() const {
+    return (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2);
 }
