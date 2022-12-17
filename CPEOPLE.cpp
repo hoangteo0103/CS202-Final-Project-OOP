@@ -93,4 +93,5 @@ bool CPEOPLE::isDeadFrameEnd()
 
 void CPEOPLE::reset(sf::Vector2f pos) {
 	this->setPosition(pos);
+	this->state = PLAYERSTATE::IDLE;
 }
