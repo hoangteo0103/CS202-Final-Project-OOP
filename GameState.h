@@ -73,7 +73,7 @@ public:
 
     void updateMovingButton(Vector2f& distance);
     void hideButton(bool hide);
-    void resetButton(RenderWindow* app);
+    void resetButton();
 };
 #endif
 

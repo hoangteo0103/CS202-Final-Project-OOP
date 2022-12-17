@@ -88,3 +88,12 @@ void Button::move(const Vector2f distance)
     this->shape.move(distance);
     this->text.move(distance);
 }
+
+void Button::setPosition(const Vector2f pos)
+{
+    this->shape.setPosition(pos);
+    this->text.setPosition(
+        this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
+        this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f - 2.f
+    );
+}
