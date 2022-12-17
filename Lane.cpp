@@ -72,6 +72,7 @@ void Lane::updateSpeed()
 
 void Lane::draw(sf::RenderWindow& window)
 {
+
 	window.draw(this->sprite);
 	for (int i = 0; i < num; i++)
 	{
@@ -79,10 +80,6 @@ void Lane::draw(sf::RenderWindow& window)
 		obstacle[i]->draw(window);
 	}
 
-	for (int i = 0; i < numTrafficLight; i++)
-	{
-		lights[i]->draw(window);
-	}
 }
 void Lane::checkEnd()
 {
@@ -101,16 +98,15 @@ void Lane::checkEnd()
 
 void Lane::update(float delta_time)
 {
-	
+	for (int i = 0; i < numTrafficLight; i++)
+	{
+		lights[i]->transition(delta_time);
+	}
 	for (int i = 0; i < num; i++)
 	{
 		obstacle[i]->move(delta_time);
 	}
-	checkEnd(); 
-	for (int i = 0; i < numTrafficLight; i++)
-	{
-		lights[i]->transition(delta_time); 
-	}
+	checkEnd();
 }
 //void render(RenderTarget* target)
 //{

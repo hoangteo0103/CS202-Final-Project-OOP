@@ -200,6 +200,7 @@ void GameState::updateButtons()
     if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
         {
             this->paused = true;
+            this->pmenu.initState(*app, player, &map);
         }
 }
 
@@ -245,12 +246,6 @@ void GameState::updateUnpaused()
 }
 void GameState::updatePaused()
 {
-    if (!this->isUpdated)
-    {
-        this->hideButton(true);
-        this->pmenu.initState(*app, player, &map);
-        this->isUpdated = true;
-    }  
     if (this->paused)
     {
         this->pmenu.updateMousePositions(mousePosView);
@@ -259,8 +254,8 @@ void GameState::updatePaused()
         if (this->pmenu.getResume())
         {
             this->pmenu.Reset();
-            this->hideButton(false);
-            this->Reset();
+            //this->hideButton(false);
+            this->paused = false; 
         }
         if (this->pmenu.getExit())
         {
