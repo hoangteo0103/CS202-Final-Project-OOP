@@ -74,6 +74,8 @@ public:
     void updateMovingButton(Vector2f& distance);
     void hideButton(bool hide);
     void resetButton();
+
+    const bool& isPassLevel() const;
 };
 #endif
 
