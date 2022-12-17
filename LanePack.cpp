@@ -20,8 +20,7 @@ void LanePack::init(int level, sf::Vector2u map_size, int win_line_y)
 		numberLane = 6;
 		break;
 	default:
-		cout << "INVALID LEVEL" << endl;
-		exit(0);
+		return;
 	}
 
 	int factor = map_size.y / (numberLane + 4);

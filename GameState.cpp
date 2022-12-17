@@ -78,8 +78,10 @@ const bool& GameState::getLose() const
 
 const bool& GameState::getWin() const
 {
-    //pass 
-    return true;
+    if (this->current_level >= 6) {
+        return true;
+    }
+    return false;
 }
 
 
@@ -156,7 +158,34 @@ void GameState::updateLeaderBoard()
 
 void GameState::updateWinState()
 {
-    
+    if (!this->isUpdated)
+    {
+        this->hideButton(true);
+        this->winState.initState(*app, player, &map);
+        this->isUpdated = true;
+    }
+    if (this->ok)
+    {
+        this->againState.updateMousePositions(mousePosView);
+        this->againState.update();
+        if (this->againState.getYes())
+        {
+            this->Reset();
+        }
+        if (this->againState.getNo())
+            this->endState();
+    }
+    else
+    {
+        this->winState.updateMousePositions(mousePosView);
+        this->winState.update();
+
+        if (this->winState.getOk())
+        {
+            this->ok = true;
+            this->againState.initState(*app, player, &map);
+        }
+    }
 }   
 
 void GameState::updateLoseState()
@@ -208,7 +237,6 @@ void GameState::updateButtons()
 void GameState::updateUnpaused()
 {
     delta_time = delta_clock.restart().asSeconds();
-
     if (!this->getLose())
     {
         lane_management->update(delta_time);
@@ -242,6 +270,10 @@ void GameState::updateUnpaused()
         }
 
     }
+    if (this->getWin()) {
+        this->updateWinState();
+    }
+    
 }
 void GameState::updatePaused()
 {
@@ -303,7 +335,7 @@ void GameState::render(RenderTarget* target)
     
 	target->draw(this->background);
     map.draw(*this->app);
-    //road->draw(*this->app);
+
     lane_management->draw(*this->app);
     player->draw(*this->app); 
     this->renderButtons(target);
@@ -316,13 +348,13 @@ void GameState::render(RenderTarget* target)
            else
                 this->againState.render(target);
     }
-    /*if (this->getWin())
+    if (this->getWin())
     {
         if (!this->ok)
-            this->winState.render(*target);
+            this->winState.render(target);
         else
-            this->againState.render(*target);
-    }*/
+            this->againState.render(target);
+    }
     if (this->paused)
     {
         this->pmenu.render(target);
