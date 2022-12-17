@@ -52,6 +52,16 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 	this->sprite.setPosition(position);
 }
 
+
+Lane::~Lane() {
+	for (auto obj : obstacle)
+		delete obj;
+
+	for (auto light : lights)
+		delete light;
+}
+
+
 void Lane::updateSpeed()
 {	
 

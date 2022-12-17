@@ -18,6 +18,7 @@ private:
 public:
 	// type = 0 -> road for animal, type = 1 -> road for car
 	Lane(int typeObstacle ,int dir,int num, float speed, int type, Vector2f pos);
+	~Lane();
 	void draw(sf::RenderWindow& window);
 	void update(float delta_time);
 	void updateSpeed();
