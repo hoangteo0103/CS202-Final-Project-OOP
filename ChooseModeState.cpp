@@ -59,23 +59,22 @@ void ChooseModeState::updateButtons()
         it.second->update(this->mousePosView);
     }
    
+    // mode , saved 
+    // 0 : easy , 1 : medium , 2 : hard 
+
     if (this->buttons["EASY_STATE"]->isPressed())
     {
-        //this->states->push(new GameState(this->app, this->states, 0, 0));
-        // this->states->push(new GameState(this->app , this->states , 9 , 9 ,8)) ;
-        this->quit = true;
+        this->states->push(new GameState(this->app , this->states , 0 ,  0 )) ;
     }
 
     if (this->buttons["MEDIUM_STATE"]->isPressed())
     {
-        //this->states->push(new GameState(this->app, this->states, 16, 16, 40, 0));
-        this->quit = true;
+        this->states->push(new GameState(this->app, this->states, 1, 0));
     }
 
     if (this->buttons["HARD_STATE"]->isPressed())
     {
-        //this->states->push(new GameState(this->app, this->states, 30, 16, 99, 0));
-        this->quit = true;
+        this->states->push(new GameState(this->app, this->states, 2, 0));
     }
 
     if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())

@@ -86,7 +86,12 @@ void MainMenuState::updateButtons()
 
     if (this->buttons["TEST GAME"]->isPressed())
     {
-        this->states->push(new GameState(this->app, this->states, false));
+        this->states->push(new GameState(this->app, this->states, 0, false));
+    }
+
+    if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
+    {
+        this->states->push(new GameState(this->app, this->states, 0 , true));
     }
 }
 

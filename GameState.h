@@ -21,6 +21,7 @@ private:
     LoseState loseState;
     PlayAgainState againState;
 
+
     float delta_time = 0.0f;
     Clock delta_clock;
     //ostringstream ssTime;
@@ -38,7 +39,8 @@ private:
     CView* view;
     LanePack* lane_management;
 
-
+    vector<float> speed = { 200.f , 300.f , 400.f };
+    int mode;
     sf::Vector2f starting_position;
     int current_level;
     int win_line_y;
@@ -48,7 +50,7 @@ private:
     //void initButtons();
 
 public:
-    GameState(RenderWindow* app, stack<State*>* states, bool saved);
+    GameState(RenderWindow* app, stack<State*>* states,int mode, bool saved);
     virtual ~GameState();
     // Functions
     void Reset(int level = 1);

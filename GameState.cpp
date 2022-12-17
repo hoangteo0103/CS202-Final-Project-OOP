@@ -27,29 +27,32 @@ void GameState::initFonts()
     this->background.setTexture(texture);
 }
 
-GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : State(app, states)
+GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
 //, PauseState(app, states)
 {
     // Init
-    this->restart = false;
-    this->ok = false;
-    this->isUpdated = false;
-    this->initFonts();
-    
-    this->win_line_y = 200;
-    this->current_level = 1;
-    this->distance_between_lane = 100;
+    if (!saved)
+    {
 
-    map.init("grasses.png"); 
-    view = new CView;
-    view->init((*app), map.getSize());
+        this->mode = mode; 
+        this->restart = false;
+        this->ok = false;
+        this->isUpdated = false;
+        this->initFonts();
+
+        this->win_line_y = 200;
+        this->current_level = 1;
+        this->distance_between_lane = 100;
+
+        map.init("grasses.png");
+        view = new CView;
+        view->init((*app), map.getSize());
 
     lane_management = new LanePack(this->distance_between_lane);
 
     lane_management->init(this->current_level, map.getSize(), this->win_line_y);
 
-    //starting_position = sf::Vector2f(map.getSize().x / 2, map.getSize().y - this->app->getSize().y);
-
+    
     starting_position.x = map.getSize().x / 2;
     starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
@@ -58,18 +61,19 @@ GameState::GameState(RenderWindow* app, stack<State*>* states,bool saved) : Stat
     
     this->buttons.clear();
 
-    this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y/2, 50.0, 50.0,
-        &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
-    
-    this->buttons["CURRENT_LEVEL_BTN"] = new Button(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0,
-        &this->font, "LV: "+to_string(current_level), Color::White, Color::White, Color::White);
-    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-    it->second->setTextColor(Color::Black);
+        this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0,
+            &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
 
-    
+        this->buttons["CURRENT_LEVEL_BTN"] = new Button(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0,
+            &this->font, "LV: " + to_string(current_level), Color::White, Color::White, Color::White);
+        std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
+        it->second->setTextColor(Color::Black);
 
 
-    
+    }
+    else {
+        // Phan nay tu canh minh code 
+    }
 }
 
 
