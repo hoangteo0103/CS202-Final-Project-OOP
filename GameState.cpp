@@ -7,7 +7,7 @@ void GameState::Reset(int level)
     this->paused = false;
     this->restart = false;
     this->current_level = level;
-
+    this->clock.Reset();
     lane_management->reset(speed[mode], this->current_level, map.getSize(), this->win_line_y);
     player->reset(starting_position);
     view->reset(*this->app, *player);
@@ -37,6 +37,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         this->mode = mode; 
         this->restart = false;
         this->ok = false;
+        this->clock.Start();
         this->isUpdated = false;
         this->initFonts();
 
@@ -248,6 +249,7 @@ void GameState::updateButtons()
     }
     if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
         {
+            this->clock.Pause();
             this->paused = true;
             this->pmenu.initState(*app, player, &map);
         }
@@ -256,8 +258,11 @@ void GameState::updateButtons()
 
 void GameState::updateUnpaused()
 {
-    delta_time = delta_clock.restart().asSeconds();
+    float now_time = clock.GetElapsedSeconds();
+    delta_time = now_time - previous_time;
+    previous_time = now_time;
     if (this->getWin()) {
+        this->clock.Pause();
         this->updateWinState();
         return;
     }
@@ -282,6 +287,7 @@ void GameState::updateUnpaused()
         }
     }
     else {
+        this->clock.Pause();
         if (this->player->isDeadFrameEnd())
         {
             updateLoseState();
@@ -304,7 +310,7 @@ void GameState::updatePaused()
         if (this->pmenu.getResume())
         {
             this->pmenu.Reset();
-            //this->hideButton(false);
+            this->clock.Start();
             this->paused = false; 
         }
         if (this->pmenu.getExit())

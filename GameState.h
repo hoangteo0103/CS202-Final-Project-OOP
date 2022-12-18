@@ -21,7 +21,7 @@ private:
     LoseState loseState;
     PlayAgainState againState;
 
-
+    st::Timer clock;
     float delta_time = 0.0f;
     Clock delta_clock;
     //ostringstream ssTime;
@@ -29,6 +29,8 @@ private:
     Font font;
     Texture texture;
     Sprite background;
+    float previous_time = 0.0f; 
+
     bool isUpdated;
     bool ok;
     bool restart;
@@ -45,7 +47,6 @@ private:
     int current_level;
     int win_line_y;
     int distance_between_lane;
-    int previousTime;
     void initFonts();
     //void initButtons();
 
