@@ -98,6 +98,7 @@ const bool& GameState::getLose() const
 const bool& GameState::getWin() const
 {
     if (this->current_level >= 6) {
+        this->player->setDead(); 
         return true;
     }
     return false;
@@ -256,6 +257,10 @@ void GameState::updateButtons()
 void GameState::updateUnpaused()
 {
     delta_time = delta_clock.restart().asSeconds();
+    if (this->getWin()) {
+        this->updateWinState();
+        return;
+    }
     if (!this->getLose())
     {
         lane_management->update(delta_time);
@@ -286,9 +291,7 @@ void GameState::updateUnpaused()
         }
 
     }
-    if (this->getWin()) {
-        this->updateWinState();
-    }
+    
     
 }
 void GameState::updatePaused()

@@ -16,6 +16,7 @@ public:
 	void updateAfterDead(float delta_time, const sf::Vector2u map_size);
 	bool isCollision(LanePack*& lane_management);
 	void reset(sf::Vector2f pos);
+	void setDead() { this->state = PLAYERSTATE::DEATH; };
 	bool isDead();
 	bool isDeadFrameEnd();
 
