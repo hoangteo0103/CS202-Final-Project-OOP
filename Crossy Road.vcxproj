@@ -22,6 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{129227BF-8D8E-47C7-ACD3-A1977E998457}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -100,6 +101,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.5.1\lib</AdditionalLibraryDirectories>
@@ -120,6 +122,7 @@
     <ClCompile Include="ChooseModeState.cpp" />
     <ClCompile Include="CMap.cpp" />
     <ClCompile Include="COBSTACLE.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CPEOPLE.cpp" />
     <ClCompile Include="CTRAFFICLIGHT.cpp" />
     <ClCompile Include="CView.cpp" />
@@ -143,6 +146,7 @@
     <ClInclude Include="ChooseModeState.h" />
     <ClInclude Include="CMap.h" />
     <ClInclude Include="COBSTACLE.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="CPEOPLE.h" />
     <ClInclude Include="CTRAFFICLIGHT.h" />
     <ClInclude Include="CView.h" />

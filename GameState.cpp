@@ -9,12 +9,8 @@ void GameState::Reset(int level)
     this->current_level = level;
     //this->clock.Reset();
     lane_management->reset(speed[mode], this->current_level, map.getSize(), this->win_line_y);
-
-    cout << "position: " << starting_position.x << ", " << starting_position.y << endl;
-    cout << "==========================================" << endl;
     starting_position.x = map.getSize().x / 2;
     starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
-    cout << "position: " << starting_position.x << ", " << starting_position.y << endl;
     player->reset(starting_position);
     view->reset(*this->app, *player);
    

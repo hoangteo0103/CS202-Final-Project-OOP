@@ -4,10 +4,14 @@
 #include "State.h"
 #include "Object.h"
 #include "CMap.h"
+#include "Collision.h"
+
 #include <SFML/Graphics.hpp>
 #include <time.h>
 #include <string>
 #include <iostream>
+#include <math.h>
+
 namespace st {
     struct Timer {
         sf::Clock mC;

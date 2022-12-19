@@ -74,7 +74,7 @@ void CPEOPLE::updateAfterDead(float delta_time, const sf::Vector2u map_size) {
 bool CPEOPLE::isCollision(LanePack*& lane_management) {
 	for (auto lane : lane_management->lanes)
 		for (auto obstacle : lane->obstacle)
-			if (this->sprite.getGlobalBounds().intersects(obstacle->sprite.getGlobalBounds())) {
+			if (Collision::PixelPerfectTest(this->sprite, obstacle->sprite)) {
 				state = PLAYERSTATE::DEATH;
 				return true;
 			}

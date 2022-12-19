@@ -42,7 +42,7 @@ public:
 	void render(RenderTarget* target);
 	//void move(float delta_time);
 	void updateEvent();
-	//bool collide(Object& other);
+
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f pos);
 	sf::Vector2f getSize();
