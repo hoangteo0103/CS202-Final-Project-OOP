@@ -128,7 +128,7 @@ void Mouvment::goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float 
 		break;
 	}
 	for (auto obstacle : obstacles)
-		if (Collision::PixelPerfectTest(temp, obstacle))
+		if (temp.getGlobalBounds().intersects(obstacle.getGlobalBounds()))
 		{
 			dis *= -1;
 			switch (dir) {
