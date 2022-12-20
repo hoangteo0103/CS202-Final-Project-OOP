@@ -39,7 +39,7 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 	for (int i = 0; i < numberLane; ++i) {
 		cout << "i: " << i << endl;
 		int y_position = (distance_factor+ROADHEIGHT) * i + win_line_y + offset;
-		posObstacles.push_back(y_position + ROADHEIGHT);
+		posObstacles.push_back(y_position);
 		//cout << "y_position: " << y_position << endl;
 		uniform_int_distribution<int> range(0, 1);
 		int type = range(rng);
@@ -58,7 +58,7 @@ void LanePack::generateObstacle()
 		uniform_int_distribution<int> range(0, OBSTACLETEXTUREPATH.size() - 1);
 		int type = range(rng); 
 		uniform_int_distribution <int > range2(0, 2880 - SIZEOBSTACLE[type]);
-		Vector2f pos = Vector2f(posObstacles[i] + ROADHEIGHT , range2(rng));
+		Vector2f pos = Vector2f(posObstacles[i] - ROADHEIGHT , range2(rng));
 		COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0); 
 		obstacles.push_back(now);
 	}
@@ -80,7 +80,7 @@ void LanePack::draw(sf::RenderWindow& window) {
 	for (auto lane : lanes)
 		lane->draw(window);
 	for (auto obstacle : obstacles)
-		cout << 1 , obstacle->draw(window);
+		 obstacle->draw(window);
 }
 
 void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_y)
