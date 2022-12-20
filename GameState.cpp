@@ -4,7 +4,10 @@ void GameState::Reset(int level)
 {
     if (level >= 6)
         return;
+
     this->charging.play();
+    this->theme.play();
+    
     this->ok = false;
     this->isUpdated = false;
     this->paused = false;
@@ -41,7 +44,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         if (!this->theme.openFromFile("sound\\music_theme.ogg"))
             cout << "COULD NOT LOAD THEME MUSIC" << endl;
         this->theme.setLoop(true);
-
+        this->theme.play();
         this->win.init("sound\\win.wav");
         this->lose.init("sound\\lose.wav");
         this->levelup.init("sound\\complete_level.wav");
@@ -293,12 +296,13 @@ void GameState::updateUnpaused()
 
         if (player->isCollision(lane_management)) {
             player->animation.resetFrameDead();
+            this->theme.pause();
             this->lose.play();
         }
 
         if (isPassLevel() && this->current_level < 6) {
             ++this->current_level;
-            cout << this->current_level << endl;
+            this->theme.pause();
             this->levelup.play();
             this->Reset(this->current_level);
         }
