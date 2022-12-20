@@ -289,7 +289,7 @@ void GameState::updateUnpaused()
         }
     }
     else {
-        this->clock.Pause();
+        //this->clock.Pause();
         if (this->player->isDeadFrameEnd())
         {
             updateLoseState();
