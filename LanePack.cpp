@@ -61,6 +61,7 @@ void LanePack::generateObstacle()
 		Vector2f pos = Vector2f(range2(rng) , posObstacles[i] + ROADHEIGHT);
 		COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0); 
 		obstacles.push_back(now);
+		obstacleSprites.push_back(now->sprite);
 	}
 }
 

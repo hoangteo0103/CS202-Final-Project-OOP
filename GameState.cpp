@@ -289,7 +289,7 @@ void GameState::updateUnpaused()
 
         Vector2f beforePos = player->getPosition();
 
-        player->update(delta_time, map.getSize());
+        player->update(delta_time, map.getSize() , lane_management);
         view->update(*app, *player);
 
         this->updateMovingButton(player->getPosition() - beforePos);

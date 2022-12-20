@@ -25,6 +25,7 @@ class Mouvment {
 public:
 	Mouvment() {};
 	void goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time);
+	void goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time, vector<Sprite> obstacles);
 };	
 
 class Object

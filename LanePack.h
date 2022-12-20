@@ -14,6 +14,7 @@ private:
 	int numberLanes; 
 	vector<Lane*> lanes;
 	vector<COBSTACLE*> obstacles; 
+	vector<Sprite> obstacleSprites;
 	vector<int> posObstacles; 
 	vector<sf::Vector2f> position;
 	int distance_factor;
@@ -27,5 +28,6 @@ public:
 	void generateObstacle();
 	int getNumOfLanes();
 	friend class CPEOPLE;
+	friend class Mouvment;
 };
 

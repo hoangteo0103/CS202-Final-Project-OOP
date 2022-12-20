@@ -109,6 +109,48 @@ void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed,
 		break;
 	}
 }
+void Mouvment::goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time, vector<Sprite> obstacles)
+{
+	float dis = speed * delta_time;
+	Sprite temp = spritesheet; 
+	switch (dir) {
+	case 0:
+		temp.move(sf::Vector2f(0, -dis));
+		break;
+	case 1:
+		temp.move(sf::Vector2f(0, dis));
+		break;
+	case 2:
+		temp.move(sf::Vector2f(dis, 0));
+		break;
+	case 3:
+		temp.move(sf::Vector2f(-dis, 0));
+		break;
+	}
+	for (auto obstacle : obstacles)
+		if (Collision::PixelPerfectTest(temp, obstacle))
+		{
+			dis *= -1;
+			switch (dir) {
+			case 0:
+				spritesheet.move(sf::Vector2f(0, -dis));
+				break;
+			case 1:
+				spritesheet.move(sf::Vector2f(0, dis));
+				break;
+			case 2:
+				spritesheet.move(sf::Vector2f(dis, 0));
+				break;
+			case 3:
+				spritesheet.move(sf::Vector2f(-dis, 0));
+				break;
+			}
+			return;
+		}
+	spritesheet = temp;
+}
+
+
 
 Object::Object(string path, Vector2u image_contain, float switch_time, float speed , Vector2f pos)
 {

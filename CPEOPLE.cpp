@@ -8,31 +8,31 @@ CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, fl
 	pause = false;
 }
 
-void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
+void CPEOPLE::move(float delta_time, const sf::Vector2u map_size, LanePack*& lane_management) {
 	Mouvment mouvment;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		if (this->getPosition().x < map_size.x) {
-			mouvment.goDirection(2, sprite, speed, delta_time);
+			mouvment.goDirectionPlayer(2, sprite, speed, delta_time, lane_management->obstacleSprites);
 			face_direction = 0;
 			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		if (this->getPosition().x > 0) {
-			mouvment.goDirection(3, sprite, speed, delta_time);
+			mouvment.goDirectionPlayer(3, sprite, speed, delta_time, lane_management->obstacleSprites);
 			face_direction = 1;
 			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		if (this->getPosition().y > 0) {
-			mouvment.goDirection(0, sprite, speed, delta_time);
+			mouvment.goDirectionPlayer(0, sprite, speed, delta_time, lane_management->obstacleSprites);
 			state = row = 1;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		if (this->getPosition().y < map_size.y) {
-			mouvment.goDirection(1, sprite, speed, delta_time);
+			mouvment.goDirectionPlayer(1, sprite, speed, delta_time, lane_management->obstacleSprites);
 			state = row = 1;
 		}
 	}
@@ -49,10 +49,10 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size) {
 }
 
 
-void CPEOPLE::update(float delta_time, const sf::Vector2u map_size) {
+void CPEOPLE::update(float delta_time, const sf::Vector2u map_size, LanePack*& lane_management) {
 	switch (state) {
 	case 0 : case 1:
-		move(delta_time, map_size);
+		move(delta_time, map_size ,lane_management);
 		break;
 
 	case 2:
@@ -80,6 +80,7 @@ bool CPEOPLE::isCollision(LanePack*& lane_management) {
 			}
 	return false;
 }
+
 
 bool CPEOPLE::isDead()
 {
