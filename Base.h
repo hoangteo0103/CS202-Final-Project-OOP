@@ -5,7 +5,7 @@
 #include "Object.h"
 #include "CMap.h"
 #include "Collision.h"
-
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <time.h>
 #include <string>

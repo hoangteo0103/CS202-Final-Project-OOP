@@ -136,6 +136,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayAgainState.cpp" />
+    <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="WinState.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayAgainState.h" />
+    <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="WinState.h" />
   </ItemGroup>

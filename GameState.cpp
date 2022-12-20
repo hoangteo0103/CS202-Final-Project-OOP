@@ -2,6 +2,9 @@
 
 void GameState::Reset(int level)
 {
+    if (level >= 6)
+        return;
+    this->charging.play();
     this->ok = false;
     this->isUpdated = false;
     this->paused = false;
@@ -35,6 +38,14 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     // Init
     if (!saved)
     {
+        if (!this->theme.openFromFile("sound\\music_theme.ogg"))
+            cout << "COULD NOT LOAD THEME MUSIC" << endl;
+        this->theme.setLoop(true);
+
+        this->win.init("sound\\win.wav");
+        this->lose.init("sound\\lose.wav");
+        this->levelup.init("sound\\complete_level.wav");
+        this->charging.init("sound\\player_reset.wav");
 
         this->mode = mode; 
         this->restart = false;
@@ -202,7 +213,6 @@ void GameState::updateWinState()
     {
         this->winState.updateMousePositions(mousePosView);
         this->winState.update();
-
         if (this->winState.getOk())
         {
             this->ok = true;
@@ -260,9 +270,11 @@ void GameState::updateButtons()
 
 void GameState::updateUnpaused()
 {
+
     float now_time = clock.GetElapsedSeconds();
     delta_time = now_time - previous_time;
     previous_time = now_time;
+
     if (this->getWin()) {
         this->clock.Pause();
         this->updateWinState();
@@ -281,12 +293,17 @@ void GameState::updateUnpaused()
 
         if (player->isCollision(lane_management)) {
             player->animation.resetFrameDead();
+            this->lose.play();
         }
 
-        if (isPassLevel()) {
+        if (isPassLevel() && this->current_level < 6) {
             ++this->current_level;
+            cout << this->current_level << endl;
+            this->levelup.play();
             this->Reset(this->current_level);
         }
+        if (isPassLevel() && this->current_level == 6)
+            this->win.play();
     }
     else {
         //this->clock.Pause();
@@ -330,11 +347,10 @@ void GameState::endGame()
 
 void GameState::update()
 {
-
     this->updateMousePositions();
     this->updateKeyBinds();
     this->updateButtons();
-    
+
     if (!this->paused)
     {
         updateUnpaused();
@@ -342,7 +358,6 @@ void GameState::update()
     else {
         updatePaused(); 
     }
-
 }
 
 
@@ -359,7 +374,7 @@ void GameState::render(RenderTarget* target)
 {
     if (!target)
 		target = this->app;
-    
+
 	target->draw(this->background);
     map.draw(*this->app);
 

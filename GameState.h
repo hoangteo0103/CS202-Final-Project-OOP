@@ -5,7 +5,7 @@
 #include "WinState.h"
 #include "LoseState.h"
 #include "PlayAgainState.h"
-
+#include "SoundEffect.h"
 #include "CPEOPLE.h"
 #include "COBSTACLE.h"
 #include "CView.h"
@@ -21,6 +21,10 @@ private:
     LoseState loseState;
     PlayAgainState againState;
 
+    sf::Music theme;
+    
+    SoundEffect win, lose, levelup, charging;
+    
     st::Timer clock;
     float delta_time = 0.0f;
     Clock delta_clock;

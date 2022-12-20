@@ -2,8 +2,6 @@
 #include "Lane.h"
 #include "Base.h"
 #include <random>
-const vector<sf::Vector2f> block = { sf::Vector2f(100,700),sf::Vector2f(300,700), sf::Vector2f(500,700), sf::Vector2f(700,700), sf::Vector2f(900,700), sf::Vector2f(1100,700) };
-
 
 
 class LanePack
