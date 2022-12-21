@@ -20,7 +20,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 
 	random_device rd;
 	mt19937 rng(rd());
-	
+
 	if (type == 0) {
 		uniform_int_distribution<int> range(0, 1);
 		int random_index = range(rng);
@@ -32,7 +32,6 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		texture_dir = ROADTEXTUREPATH[random_index];
 
 		numTrafficLight = 1;
-
 		float start = 400.f;
 		for (int i = 0; i < numTrafficLight; i++)
 		{
@@ -56,9 +55,13 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 Lane::~Lane() {
 	for (auto obj : obstacle)
 		delete obj;
+	//while (!obstacle.empty())
+	//	cout << obstacle.size() , obstacle.pop_back();
 
 	for (auto light : lights)
 		delete light;
+	//while (!lights.empty())
+	//	cout << lights.size() , lights.pop_back();
 }
 
 
@@ -88,6 +91,10 @@ void Lane::draw(sf::RenderWindow& window)
 	{
 		//cout << obstacle[i]->sprite.getPosition().x << ' ' << obstacle[i]->sprite.getPosition().y << endl;
 		obstacle[i]->draw(window);
+	}
+	for (int i = 0; i < numTrafficLight; i++)
+	{
+		lights[i]->draw(window);
 	}
 
 }

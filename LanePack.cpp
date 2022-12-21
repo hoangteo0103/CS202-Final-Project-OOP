@@ -89,6 +89,7 @@ void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_
 	for (auto lane : lanes)
 		delete lane;
 	obstacles.clear();
+	obstacleSprites.clear();
 	posObstacles.clear();
 	lanes.clear();
 	this->init(speed , level, map_size, win_line_y);
