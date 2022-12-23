@@ -1,4 +1,3 @@
-
 #include "CPEOPLE.h"
 #include "COBSTACLE.h"
 #include "CView.h"

@@ -1,6 +1,7 @@
 #include "PauseState.h"
 void PauseState::initFonts()
 {
+    std::cout << "In PauseState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
@@ -9,6 +10,7 @@ void PauseState::initFonts()
 
 void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
+    std::cout << "In PauseState::initButtons(), line: " << __LINE__ << '\n';
     this->resume = false;
     this->restart = false;
     this->exit = false;
@@ -65,16 +67,18 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 
 void PauseState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
+    std::cout << "In PauseState::initState(), line: " << __LINE__ << '\n';
     this->initFonts();
     this->initButtons(app, player, map);
 }
 PauseState::PauseState()
 {
+    std::cout << "In PauseState::PauseState(), line: " << __LINE__ << '\n';
 }
 
 PauseState::~PauseState()
 {
-
+    std::cout << "In PauseState::~PauseState(), line: " << __LINE__ << '\n';
     auto it = this->buttons.begin();
     for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
@@ -86,21 +90,25 @@ PauseState::~PauseState()
 }
 const bool& PauseState::getResume() const
 {
+    std::cout << "In PauseState::getResume(), line: " << __LINE__ << '\n';
     return this->resume;
 }
 
 const bool& PauseState::getRestart() const
 {
+    std::cout << "In PauseState::getRestart(), line: " << __LINE__ << '\n';
     return this->restart;
 }
 
 const bool& PauseState::getExit() const
 {
+    std::cout << "In PauseState::getExit(), line: " << __LINE__ << '\n';
     return this->exit;
 }
 
 void PauseState::Reset()
 {
+    std::cout << "In PauseState::Reset(), line: " << __LINE__ << '\n';
     this->resume = false;
     this->restart = false;
     this->exit = false;
@@ -108,10 +116,12 @@ void PauseState::Reset()
 
 void PauseState::updateMousePositions(Vector2f mousePosView)
 {
+    std::cout << "In PauseState::updateMousePositions(), line: " << __LINE__ << '\n';
     this->mousePosView = mousePosView;
 }
 void PauseState::updateButtons()
 {
+    std::cout << "In PauseState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -119,6 +129,7 @@ void PauseState::updateButtons()
 }
 void PauseState::update()
 {
+    std::cout << "In PauseState::update(), line: " << __LINE__ << '\n';
     this->updateButtons();
     if (this->buttons["RESUME"]->isPressed())
     {
@@ -136,6 +147,7 @@ void PauseState::update()
 
 void PauseState::renderButtons(RenderTarget* target)
 {
+    std::cout << "In PauseState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -144,7 +156,7 @@ void PauseState::renderButtons(RenderTarget* target)
 
 void PauseState::render(RenderTarget* target)
 {
-    
+    std::cout << "In PauseState::render(), line: " << __LINE__ << '\n';
     target->draw(background);
     target->draw(container);
     target->draw(menutext);

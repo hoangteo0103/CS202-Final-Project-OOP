@@ -3,15 +3,19 @@
 
 using namespace std;
 
-LanePack::LanePack(int distance) : distance_factor(distance) {}
+LanePack::LanePack(int distance) : distance_factor(distance) {
+	std::cout << "In LanePack::LanePack(), line: " << __LINE__ << '\n';
+}
 
 LanePack::~LanePack() {
+	std::cout << "In LanePack::~LanePack(), line: " << __LINE__ << '\n';
 	for (auto lane : lanes)
 		delete lane;
 }
 
 void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y)
 {
+	std::cout << "In LanePack::init(), line: " << __LINE__ << '\n';
 	int numberLane;
 	switch (level)
 	{
@@ -51,6 +55,7 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 
 void LanePack::generateObstacle()
 {
+	std::cout << "In LanePack::generateObstacle(), line: " << __LINE__ << '\n';
 	random_device rd;
 	mt19937 rng(rd());
 	for (int i = 1; i < numberLanes; i++)
@@ -69,6 +74,7 @@ void LanePack::generateObstacle()
 
 void LanePack::update(float delta_time)
 {
+	std::cout << "In LanePack::update(), line: " << __LINE__ << '\n';
 	for (auto lane : lanes)
 	{
 		lane->updateSpeed();
@@ -78,6 +84,7 @@ void LanePack::update(float delta_time)
 }
 
 void LanePack::draw(sf::RenderWindow& window) {
+	std::cout << "In LanePack::draw(), line: " << __LINE__ << '\n';
 	for (auto lane : lanes)
 		lane->draw(window);
 	for (auto obstacle : obstacles)
@@ -86,6 +93,7 @@ void LanePack::draw(sf::RenderWindow& window) {
 
 void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_y)
 {
+	std::cout << "In LanePack::reset(), line: " << __LINE__ << '\n';
 	for (auto lane : lanes)
 		delete lane;
 	obstacles.clear();
@@ -96,5 +104,6 @@ void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_
 }
 
 int LanePack::getNumOfLanes() {
+	std::cout << "In LanePack::getNumOfLanes(), line: " << __LINE__ << '\n';
 	return lanes.size();
 }

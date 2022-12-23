@@ -2,18 +2,19 @@
 
 CTRAFFICLIGHT::CTRAFFICLIGHT(Vector2f pos, float red_time, float yellow_time, float green_time)
 {
+	std::cout << "In CTRAFFICLIGHT::CTRAFFICLIGHT(), line: " << __LINE__ << '\n';
 	now_time = 0;
 	state = 0;
 	texture.loadFromFile("trafficlight.png");
 	this->red_time = red_time;
-	this->yellow_time = yellow_time;
-	this->green_time = green_time;
+	this->yellow_time = yellow_time;	this->green_time = green_time;
 	sprite.setTexture(texture);
 	sprite.setPosition(pos);
 }
  
 void CTRAFFICLIGHT::draw(RenderWindow& window)
 {
+	std::cout << "In CTRAFFICLIGHT::draw(), line: " << __LINE__ << '\n';
 	IntRect rect; 
 	rect.height = texture.getSize().y;
 	rect.width = texture.getSize().x / 4.f; // depend on the texture 
@@ -26,16 +27,18 @@ void CTRAFFICLIGHT::draw(RenderWindow& window)
 
 void CTRAFFICLIGHT::render(RenderTarget* target)
 {
-
+	std::cout << "In CTRAFFICLIGHT::render(), line: " << __LINE__ << '\n';
 }
 
 float CTRAFFICLIGHT::getPos()
 {
+	std::cout << "In CTRAFFICLIGHT::getPos(), line: " << __LINE__ << '\n';
 	return this->sprite.getPosition().x;
 }
 
 void CTRAFFICLIGHT::transition(float delta_time)
 {
+	std::cout << "In CTRAFFICLIGHT::transition(), line: " << __LINE__ << '\n';
 	now_time += delta_time;
 	if (now_time <= red_time)
 	{

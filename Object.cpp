@@ -5,6 +5,7 @@ vector<int> stateFrames = { 4 , 9 , 4 };
 Animation::Animation() {}
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time) {
+	std::cout << "In Animation::Animation(), line: " << __LINE__ << '\n';
 	this->image_contain = image_contain;
 	this->switch_time = switch_time;
 	total_time = 0.f;
@@ -16,7 +17,7 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u image_contain, float swi
 }
 
 void Animation::update(int row, float delta_time) {
-
+	std::cout << "In Animation::update(), line: " << __LINE__ << '\n';
 	current_image.y = row;
 	total_time += delta_time;
 
@@ -37,7 +38,7 @@ void Animation::update(int row, float delta_time) {
 }
 
 void Animation::updatePlayer(int row, float delta_time) {
-
+	std::cout << "In Animation::updatePlayer(), line: " << __LINE__ << '\n';
 	current_image.y = row;
 	total_time += delta_time;
 
@@ -58,7 +59,7 @@ void Animation::updatePlayer(int row, float delta_time) {
 }
 
 void Animation::updatePlayerAfterDead(int row, float delta_time) {
-
+	std::cout << "In Animation::updatePlayerAfterDead(), line: " << __LINE__ << '\n';
 	current_image.y = row;
 	total_time += delta_time;
 
@@ -80,11 +81,13 @@ void Animation::updatePlayerAfterDead(int row, float delta_time) {
 
 void Animation::resetFrameDead()
 {
+	std::cout << "In Animation::resetFrameDead(), line: " << __LINE__ << '\n';
 	current_image.x = 0; 
 }
 
 bool Animation::isFrameEnd(int state)
 {
+	std::cout << "In Animation::isFrameEnd(), line: " << __LINE__ << '\n';
 	int frames = stateFrames[state];
 	if (current_image.x >= frames)
 		return true;
@@ -93,6 +96,7 @@ bool Animation::isFrameEnd(int state)
 
 void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time)
 {
+	std::cout << "In Mouvment::goDirection(), line: " << __LINE__ << '\n';
 	float dis = speed * delta_time;
 	switch (dir) {
 	case 0:
@@ -111,6 +115,7 @@ void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed,
 }
 void Mouvment::goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time, vector<Sprite> obstacles)
 {
+	std::cout << "In Mouvment::goDirectionPlayer(), line: " << __LINE__ << '\n';
 	float dis = speed * delta_time;
 	Sprite temp = spritesheet; 
 	switch (dir) {
@@ -154,6 +159,7 @@ void Mouvment::goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float 
 
 Object::Object(string path, Vector2u image_contain, float switch_time, float speed , Vector2f pos)
 {
+	std::cout << "In Object::Object(), line: " << __LINE__ << '\n';
 	if (!(texture.loadFromFile(path)))
 	{
 		cout << "Could Not Load File.." << endl;
@@ -166,11 +172,13 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 }
 
 void Object::draw(sf::RenderWindow& window) {
+	std::cout << "In Object::draw(), line: " << __LINE__ << '\n';
 	window.draw(sprite);
 }
 
 
 sf::Vector2f Object::getPosition() {
+	std::cout << "In Object::getPosition(), line: " << __LINE__ << '\n';
 	sf::Vector2f pos = sprite.getPosition();
 	pos.x += animation.uv_rect.width / 2;
 	pos.y += animation.uv_rect.height / 2;
@@ -178,11 +186,13 @@ sf::Vector2f Object::getPosition() {
 }
 
 void Object::setPosition(sf::Vector2f pos) {
+	std::cout << "In Object::setPosition(), line: " << __LINE__ << '\n';
 	this->sprite.setPosition(pos);
 }
 
 sf::Vector2f Object::getSize()
 {
+	std::cout << "In Object::getSize(), line: " << __LINE__ << '\n';
 	sf::Vector2f size;
 	size.x = animation.uv_rect.width;
 	size.y = animation.uv_rect.height;

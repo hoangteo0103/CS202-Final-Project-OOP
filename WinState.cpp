@@ -2,6 +2,7 @@
 
 void WinState::initFonts()
 {
+    std::cout << "In WinState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
         cout << "CANNOT LOAT FONT" << endl;
@@ -9,6 +10,7 @@ void WinState::initFonts()
 }
 void WinState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
+    std::cout << "In WinState::initButtons(), line: " << __LINE__ << '\n';
     this->ok = false;
     //Init background
 
@@ -59,16 +61,18 @@ void WinState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 }
 void WinState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
+    std::cout << "In WinState::initState(), line: " << __LINE__ << '\n';
     this->initFonts();
     this->initButtons(app, player, map);
 }
 WinState::WinState()
 {
+    std::cout << "In WinState::WinState(), line: " << __LINE__ << '\n';
 }
 
 WinState::~WinState()
 {
-
+    std::cout << "In WinState::~WinState(), line: " << __LINE__ << '\n';
     auto it = this->buttons.begin();
     for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
@@ -78,14 +82,17 @@ WinState::~WinState()
 }
 const bool& WinState::getOk() const
 {
+    std::cout << "In WinState::getOk(), line: " << __LINE__ << '\n';
     return this->ok;
 }
 void WinState::updateMousePositions(Vector2f mousePosView)
 {
+    std::cout << "In WinState::updateMousePositions(), line: " << __LINE__ << '\n';
     this->mousePosView = mousePosView;
 }
 void WinState::updateButtons()
 {
+    std::cout << "In WinState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -93,6 +100,7 @@ void WinState::updateButtons()
 }
 void WinState::update()
 {
+    std::cout << "In WinState::update(), line: " << __LINE__ << '\n';
     this->updateButtons();
 
     if (this->buttons["OK"]->isPressed())
@@ -103,6 +111,7 @@ void WinState::update()
 
 void WinState::renderButtons(RenderTarget* target)
 {
+    std::cout << "In WinState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -111,6 +120,7 @@ void WinState::renderButtons(RenderTarget* target)
 
 void WinState::render(RenderTarget* target)
 {
+    std::cout << "In WinState::render(), line: " << __LINE__ << '\n';
     target->draw(background);
     target->draw(container);
     target->draw(menutext);
