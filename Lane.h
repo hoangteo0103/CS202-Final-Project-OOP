@@ -13,6 +13,8 @@ private:
 	vector<CTRAFFICLIGHT*> lights;
 	int numTrafficLight; 
 	Texture texture;
+	int type; 
+	int dir;
 	Sprite sprite;
 	Vector2f position;
 public:

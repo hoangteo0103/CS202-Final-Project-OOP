@@ -8,19 +8,34 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 {
 	this->num = num;
 	int disBetweenObstacle = 250;
-	Vector2f nowPos = { pos.x - (num - 1) * ( sizeTexture[typeObstacle]  + disBetweenObstacle)  , pos.y};
-	for (int i = 1; i <= num; i++)
+	
+	if (dir!=1)
 	{
-		COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle], 0.1f, speed, nowPos, dir);
-		nowPos.x += sizeTexture[typeObstacle] + disBetweenObstacle;
-		obstacle.push_back(now);
+		Vector2f nowPos = { pos.x - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
+		for (int i = 1; i <= num; i++)
+		{
+			COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle], 0.1f, speed, nowPos, dir);
+			nowPos.x += sizeTexture[typeObstacle] + disBetweenObstacle;
+			obstacle.push_back(now);
+		}
+	}
+	else {
+		cout << "DIR :" << dir << endl;
+		Vector2f nowPos = { 2880.f +  (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
+		for (int i = 1; i <= num; i++)
+		{
+			COBSTACLE* now = new COBSTACLE(pathTexture[typeObstacle], imageContainVc[typeObstacle], 0.1f, speed, nowPos, dir);
+			nowPos.x -= sizeTexture[typeObstacle] + disBetweenObstacle;
+			obstacle.push_back(now);
+		}
 	}
 
 	string texture_dir;
 
 	random_device rd;
 	mt19937 rng(rd());
-
+	this->type = type; 
+	this->dir = dir;
 	if (type == 0) {
 		uniform_int_distribution<int> range(0, 1);
 		int random_index = range(rng);
@@ -63,16 +78,33 @@ Lane::~Lane() {
 
 void Lane::updateSpeed()
 {	
-	for (int i = 0; i < num; i++)
+	if (type == 0) return; 
+	if (this->dir == 2)
 	{
-
-		obstacle[i]->setSpeed(obstacle[i]->origin_speed);
-		for (int j = 0; j < numTrafficLight; j++)
+		for (int i = 0; i < num; i++)
 		{
-			//cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
-			if ( (obstacle[i]->sprite.getPosition().x  > lights[j]->getPos() + 48.f )  || lights[j]->isVehiclePass()) continue;
-			int dis = lights[j]->getPos() + 48.f -  (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
-			obstacle[i]->setSpeed(dis);
+
+			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
+			for (int j = 0; j < numTrafficLight; j++)
+			{
+				//cout << obstacle[i]->sprite.getPosition().x << ' ' << lights[i]->isVehiclePass() << ' ' << lights[i]->getPos() << endl;
+				if ((obstacle[i]->sprite.getPosition().x > lights[j]->getPos() + 48.f) || lights[j]->isVehiclePass()) continue;
+				int dis = lights[j]->getPos() + 48.f - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
+				obstacle[i]->setSpeed(dis);
+			}
+		}
+	}
+	else {
+		for (int i = 0; i < num; i++)
+		{
+			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
+			for (int j = 0; j < numTrafficLight; j++)
+			{
+				if ((obstacle[i]->sprite.getPosition().x < lights[j]->getPos() + 48.f) || lights[j]->isVehiclePass()) return;
+				int dis = lights[j]->getPos() + 48.f - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
+				dis *= -1;
+				obstacle[i]->setSpeed(dis);
+			}
 		}
 	}
 
@@ -94,14 +126,31 @@ void Lane::draw(sf::RenderWindow& window)
 }
 void Lane::checkEnd()
 {
-	int typeObstacle = 0;
-	if (obstacle[0]->getPosition().x < 2880.f) return;
-	int disBetweenObstacle = 200; 
-	Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] +disBetweenObstacle) , position.y };
-	for (int i = 0; i < num; i++)
+	if (type == 1)
 	{
-		obstacle[i]->sprite.setPosition(nowPos);
-		nowPos.x+= sizeTexture[typeObstacle] + disBetweenObstacle;
+		int typeObstacle = 0;
+		if (obstacle[0]->getPosition().x < 2880.f) return;
+		int disBetweenObstacle = 200;
+		Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle) , position.y };
+		for (int i = 0; i < num; i++)
+		{
+			obstacle[i]->sprite.setPosition(nowPos);
+			nowPos.x += sizeTexture[typeObstacle] + disBetweenObstacle;
+		}
+	}
+	else {
+		cout << "TYPE :" << type << endl;
+		int typeObstacle = 0;
+		cout << obstacle[0]->getPosition().x << endl; 
+		if (obstacle[0]->getPosition().x > 0.f) return;
+		cout << "DMMDM";
+		int disBetweenObstacle = 200; 
+		Vector2f nowPos = { 2880.f + (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , position.y };
+		for (int i = 0; i < num; i++)
+		{
+			obstacle[i]->sprite.setPosition(nowPos);
+			nowPos.x -= sizeTexture[typeObstacle] + disBetweenObstacle;
+		}
 	}
 
 }
