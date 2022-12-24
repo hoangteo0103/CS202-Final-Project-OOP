@@ -2,7 +2,6 @@
 
 void MainMenuState::initFonts()
 {
-    std::cout << "In MainMenuState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
@@ -14,7 +13,6 @@ void MainMenuState::initFonts()
 }
 void MainMenuState::initButtons()
 {
-    std::cout << "In MainMenuState::initButtons(), line: " << __LINE__ << '\n';
     this->buttons["GAME_STATE_BTN"] = new Button(app->getSize().x/2 - 200.0, 200 , 400, 50,
         &this->font, "New Game", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
@@ -42,13 +40,11 @@ void MainMenuState::initButtons()
 MainMenuState::MainMenuState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
-    std::cout << "In MainMenuState::MainMenuState(), line: " << __LINE__ << '\n';
     this->initFonts();
     this->initButtons();
 }
 MainMenuState ::~MainMenuState()
 {
-    std::cout << "In MainMenuState::~MainMenuState(), line: " << __LINE__ << '\n';
     auto it = this->buttons.begin();
     for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
@@ -57,17 +53,14 @@ MainMenuState ::~MainMenuState()
 }
 void MainMenuState::updateKeyBinds()
 {
-    std::cout << "In MainMenuState::updateKeyBinds(), line: " << __LINE__ << '\n';
     this->checkForQuit();
 }
 void MainMenuState::endState()
 {
-    std::cout << "In MainMenuState::endState(), line: " << __LINE__ << '\n';
     cout << "End MainMenu" << endl;
 }
 bool MainMenuState::checkSaved()
 {
-    std::cout << "In MainMenuState::checkSaved(), line: " << __LINE__ << '\n';
     ifstream ifs("Save/PreviousBoard.ini");
     int a;
     ifs >> a;
@@ -77,7 +70,6 @@ bool MainMenuState::checkSaved()
 }
 void MainMenuState::updateButtons()
 {
-    std::cout << "In MainMenuState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -105,7 +97,6 @@ void MainMenuState::updateButtons()
 
 void MainMenuState::update()
 {
-    std::cout << "In MainMenuState::update(), line: " << __LINE__ << '\n';
     this->updateMousePositions();
     this->updateKeyBinds();
     this->updateButtons();
@@ -115,7 +106,6 @@ void MainMenuState::update()
 }
 void MainMenuState::renderButtons(RenderTarget* target)
 {
-    std::cout << "In MainMenuState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -123,7 +113,6 @@ void MainMenuState::renderButtons(RenderTarget* target)
 }
 void MainMenuState::render(RenderTarget* target)
 {
-    std::cout << "In MainMenuState::render(), line: " << __LINE__ << '\n';
     if (!target)
         target = this->app;
 

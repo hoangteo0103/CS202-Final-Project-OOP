@@ -6,7 +6,6 @@ vector<int> sizeTexture = { 120};
 
 Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f pos)
 {
-	std::cout << "In Lane::Lane(), line: " << __LINE__ << '\n';
 	this->num = num;
 	int disBetweenObstacle = 250;
 	Vector2f nowPos = { pos.x - (num - 1) * ( sizeTexture[typeObstacle]  + disBetweenObstacle)  , pos.y};
@@ -54,22 +53,16 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 
 
 Lane::~Lane() {
-	std::cout << "In Lane::~Lane(), line: " << __LINE__ << '\n';
 	for (auto obj : obstacle)
 		delete obj;
-	//while (!obstacle.empty())
-	//	cout << obstacle.size() , obstacle.pop_back();
 
 	for (auto light : lights)
 		delete light;
-	//while (!lights.empty())
-	//	cout << lights.size() , lights.pop_back();
 }
 
 
 void Lane::updateSpeed()
 {	
-	std::cout << "In Lane::updateSpeed(), line: " << __LINE__ << '\n';
 	for (int i = 0; i < num; i++)
 	{
 
@@ -87,7 +80,6 @@ void Lane::updateSpeed()
 
 void Lane::draw(sf::RenderWindow& window)
 {
-	std::cout << "In Lane::draw(), line: " << __LINE__ << '\n';
 	window.draw(this->sprite);
 	for (int i = 0; i < num; i++)
 	{
@@ -102,7 +94,6 @@ void Lane::draw(sf::RenderWindow& window)
 }
 void Lane::checkEnd()
 {
-	std::cout << "In Lane::checkEnd(), line: " << __LINE__ << '\n';
 	int typeObstacle = 0;
 	if (obstacle[0]->getPosition().x < 2880.f) return;
 	int disBetweenObstacle = 200; 
@@ -118,7 +109,6 @@ void Lane::checkEnd()
 
 void Lane::update(float delta_time)
 {
-	std::cout << "In Lane::update(), line: " << __LINE__ << '\n';
 	for (int i = 0; i < numTrafficLight; i++)
 	{
 		lights[i]->transition(delta_time);

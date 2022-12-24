@@ -2,7 +2,6 @@
 #include <iostream>
 using namespace std;
 CView::CView(sf::RenderWindow& window, const sf::Vector2u& map_size) {
-	std::cout << "In CView::CView(), line: " << __LINE__ << '\n';
 	this->window_size.x = window.getSize().x;
 	this->window_size.y = window.getSize().y;
 	this->map_size = map_size;
@@ -15,7 +14,6 @@ CView::CView(sf::RenderWindow& window, const sf::Vector2u& map_size) {
 }
 
 void CView::init(sf::RenderWindow& window, const sf::Vector2u& map_size) {
-	std::cout << "In CView::init(), line: " << __LINE__ << '\n';
 	this->window_size.x = window.getSize().x;
 	this->window_size.y = window.getSize().y;
 	this->map_size = map_size;
@@ -28,7 +26,6 @@ void CView::init(sf::RenderWindow& window, const sf::Vector2u& map_size) {
 }
 
 void CView::update(sf::RenderWindow& window, Object& player) {
-	std::cout << "In CView::update(), line: " << __LINE__ << '\n';
 	if (player.getPosition().x > window_size.x / 2 && player.getPosition().x < map_size.x - window_size.x/2)
 		position.x = player.getPosition().x;
 	if (player.getPosition().y > window_size.y / 2 && player.getPosition().y < map_size.y - window_size.y / 2)
@@ -40,12 +37,10 @@ void CView::update(sf::RenderWindow& window, Object& player) {
 
 sf::Vector2f CView::getCenter()
 {
-	std::cout << "In CView::getCenter(), line: " << __LINE__ << '\n';
 	return _view.getCenter();
 }
 
 void CView::reset(sf::RenderWindow& window, Object& player) {
-	std::cout << "In CView::reset(), line: " << __LINE__ << '\n';
 	_view.setCenter(player.getPosition());
 	window.setView(_view);
 }

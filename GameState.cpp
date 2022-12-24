@@ -2,7 +2,6 @@
 
 void GameState::Reset(int level)
 {
-    std::cout << "In GameState::Reset(), line: " << __LINE__ << '\n';
     if (level >= 6)
         return;
 
@@ -28,7 +27,6 @@ void GameState::Reset(int level)
 
 void GameState::initFonts()
 {
-    std::cout << "In GameState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
@@ -40,7 +38,6 @@ void GameState::initFonts()
 GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
 //, PauseState(app, states)
 {
-    std::cout << "In GameState::GameState(), line: " << __LINE__ << '\n';
     // Init
     if (!saved)
     {
@@ -99,7 +96,6 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
 GameState ::~GameState()
 {
-    std::cout << "In GameState::~GameState(), line: " << __LINE__ << '\n';
     //delete this->pmenu;
     for (auto it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
@@ -113,13 +109,11 @@ GameState ::~GameState()
 
 const bool& GameState::getLose() const
 {
-    std::cout << "In GameState::getLose(), line: " << __LINE__ << '\n';
     return this->player->isDead();
 }
 
 const bool& GameState::getWin() const
 {
-    std::cout << "In GameState::getWin(), line: " << __LINE__ << '\n';
     if (this->current_level >= 6) {
         this->player->setDead(); 
         return true;
@@ -130,13 +124,11 @@ const bool& GameState::getWin() const
 
 void GameState::updateKeyBinds()
 {
-    std::cout << "In GameState::updateKeyBinds(), line: " << __LINE__ << '\n';
     this->checkForQuit();
 }
 
 void GameState::endState()
 {
-    std::cout << "In GameState::endState(), line: " << __LINE__ << '\n';
     this->quit = true;
     cout << "End MainMenu" << endl;
 }
@@ -144,7 +136,6 @@ void GameState::endState()
 
 void GameState::updateBeginner(int time_now)
 {
-    std::cout << "In GameState::updateBeginner(), line: " << __LINE__ << '\n';
     ifstream ifs("Leaderboard/leaderboardBeginner.ini");
     vector< int > tmp;
     tmp.push_back(time_now);
@@ -162,7 +153,6 @@ void GameState::updateBeginner(int time_now)
 }
 void GameState::updateIntermediate(int time_now)
 {
-    std::cout << "In GameState::updateIntermediate(), line: " << __LINE__ << '\n';
     ifstream ifs("Leaderboard/leaderboardIntermediate.ini");
     vector< int > tmp;
     tmp.push_back(time_now);
@@ -181,7 +171,6 @@ void GameState::updateIntermediate(int time_now)
 
 void GameState::updateExpert(int time_now)
 {
-    std::cout << "In GameState::updateExpert(), line: " << __LINE__ << '\n';
     ifstream ifs("Leaderboard/leaderboardExpert.ini");
     vector< int > tmp;
     tmp.push_back(time_now);
@@ -200,13 +189,11 @@ void GameState::updateExpert(int time_now)
 
 void GameState::updateLeaderBoard()
 {
-    std::cout << "In GameState::updateLeaderBoard(), line: " << __LINE__ << '\n';
 }
 
 
 void GameState::updateWinState()
 {
-    std::cout << "In GameState::updateWinState(), line: " << __LINE__ << '\n';
     if (!this->isUpdated)
     {
         this->hideButton(true);
@@ -238,7 +225,6 @@ void GameState::updateWinState()
 
 void GameState::updateLoseState()
 {
-    std::cout << "In GameState::updateLoseState(), line: " << __LINE__ << '\n';
     if (!this->isUpdated)
     {
         this->hideButton(true);
@@ -271,7 +257,6 @@ void GameState::updateLoseState()
 
 void GameState::updateButtons()
 {
-    std::cout << "In GameState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -287,7 +272,6 @@ void GameState::updateButtons()
 
 void GameState::updateUnpaused()
 {
-    std::cout << "In GameState::updateUnpaused(), line: " << __LINE__ << '\n';
     float now_time = clock.GetElapsedSeconds();
     delta_time = now_time - previous_time;
     previous_time = now_time;
@@ -339,7 +323,6 @@ void GameState::updateUnpaused()
 }
 void GameState::updatePaused()
 {
-    std::cout << "In GameState::updatePaused(), line: " << __LINE__ << '\n';
     if (this->paused)
     {
         this->pmenu.updateMousePositions(mousePosView);
@@ -361,12 +344,10 @@ void GameState::updatePaused()
 
 void GameState::endGame()
 {
-    std::cout << "In GameState::endGame(), line: " << __LINE__ << '\n';
 }
 
 void GameState::update()
 {
-    std::cout << "In GameState::update(), line: " << __LINE__ << '\n';
     this->updateMousePositions();
     this->updateKeyBinds();
     this->updateButtons();
@@ -384,7 +365,6 @@ void GameState::update()
 
 void GameState::renderButtons(RenderTarget* target)
 {
-    std::cout << "In GameState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -393,7 +373,6 @@ void GameState::renderButtons(RenderTarget* target)
 
 void GameState::render(RenderTarget* target)
 {
-    std::cout << "In GameState::render(), line: " << __LINE__ << '\n';
     if (!target)
 		target = this->app;
 
@@ -427,7 +406,6 @@ void GameState::render(RenderTarget* target)
 
 void GameState::updateMovingButton(Vector2f& distance)
 {
-    std::cout << "In GameState::updateMovingButton(), line: " << __LINE__ << '\n';
     for (auto it = this->buttons.begin();it!=this->buttons.end();++it)
     {
         if (player->getPosition().x > app->getSize().x / 2 && player->getPosition().x < map.getSize().x - app->getSize().x / 2)
@@ -439,7 +417,6 @@ void GameState::updateMovingButton(Vector2f& distance)
 
 void GameState::hideButton(bool hide)
 {
-    std::cout << "In GameState::hideButton(), line: " << __LINE__ << '\n';
     if (hide)
     {
         std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
@@ -459,7 +436,6 @@ void GameState::hideButton(bool hide)
 
 void GameState::resetButton()
 {
-    std::cout << "In GameState::resetButton(), line: " << __LINE__ << '\n';
     std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
     it->second->setPosition(Vector2f(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2));
     it = this->buttons.find("CURRENT_LEVEL_BTN");
@@ -469,12 +445,10 @@ void GameState::resetButton()
 
 
 const bool& GameState::isPassLevel() const {
-    std::cout << "In GameState::isPassLevel(), line: " << __LINE__ << '\n';
     return (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2);
 }
 
 void GameState::playAgain() {
-    std::cout << "In GameState::playAgain(), line: " << __LINE__ << '\n';
     this->Reset();
 
 }

@@ -1,7 +1,6 @@
 #include "PlayAgainState.h"
 void PlayAgainState::initFonts()
 {
-    std::cout << "In PlayAgainState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
@@ -10,7 +9,6 @@ void PlayAgainState::initFonts()
 
 void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
-    std::cout << "In PlayAgainState::initButtons(), line: " << __LINE__ << '\n';
     this->Yes = false;
     this->No = false;
     // Calculate position
@@ -63,18 +61,15 @@ void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 
 void PlayAgainState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
-    std::cout << "In PlayAgainState::initState(), line: " << __LINE__ << '\n';
     this->initFonts();
     this->initButtons(app,player,map);
 }
 PlayAgainState::PlayAgainState()
 {
-    std::cout << "In PlayAgainState::PlayAgainState(), line: " << __LINE__ << '\n';
 }
 
 PlayAgainState::~PlayAgainState()
 {
-    std::cout << "In PlayAgainState::~PlayAgainState(), line: " << __LINE__ << '\n';
     auto it = this->buttons.begin();
     for (it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
@@ -85,22 +80,18 @@ PlayAgainState::~PlayAgainState()
 }
 const bool& PlayAgainState::getYes() const
 {
-    std::cout << "In PlayAgainState::getYes(), line: " << __LINE__ << '\n';
     return this->Yes;
 }
 const bool& PlayAgainState::getNo() const
 {
-    std::cout << "In PlayAgainState::getNo(), line: " << __LINE__ << '\n';
     return this->No;
 }
 void PlayAgainState::updateMousePositions(Vector2f mousePosView)
 {
-    std::cout << "In PlayAgainState::updateMousePositions(), line: " << __LINE__ << '\n';
     this->mousePosView = mousePosView;
 }
 void PlayAgainState::updateButtons()
 {
-    std::cout << "In PlayAgainState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -108,7 +99,6 @@ void PlayAgainState::updateButtons()
 }
 void PlayAgainState::update()
 {
-    std::cout << "In PlayAgainState::update(), line: " << __LINE__ << '\n';
     this->updateButtons();
     if (this->buttons["YES"]->isPressed())
     {
@@ -122,7 +112,6 @@ void PlayAgainState::update()
 
 void PlayAgainState::renderButtons(RenderTarget* target)
 {
-    std::cout << "In PlayAgainState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -131,7 +120,6 @@ void PlayAgainState::renderButtons(RenderTarget* target)
 
 void PlayAgainState::render(RenderTarget* target)
 {
-    std::cout << "In PlayAgainState::render(), line: " << __LINE__ << '\n';
     target->draw(background);
     target->draw(container);
     target->draw(menutext);

@@ -3,14 +3,12 @@
 
 COBSTACLE::COBSTACLE(string path, sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos, int dir) : Object(path, image_contain, switch_time, speed, pos)
 {
-	std::cout << "In COBSTACLE::COBSTACLE(), line: " << __LINE__ << '\n';
 	this->direction = dir;
 }
 		
 
 void COBSTACLE::move(float delta_time)
 {
-	std::cout << "In COBSTACLE::move(), line: " << __LINE__ << '\n';
 	Mouvment mouvment;
 	// 1 Left 2 Right 
 	mouvment.goDirection(4 - direction, sprite, speed, delta_time);

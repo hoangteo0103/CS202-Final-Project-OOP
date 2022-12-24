@@ -2,7 +2,6 @@
 
 
 CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos) : Object(path , image_contain , switch_time , speed , pos) {
-	std::cout << "In CPEOPLE::CPEOPLE(), line: " << __LINE__ << '\n';
 	row = 0;
 	face_direction = 0;
 	state = PLAYERSTATE::IDLE;
@@ -10,7 +9,6 @@ CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, fl
 }
 
 void CPEOPLE::move(float delta_time, const sf::Vector2u map_size, LanePack*& lane_management) {
-	std::cout << "In CPEOPLE::move(), line: " << __LINE__ << '\n';
 	Mouvment mouvment;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		if (this->getPosition().x < map_size.x) {
@@ -52,7 +50,6 @@ void CPEOPLE::move(float delta_time, const sf::Vector2u map_size, LanePack*& lan
 
 
 void CPEOPLE::update(float delta_time, const sf::Vector2u map_size, LanePack*& lane_management) {
-	std::cout << "In CPEOPLE::update(), line: " << __LINE__ << '\n';
 	switch (state) {
 	case 0 : case 1:
 		move(delta_time, map_size ,lane_management);
@@ -68,7 +65,6 @@ void CPEOPLE::update(float delta_time, const sf::Vector2u map_size, LanePack*& l
 
 
 void CPEOPLE::updateAfterDead(float delta_time, const sf::Vector2u map_size) {
-	std::cout << "In CPEOPLE::updateAfterDead(), line: " << __LINE__ << '\n';
 	row = 2;
 	this->animation.updatePlayerAfterDead(row, delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
@@ -76,7 +72,6 @@ void CPEOPLE::updateAfterDead(float delta_time, const sf::Vector2u map_size) {
 
 
 bool CPEOPLE::isCollision(LanePack*& lane_management) {
-	std::cout << "In CPEOPLE::isCollision(), line: " << __LINE__ << '\n';
 	for (auto lane : lane_management->lanes)
 		for (auto obstacle : lane->obstacle)
 			if (Collision::PixelPerfectTest(this->sprite, obstacle->sprite)) {
@@ -89,18 +84,15 @@ bool CPEOPLE::isCollision(LanePack*& lane_management) {
 
 bool CPEOPLE::isDead()
 {
-	std::cout << "In CPEOPLE::isDead(), line: " << __LINE__ << '\n';
 	return this->state == PLAYERSTATE::DEATH;
 }
 
 bool CPEOPLE::isDeadFrameEnd()
 {
-	std::cout << "In CPEOPLE::isDeadFrameEnd(), line: " << __LINE__ << '\n';
 	return this->animation.isFrameEnd(2);
 }
 
 void CPEOPLE::reset(sf::Vector2f pos) {
-	std::cout << "In CPEOPLE::reset(), line: " << __LINE__ << '\n';
 	this->setPosition(pos);
 	this->state = PLAYERSTATE::IDLE;
 }

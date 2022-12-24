@@ -4,7 +4,6 @@
 
 void ChooseModeState::initFonts()
 {
-    std::cout << "In ChooseModeState::initFonts(), line: " << __LINE__ << '\n';
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
@@ -15,7 +14,6 @@ void ChooseModeState::initFonts()
 }
 void ChooseModeState::initButtons()
 {
-    std::cout << "In ChooseModeState::initButtons(), line: " << __LINE__ << '\n';
     this->buttons["EASY_STATE"] = new Button(app->getSize().x / 2 - 200.0, 260, 400, 50,
         &this->font, "EASY", Color(70, 70, 70, 200)
         , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
@@ -34,7 +32,6 @@ void ChooseModeState::initButtons()
 ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
-    std::cout << "In ChooseModeState::ChooseModeState(), line: " << __LINE__ << '\n';
     this->initFonts();
     this->initButtons();
 
@@ -42,7 +39,6 @@ ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
 
 ChooseModeState ::~ChooseModeState()
 {
-    std::cout << "In ChooseModeState::~ChooseModeState(), line: " << __LINE__ << '\n';
     for (auto& it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
         delete it->second;
@@ -50,17 +46,14 @@ ChooseModeState ::~ChooseModeState()
 }
 void ChooseModeState::updateKeyBinds()
 {
-    std::cout << "In ChooseModeState::updateKeyBinds(), line: " << __LINE__ << '\n';
     this->checkForQuit();
 }
 void ChooseModeState::endState()
 {
-    std::cout << "In ChooseModeState::endState(), line: " << __LINE__ << '\n';
     cout << "End MainMenu" << endl;
 }
 void ChooseModeState::updateButtons()
 {
-    std::cout << "In ChooseModeState::updateButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
@@ -92,7 +85,6 @@ void ChooseModeState::updateButtons()
 
 void ChooseModeState::update()
 {
-    std::cout << "In ChooseModeState::update(), line: " << __LINE__ << '\n';
     this->updateMousePositions();
     this->updateKeyBinds();
     this->updateButtons();
@@ -103,7 +95,6 @@ void ChooseModeState::update()
 }
 void ChooseModeState::renderButtons(RenderTarget* target)
 {
-    std::cout << "In ChooseModeState::renderButtons(), line: " << __LINE__ << '\n';
     for (auto& it : this->buttons)
     {
         it.second->render(target);
@@ -111,7 +102,6 @@ void ChooseModeState::renderButtons(RenderTarget* target)
 }
 void ChooseModeState::render(RenderTarget* target)
 {
-    std::cout << "In ChooseModeState::render(), line: " << __LINE__ << '\n';
     if (!target)
         target = this->app;
     target->draw(this->background);
