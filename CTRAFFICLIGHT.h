@@ -15,7 +15,7 @@ public :
 	void transition(float delta_time);
 	bool isVehiclePass()
 	{
-		return now_time <= red_time + yellow_time;
+		return state != 2;
 	}
 	float getPos();
 };

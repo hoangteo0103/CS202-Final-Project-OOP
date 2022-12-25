@@ -37,7 +37,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		float start = 1500.f;
 		for (int i = 0; i < numTrafficLight; i++)
 		{
-			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 2.0f, 20.0f, 20.0f);
+			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y), 20.0f, 1.0f, 1.0f);
 			start += 500.f;
 			lights.push_back(tmp);
 		}
@@ -112,8 +112,9 @@ void Lane::updateSpeed()
 			for (int j = 0; j < numTrafficLight; j++)
 			{
 				if ((obstacle[i]->sprite.getPosition().x > lights[j]->getPos() + 48.f) || lights[j]->isVehiclePass()) continue;
-				int dis = lights[j]->getPos() + 48.f - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
-				obstacle[i]->setSpeed(dis);
+				int dis = lights[j]->getPos() - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
+				if(dis < obstacle[i]->speed) 
+					obstacle[i]->setSpeed(dis);
 			}
 		}
 	}
@@ -123,11 +124,10 @@ void Lane::updateSpeed()
 			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
 			for (int j = 0; j < numTrafficLight; j++)
 			{
-				if ((obstacle[i]->sprite.getPosition().x < lights[j]->getPos() + 48.f) || lights[j]->isVehiclePass()) continue;
-				int dis = lights[j]->getPos() + 48.f - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
-				cout << "DIS " << dis << endl;
-				dis *= -1;
-				obstacle[i]->setSpeed(dis);
+				if ( (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width <= lights[j]->getPos()) || lights[j]->isVehiclePass()) continue;
+				int dis = obstacle[i]->sprite.getPosition().x - (lights[j]->getPos() + 48.f) ;
+				if (dis < obstacle[i]->speed)
+					obstacle[i]->setSpeed(dis);
 			}
 		}
 	}
