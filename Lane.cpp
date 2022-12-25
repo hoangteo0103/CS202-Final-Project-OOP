@@ -185,7 +185,8 @@ void Lane::update(float delta_time)
 		lights[i]->transition(delta_time);
 	}
 	for (int i = 0; i < num; i++)
-	{
+	{	
+		if (i != (num - 1) && (abs(obstacle[i]->getPosition().x - obstacle[i + 1]->getPosition().x) < 200.f)) continue;
 		obstacle[i]->move(delta_time);
 	}
 	checkEnd();
