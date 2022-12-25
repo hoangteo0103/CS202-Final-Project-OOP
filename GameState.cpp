@@ -41,8 +41,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     // Init
     if (!saved)
     {
-        if (!this->theme.openFromFile("sound\\music_theme.ogg"))
-            cout << "COULD NOT LOAD THEME MUSIC" << endl;
+        //if (!this->theme.openFromFile("sound\\music_theme.ogg"))
+        //    cout << "COULD NOT LOAD THEME MUSIC" << endl;
         this->theme.setLoop(true);
         this->theme.play();
         this->win.init("sound\\win.wav");

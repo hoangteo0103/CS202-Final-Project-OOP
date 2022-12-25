@@ -44,7 +44,8 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 		//cout << "y_position: " << y_position << endl;
 		uniform_int_distribution<int> range(0, 1);
 		int type = range(rng);
-		Lane *new_lane = new Lane(0, range(rng) + 1, 3, speed, type, sf::Vector2f(0, y_position));
+		int dir = range(rng) + 1;
+		Lane *new_lane = new Lane(0, dir, 3, speed, type, sf::Vector2f(0, y_position));
 		lanes.push_back(new_lane);
 	}
 	this->generateObstacle();
