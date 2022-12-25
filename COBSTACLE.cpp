@@ -16,5 +16,5 @@ void COBSTACLE::move(float delta_time)
 	this->animation.update(0 , delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
 	if(direction == 1)
-	this->sprite.setScale(-1.f, 1.f);
+		this->sprite.setScale(-1.f, 1.f);
 }
