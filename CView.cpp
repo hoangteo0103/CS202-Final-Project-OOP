@@ -44,3 +44,17 @@ void CView::reset(sf::RenderWindow& window, Object& player) {
 	_view.setCenter(player.getPosition());
 	window.setView(_view);
 }
+
+
+void CView::loadGame(istream& in, sf::RenderWindow& window, const sf::Vector2u& map_size) {
+	in >> this->position.x >> this->position.y;
+	this->map_size = map_size;
+	_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
+	_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));
+	_view.setCenter(position);
+	window.setView(_view);
+}
+
+void CView::saveGame(ostream& out) {
+	out << this->position.x << " " << this->position.y << endl;
+}

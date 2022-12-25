@@ -15,5 +15,8 @@ public:
 	void update(sf::RenderWindow& window, Object& player);
 	sf::Vector2f getCenter();
 	void reset(sf::RenderWindow& window, Object& player);
+
+	void loadGame(istream& in, sf::RenderWindow& window, const sf::Vector2u& map_size);
+	void saveGame(ostream& out);
 };
 
