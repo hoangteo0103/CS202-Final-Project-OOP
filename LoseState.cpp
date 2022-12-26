@@ -44,10 +44,8 @@ void LoseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->container.setPosition(
         background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
-    
-    this->buttons["OK"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 50.0, 400, 100,
-        &this->font, "OK", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+
+    this->buttons["OK"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 50.0, 400, 100, "ok_button");
     
     // Init Text
     this->menutext.setFont(font);

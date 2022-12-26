@@ -14,27 +14,18 @@ void ChooseModeState::initFonts()
 }
 void ChooseModeState::initButtons()
 {
-    this->buttons["EASY_STATE"] = new Button(app->getSize().x / 2 - 200.0, 260, 400, 50,
-        &this->font, "EASY", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 
-    this->buttons["MEDIUM_STATE"] = new Button(app->getSize().x / 2 - 200.0, 320, 400, 50,
-        &this->font, "MEDIUM", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+    this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 260, 400, 50, "easy_button");
+    this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 320, 400, 50, "medium_button");
+    this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 380, 400, 50, "hard_button");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 440, 400, 50, "back_to_menu_button");
 
-    this->buttons["HARD_STATE"] = new Button(app->getSize().x / 2 - 200.0, 380, 400, 50,
-        &this->font, "HARD", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-    this->buttons["BACK_TO_MENU_STATE"] = new Button(app->getSize().x / 2 - 200.0, 440, 400, 50,
-        &this->font, "Back to Menu", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
 }
 ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
-    this->initFonts();
     this->initButtons();
-
+    this->initFonts();
 }
 
 ChooseModeState ::~ChooseModeState()

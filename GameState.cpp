@@ -69,7 +69,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
         lane_management->init(speed[mode], this->current_level, map.getSize(), this->win_line_y);
 
-    
+        
         starting_position.x = map.getSize().x / 2;
         starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
@@ -78,14 +78,10 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     
         this->buttons.clear();
 
-        this->buttons["PAUSE_STATE_BTN"] = new Button(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0,
-            &this->font, "PAUSE", Color(70, 70, 70, 200), Color(100, 100, 100, 255), Color(20, 20, 20, 200));
-
-        this->buttons["CURRENT_LEVEL_BTN"] = new Button(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0,
-            &this->font, "LV: " + to_string(current_level), Color::White, Color::White, Color::White);
+        this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button");
+        this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button");
         std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->setTextColor(Color::Black);
-
+        it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 
     }
     else {
@@ -420,16 +416,16 @@ void GameState::hideButton(bool hide)
     if (hide)
     {
         std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(+51.f, 0));
+        it->second->move(Vector2f(+50.f, 0));
         it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->move(Vector2f(-76.f, 0));
+        it->second->move(Vector2f(-75.f, 0));
     }
     else
     {
         std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(-51.f, 0));
+        it->second->move(Vector2f(-50.f, 0));
         it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->move(Vector2f(+76.f, 0));
+        it->second->move(Vector2f(+75.f, 0));
     }
    
 }
@@ -440,7 +436,7 @@ void GameState::resetButton()
     it->second->setPosition(Vector2f(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2));
     it = this->buttons.find("CURRENT_LEVEL_BTN");
     it->second->setPosition(Vector2f(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2));
-    it->second->updateText("LV: " + to_string(current_level));
+    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }
 
 

@@ -45,15 +45,10 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->container.setFillColor(Color::Black);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
-    this->buttons["RESUME"] = new Button(background.getPosition().x + app.getSize().x/2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 150.0, 400, 100,
-        &this->font, "RESUME", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-    this->buttons["RESTART"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100,
-        &this->font, "RESTART", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
-    this->buttons["EXIT"] = new Button(background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 100.0, 400, 100,
-        &this->font, "EXIT", Color(70, 70, 70, 200)
-        , Color(150, 150, 150, 255), Color(20, 20, 20, 200));
+
+    this->buttons["RESUME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 150.0, 400, 100, "resume_button");
+    this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100, "restart_button");
+    this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 100.0, 400, 100, "home_button");
     // Init Text
     this->menutext.setFont(font);
     this->menutext.setFillColor(Color(255, 255, 255, 200));
@@ -127,7 +122,7 @@ void PauseState::update()
     {
         this->restart = true;
     }
-    if (this->buttons["EXIT"]->isPressed())
+    if (this->buttons["HOME"]->isPressed())
     {
         this->exit = true;
     }
