@@ -36,8 +36,7 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 	mt19937 rng(rd());
 
 	cout << "number of lane: " << numberLane << endl;
-
-	for (int i = 0; i < numberLane; ++i) {
+	for (int i = 0; i < this->numberLanes; ++i) {
 		int y_position = (distance_factor+ROADHEIGHT) * i + win_line_y + offset;
 		cout << y_position << endl; 
 		posObstacles.push_back(y_position);
