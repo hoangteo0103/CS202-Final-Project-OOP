@@ -56,13 +56,25 @@ void LanePack::generateObstacle()
 	mt19937 rng(rd());
 	for (int i = 1; i < numberLanes; i++)
 	{
-		uniform_int_distribution<int> range(0, OBSTACLETEXTUREPATH.size() - 1);
-		int type = range(rng); 
-		uniform_int_distribution <int > range2(0, 2880 - SIZEOBSTACLE[type]);
-		Vector2f pos = Vector2f(range2(rng) , posObstacles[i] + ROADHEIGHT);
-		COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0); 
-		obstacles.push_back(now);
-		obstacleSprites.push_back(now->sprite);
+		uniform_int_distribution<int> rangeType(0, OBSTACLETEXTUREPATH.size() - 1);
+		uniform_int_distribution<int> rangeNum(10 , 20);
+		int num = rangeNum(rng);
+		cout << num << endl; 
+		int previous = 0; 
+		for (int j = 0; j < num; j++)
+		{
+			
+			int type = rangeType(rng);
+			if (2880 < previous + SIZEOBSTACLE[type]) break;
+			uniform_int_distribution <int > range2(previous, min(2880 , previous + ( j + 2 ) *  SIZEOBSTACLE[type]));
+			Vector2f pos = Vector2f(range2(rng), posObstacles[i] + ROADHEIGHT);
+			COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0);
+			obstacles.push_back(now);
+			previous = pos.x + SIZEOBSTACLE[type];
+			obstacleSprites.push_back(now->sprite);
+
+		}
+		
 	}
 }
 
