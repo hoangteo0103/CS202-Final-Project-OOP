@@ -18,3 +18,8 @@ void COBSTACLE::move(float delta_time)
 	if(direction == 1)
 		this->sprite.setScale(-1.f, 1.f);
 }
+
+void COBSTACLE::saveObstacle(ostream& out)
+{
+	
+}

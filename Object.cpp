@@ -155,6 +155,7 @@ Object::Object(string path, Vector2u image_contain, float switch_time, float spe
 	{
 		cout << "Could Not Load File.." << endl;
 	}
+	this->path = path;
 	this->speed = speed; 
 	this->origin_speed = speed; 
 	sprite.setTexture(texture);
@@ -184,4 +185,24 @@ sf::Vector2f Object::getSize()
 	size.x = animation.uv_rect.width;
 	size.y = animation.uv_rect.height;
 	return size;
+}
+
+void Animation::saveAnimation(ostream& out)
+{
+	out << total_time << ' ' << switch_time << '\n'; 
+	out << image_contain.x << ' ' << image_contain.y << '\n'; 
+	out << current_image.x << ' ' << current_image.y << '\n';
+	out << uv_rect.top << ' ' << uv_rect.left << ' ' << uv_rect.width << ' ' << uv_rect.height << '\n'; 
+}
+
+void Object::saveObject(ostream& out)
+{
+	// path 
+	out << path << '\n';
+	// speed and origin speed 
+	out << speed << ' ' << origin_speed; 
+	// save position 
+	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n';
+	this->animation.saveAnimation(out);
+
 }

@@ -12,5 +12,6 @@ public :
 		this->speed = s;
 	}
 	void move(float delta_time);
+	void saveObstacle(ostream& out); 
 };
 

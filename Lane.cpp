@@ -190,8 +190,8 @@ void Lane::update(float delta_time)
 	}
 	checkEnd();
 }
-//void render(RenderTarget* target)
-//{
-//
-//}
 
+void Lane::saveLane(ostream& out)
+{
+
+}

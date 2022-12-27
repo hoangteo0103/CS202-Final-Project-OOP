@@ -6,7 +6,6 @@ private:
 	float total_time, switch_time;
 	sf::Vector2u image_contain;
 	sf::Vector2u current_image;
-	int player_state;
 
 public:
 	void update(int row, float delta_time /*int direction*/);
@@ -17,6 +16,7 @@ public:
 	sf::IntRect uv_rect;
 	Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time);
 	Animation();
+	void saveAnimation(ostream& out);
 
 };
 
@@ -35,6 +35,7 @@ public:
 	Texture texture;
 	Sprite sprite;
 	float speed;
+	string path; 
 	float origin_speed; 
 	Animation animation;
 	Object() {};
@@ -47,5 +48,8 @@ public:
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f pos);
 	sf::Vector2f getSize();
+	
+	//Load and save 
+	void saveObject(ostream& out);
 };
 

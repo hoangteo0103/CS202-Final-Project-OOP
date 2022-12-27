@@ -33,7 +33,7 @@ public:
 	void updateSpeed();
 	void checkEnd();
 	//void render(RenderTarget* target);
-
+	void saveLane(ostream& out);
 	friend class CPEOPLE;
 };
 
