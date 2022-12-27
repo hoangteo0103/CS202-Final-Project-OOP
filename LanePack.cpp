@@ -31,6 +31,7 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 	this->speed = speed;
 	int offset = 50;
 	this->numberLanes = numberLane;
+	this->win_line_y = win_line_y;
 
 	random_device rd;
 	mt19937 rng(rd());
@@ -86,7 +87,6 @@ void LanePack::update(float delta_time)
 	{
 		lane->updateSpeed();
 		lane->update(delta_time);
-		
 	}
 }
 
@@ -110,4 +110,22 @@ void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_
 
 int LanePack::getNumOfLanes() {
 	return lanes.size();
+}
+
+void LanePack::saveLanePack(ostream& out)
+{
+	out << speed << ' ' << numberLanes << distance_factor << win_line_y;
+}
+
+void LanePack::loadLanePack(istream& in)
+{
+	in >> speed >> numberLanes >> distance_factor >> win_line_y; 
+
+	int offset = 50;
+	for (int i = 0; i < this->numberLanes; ++i) {
+		int y_position = (distance_factor + ROADHEIGHT) * i + win_line_y + offset;
+		Lane* new_lane = new Lane(in);
+		lanes.push_back(new_lane);
+	}
+	this->generateObstacle();
 }

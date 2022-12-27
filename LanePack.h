@@ -20,6 +20,7 @@ private:
 	vector<int> posObstacles; 
 	vector<sf::Vector2f> position;
 	int distance_factor;
+	int win_line_y; 
 public:
 	LanePack(int distance);
 	~LanePack();
@@ -31,5 +32,9 @@ public:
 	int getNumOfLanes();
 	friend class CPEOPLE;
 	friend class Mouvment;
+
+	// Load and save 
+	void saveLanePack(ostream& out);
+	void loadLanePack(istream& in);
 };
 

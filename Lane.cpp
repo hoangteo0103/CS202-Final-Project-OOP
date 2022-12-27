@@ -63,7 +63,6 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 
 	this->num = num;
 	int disBetweenObstacle = 200;
-	cout << "DIR :" << dir << endl;
 
 	if (dir!=1)
 	{
@@ -122,7 +121,6 @@ void Lane::updateSpeed()
 			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
 			for (int j = 0; j < numTrafficLight; j++)
 			{
-				cout << "GG" << obstacle[i]->sprite.getPosition().x << ' ' << obstacle[i]->animation.uv_rect.width << ' ' << lights[j]->getPos() << endl;
 				if ((obstacle[i]->sprite.getPosition().x  <= lights[j]->getPos()) || lights[j]->isVehiclePass()) continue;
 				int dis = obstacle[i]->sprite.getPosition().x - lights[j]->getPos()  - obstacle[i]->animation.uv_rect.width - 96.f;
 				if (dis < obstacle[i]->speed)
@@ -191,8 +189,45 @@ void Lane::update(float delta_time)
 	checkEnd();
 }
 
+Lane::Lane(istream& in)
+{
+	in >> position.x >> position.y;
+	in >> num >> numTrafficLight >> type >> dir;
+	in >> obstacle_path >> road_path; 
+	for (int i = 0; i < num; i++)
+	{
+		COBSTACLE* now = new COBSTACLE(in);
+		obstacle.push_back(now);
+	}
+	for (int i = 0; i < numTrafficLight; i++)
+	{
+		CTRAFFICLIGHT* now = new CTRAFFICLIGHT(in);
+		lights.push_back(now);
+	}
+
+	// Init 
+	Texture texture;
+	if (!(texture.loadFromFile(this->road_path)))
+	{
+		cout << "Could Not Load Lane File.." << endl;
+	}
+	sprite.setTexture(texture);
+	this->sprite.setPosition(position);
+}
+
 void Lane::saveLane(ostream& out)
 {
+	out << position.x << ' ' << position.y << '\n';
 	out << num << ' ' << numTrafficLight << ' ' << type << ' ' << dir;
-	f
+	out << obstacle_path << ' ' << road_path;
+	// save obstacle first then trafficlight
+
+	for (int i = 0; i < num; i++)
+	{
+		this->obstacle[i]->saveObstacle(out);
+	}
+	for (int i = 0; i < numTrafficLight; i++)
+	{
+		this->lights[i]->saveLight(out);
+	}
 }

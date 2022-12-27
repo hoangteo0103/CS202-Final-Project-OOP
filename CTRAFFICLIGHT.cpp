@@ -57,12 +57,18 @@ void CTRAFFICLIGHT::transition(float delta_time)
 
 CTRAFFICLIGHT::CTRAFFICLIGHT(istream& in)
 {
-
+	texture.loadFromFile("trafficlight.png");
+	in >> state >> now_time; 
+	in >> red_time >> yellow_time >> green_time; 
+	float x, y;
+	in >> x >> y;
+	sprite.setTexture(texture);
+	sprite.setPosition(Vector2f(x,y));
 }
 
 void CTRAFFICLIGHT::saveLight(ostream& out)
 {
 	out << state << ' ' << now_time << '\n';
 	out << red_time << ' ' << yellow_time << ' ' << green_time << '\n'; 
-	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y < '\n'; 
+	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n'; 
 }
