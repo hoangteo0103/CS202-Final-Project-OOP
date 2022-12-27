@@ -193,5 +193,6 @@ void Lane::update(float delta_time)
 
 void Lane::saveLane(ostream& out)
 {
-
+	out << num << ' ' << numTrafficLight << ' ' << type << ' ' << dir;
+	f
 }

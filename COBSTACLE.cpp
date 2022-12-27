@@ -19,7 +19,17 @@ void COBSTACLE::move(float delta_time)
 		this->sprite.setScale(-1.f, 1.f);
 }
 
+COBSTACLE::COBSTACLE(istream& in) : Object(in)
+{
+	in >> this->direction; 
+	this->sprite.setTextureRect(this->animation.uv_rect); 
+	if (direction == 1)
+		this->sprite.setScale(-1.f, 1.f);
+	
+}
+
 void COBSTACLE::saveObstacle(ostream& out)
 {
-	
+	this->saveObject(out);
+	out << this->direction << '\n'; 
 }

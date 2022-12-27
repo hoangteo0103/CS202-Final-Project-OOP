@@ -16,8 +16,10 @@ public:
 	sf::IntRect uv_rect;
 	Animation(sf::Texture* texture, sf::Vector2u image_contain, float switch_time);
 	Animation();
-	void saveAnimation(ostream& out);
 
+	// Load and save animation
+	void saveAnimation(ostream& out);
+	void loadAnimation(istream& in); 
 };
 
 
@@ -50,6 +52,7 @@ public:
 	sf::Vector2f getSize();
 	
 	//Load and save 
+	Object(istream& in);
 	void saveObject(ostream& out);
 };
 

@@ -187,6 +187,28 @@ sf::Vector2f Object::getSize()
 	return size;
 }
 
+void Animation::loadAnimation(istream& in)
+{
+	in >> total_time >> switch_time; 
+	in >> image_contain.x >> image_contain.y;
+	in >> current_image.x >> current_image.y; 
+	in >> uv_rect.top >> uv_rect.left >> uv_rect.width >> uv_rect.height;
+}
+
+Object::Object(istream& in)
+{
+	in >> path; 
+	in >> speed >> origin_speed; 
+	texture.loadFromFile(path); 
+	sprite.setTexture(texture);
+
+	
+	float x, y; 
+	in >> x >> y;
+	this->sprite.setPosition(Vector2f(x , y));
+	this->animation.loadAnimation(in);
+}
+
 void Animation::saveAnimation(ostream& out)
 {
 	out << total_time << ' ' << switch_time << '\n'; 

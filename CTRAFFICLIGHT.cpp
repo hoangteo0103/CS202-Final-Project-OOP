@@ -54,3 +54,15 @@ void CTRAFFICLIGHT::transition(float delta_time)
 		state = 0; 
 	}
 }
+
+CTRAFFICLIGHT::CTRAFFICLIGHT(istream& in)
+{
+
+}
+
+void CTRAFFICLIGHT::saveLight(ostream& out)
+{
+	out << state << ' ' << now_time << '\n';
+	out << red_time << ' ' << yellow_time << ' ' << green_time << '\n'; 
+	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y < '\n'; 
+}

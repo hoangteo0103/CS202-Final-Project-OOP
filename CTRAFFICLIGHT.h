@@ -18,5 +18,9 @@ public :
 		return state != 2;
 	}
 	float getPos();
+
+	// Load and save 
+	CTRAFFICLIGHT(istream& in);
+	void saveLight(ostream& out);
 };
 	
