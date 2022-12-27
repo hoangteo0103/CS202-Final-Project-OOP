@@ -54,7 +54,7 @@ void LanePack::generateObstacle()
 {
 	random_device rd;
 	mt19937 rng(rd());
-	for (int i = 1; i < numberLanes; i++)
+	for (int i = 0; i < numberLanes - 1; i++)
 	{
 		uniform_int_distribution<int> rangeType(0, OBSTACLETEXTUREPATH.size() - 1);
 		uniform_int_distribution<int> rangeNum(10 , 20);
