@@ -19,6 +19,8 @@ void GameState::Reset(int level)
     starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
     player->reset(starting_position);
     view->reset(*this->app, *player);
+    this->clock.Reset();
+    this->previous_time = 0;
    
     
     
@@ -205,17 +207,6 @@ void GameState::updateButtons()
             this->pmenu.initState(*app, player, &map);
     }
 
-    if (this->pmenu.getRestart())
-    {
-        this->clock.Reset();
-        this->Reset();
-        this->paused = false;
-    }
-
-    if (this->pmenu.getHome())
-    {
-
-    }
 }
 
 
@@ -283,10 +274,16 @@ void GameState::updatePaused()
             this->clock.Start();
             this->paused = false; 
         }
-        if (this->pmenu.getExit())
+
+        if (this->pmenu.getRestart())
         {
-            this->pmenu.Reset();
-            this->app->close();
+            this->Reset();
+            this->paused = false;
+        }
+
+        if (this->pmenu.getHome())
+        {
+
         }
     }
 }

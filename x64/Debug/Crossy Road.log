@@ -1,11 +1,6 @@
-﻿  ChooseModeState.cpp
-  Game.cpp
-  GameState.cpp
-D:\CS202-Final-Project-OOP\GameState.cpp(215,21): error C2039: 'getExit': is not a member of 'PauseState'
-D:\CS202-Final-Project-OOP\PauseState.h(5,7): message : see declaration of 'PauseState'
-D:\CS202-Final-Project-OOP\GameState.cpp(286,25): error C2039: 'getExit': is not a member of 'PauseState'
-D:\CS202-Final-Project-OOP\PauseState.h(5,7): message : see declaration of 'PauseState'
-  MainMenuState.cpp
-  PauseState.cpp
-  Source.cpp
-  Generating Code...
+﻿  GameState.cpp
+D:\CS202-Final-Project-OOP\GameState.cpp(110): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(117): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(119): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(394): warning C4172: returning address of local variable or temporary
+  Crossy Road.vcxproj -> D:\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
