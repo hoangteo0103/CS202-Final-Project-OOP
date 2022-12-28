@@ -1,6 +1,7 @@
 #ifndef GameState_H
 #define GameState_H
 #include "Base.h"
+#include "MainMenuState.h"
 #include "PauseState.h"
 #include "WinState.h"
 #include "LoseState.h"
@@ -79,7 +80,7 @@ public:
     void updateMovingButton(Vector2f& distance);
     void hideButton(bool hide);
     void resetButton();
-    void resetView(RenderWindow* app);
+    void returnMenu();
 
     const bool& isPassLevel() const;
     void playAgain();

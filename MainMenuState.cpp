@@ -21,11 +21,22 @@ void MainMenuState::initButtons()
     this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 500, 400, 50, "test_game_button");
 
 }
+
+void MainMenuState::initSounds()
+{
+    if (!this->theme.openFromFile("sound\\new_job.ogg"))
+        cout << "COULD NOT LOAD THEME MUSIC" << endl;
+    this->theme.setLoop(true);
+    this->theme.play();
+    this->theme.setVolume(50);
+}
+
 MainMenuState::MainMenuState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
     this->initFonts();
     this->initButtons();
+    this->initSounds();
 }
 MainMenuState ::~MainMenuState()
 {
@@ -34,6 +45,7 @@ MainMenuState ::~MainMenuState()
     {
         delete it->second;
     }
+    this->theme.stop();
 }
 void MainMenuState::updateKeyBinds()
 {
@@ -61,21 +73,24 @@ void MainMenuState::updateButtons()
     if (this->buttons["GAME_STATE_BTN"]->isPressed())
     {
         this->states->push(new ChooseModeState(this->app, this->states));
+
     }
 
     if (this->buttons["GAME_QUIT_BTN"]->isPressed())
-    {
+    {   
         this->app->close();
     }
 
     if (this->buttons["TEST_GAME"]->isPressed())
     {
         this->states->push(new GameState(this->app, this->states, 0, false));
+        this->theme.stop();
     }
 
     if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
     {
         this->states->push(new GameState(this->app, this->states, 0 , true));
+        this->theme.stop();
     }
 }
 

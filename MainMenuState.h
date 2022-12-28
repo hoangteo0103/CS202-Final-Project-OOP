@@ -3,6 +3,7 @@
 #include "LeaderboardState.h"
 #include "ChooseModeState.h"
 #include "GameState.h"
+#include "SoundEffect.h"
 class MainMenuState :
     public State
 {
@@ -13,6 +14,10 @@ private:
     map<string, Button* > buttons;
     void initFonts();
     void initButtons();
+    void initSounds();
+    SoundEffect idle, hover;
+
+    sf::Music theme;
 
 public:
     MainMenuState(RenderWindow* app, stack<State*>* states);

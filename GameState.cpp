@@ -41,8 +41,10 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 //, PauseState(app, states)
 {
     // Init
+    //if (!this->theme.openFromFile("sound\\new_job.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
     this->theme.setLoop(true);
     this->theme.play();
+    this->theme.setVolume(50);
     this->win.init("sound\\win.wav");
     this->lose.init("sound\\lose.wav");
     this->levelup.init("sound\\complete_level.wav");
@@ -64,8 +66,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
     if (!saved)
     {
-        //if (!this->theme.openFromFile("sound\\music_theme.ogg"))
-        //    cout << "COULD NOT LOAD THEME MUSIC" << endl;
+        
         view = new CView;
         view->init((*app), map.getSize());
 
@@ -152,7 +153,12 @@ void GameState::updateWinState()
             this->Reset();
         }
         if (this->againState.getNo())
-            this->endState();
+
+        {
+            this->Reset();
+            this->returnMenu();
+        }
+          
     }
     else
     {
@@ -185,7 +191,7 @@ void GameState::updateLoseState()
         if (this->againState.getNo())
         {
             this->endState();
-            this->resetView(app);
+            this->returnMenu();
         }
     }
     else
@@ -274,12 +280,13 @@ void GameState::updatePaused()
     {
         this->pmenu.updateMousePositions(mousePosView);
         this->pmenu.update();
-
+        this->theme.pause();
         if (this->pmenu.getResume())
         {
             this->pmenu.Reset();
             this->clock.Start();
             this->paused = false; 
+            this->theme.play();
         }
 
         if (this->pmenu.getRestart())
@@ -294,7 +301,7 @@ void GameState::updatePaused()
             this->pmenu.Reset();
             this->saveGame();
             this->endState();
-            this->resetView(app);
+            this->returnMenu();
         }
     }
 }
@@ -398,10 +405,11 @@ void GameState::resetButton()
     it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }
 
-void GameState::resetView(RenderWindow* app)
+void GameState::returnMenu()
 {
+    this->states->push(new MainMenuState(this->app, this->states));
     View _view;
-    _view.setCenter(sf::Vector2f(app->getSize().x / 2, app->getSize().y / 2));
+    _view.reset(sf::FloatRect(0, 0, this->app->getSize().x, this->app->getSize().y));
     app->setView(_view);
 }
 
