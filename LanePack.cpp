@@ -60,7 +60,6 @@ void LanePack::generateObstacle()
 		uniform_int_distribution<int> rangeType(0, OBSTACLETEXTUREPATH.size() - 1);
 		uniform_int_distribution<int> rangeNum(10 , 20);
 		int num = rangeNum(rng);
-		cout << num << endl; 
 		int previous = 0; 
 		for (int j = 0; j < num; j++)
 		{
@@ -114,7 +113,7 @@ int LanePack::getNumOfLanes() {
 
 void LanePack::saveLanePack(ostream& out)
 {
-	out << speed << ' ' << numberLanes << distance_factor << win_line_y << '\n';
+	out << speed << ' ' << numberLanes << ' ' << distance_factor << ' ' <<  win_line_y << '\n';
 	for (int i = 0; i < numberLanes; i++)
 	{
 		lanes[i]->saveLane(out);
@@ -129,6 +128,8 @@ void LanePack::loadLanePack(istream& in)
 		int y_position = (distance_factor + ROADHEIGHT) * i + win_line_y + offset;
 		Lane* new_lane = new Lane(in);
 		lanes.push_back(new_lane);
+		posObstacles.push_back(y_position);
+
 	}
 	this->generateObstacle();
 }

@@ -425,8 +425,15 @@ void GameState::loadGame()
     lane_management->loadLanePack(inLanePack);
 
     // Load CVIEW 
+
     ifstream inView("External/Data/view_data.txt");
-    view->loadGame(inView , (*app) , map.getSize());
+    view = new CView;
+    view->loadGame(inView, (*app), map.getSize()); 
+    cout << "DM"; 
+    
+    
+
+    
 
     // Load player , currently testing
 
