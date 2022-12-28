@@ -129,65 +129,6 @@ void GameState::endState()
     cout << "End MainMenu" << endl;
 }
 
-
-void GameState::updateBeginner(int time_now)
-{
-    ifstream ifs("Leaderboard/leaderboardBeginner.ini");
-    vector< int > tmp;
-    tmp.push_back(time_now);
-    int time;
-    while (ifs >> time)
-    {
-        tmp.push_back(time);
-    }
-    sort(tmp.begin(), tmp.end());
-    ofstream ofs("Leaderboard/leaderboardBeginner.ini");
-    for (int i = 0; i < min(10, (int)tmp.size()); i++)
-    {
-        ofs << tmp[i] << endl;
-    }
-}
-void GameState::updateIntermediate(int time_now)
-{
-    ifstream ifs("Leaderboard/leaderboardIntermediate.ini");
-    vector< int > tmp;
-    tmp.push_back(time_now);
-    int time;
-    while (ifs >> time)
-    {
-        tmp.push_back(time);
-    }
-    sort(tmp.begin(), tmp.end());
-    ofstream ofs("Leaderboard/leaderboardIntermediate.ini");
-    for (int i = 0; i < min(10, (int)tmp.size()); i++)
-    {
-        ofs << tmp[i] << endl;
-    }
-}
-
-void GameState::updateExpert(int time_now)
-{
-    ifstream ifs("Leaderboard/leaderboardExpert.ini");
-    vector< int > tmp;
-    tmp.push_back(time_now);
-    int time;
-    while (ifs >> time)
-    {
-        tmp.push_back(time);
-    }
-    sort(tmp.begin(), tmp.end());
-    ofstream ofs("Leaderboard/leaderboardExpert.ini");
-    for (int i = 0; i < min(10, (int)tmp.size()); i++)
-    {
-        ofs << tmp[i] << endl;
-    }
-}
-
-void GameState::updateLeaderBoard()
-{
-}
-
-
 void GameState::updateWinState()
 {
     if (!this->isUpdated)
@@ -258,11 +199,23 @@ void GameState::updateButtons()
         it.second->update(this->mousePosView);
     }
     if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
-        {
+    {
             this->clock.Pause();
             this->paused = true;
             this->pmenu.initState(*app, player, &map);
-        }
+    }
+
+    if (this->pmenu.getRestart())
+    {
+        this->clock.Reset();
+        this->Reset();
+        this->paused = false;
+    }
+
+    if (this->pmenu.getHome())
+    {
+
+    }
 }
 
 
