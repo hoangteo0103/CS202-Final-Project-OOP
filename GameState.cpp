@@ -41,29 +41,30 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 //, PauseState(app, states)
 {
     // Init
+    this->theme.setLoop(true);
+    this->theme.play();
+    this->win.init("sound\\win.wav");
+    this->lose.init("sound\\lose.wav");
+    this->levelup.init("sound\\complete_level.wav");
+    this->charging.init("sound\\player_reset.wav");
+
+    this->mode = mode;
+    this->restart = false;
+    this->ok = false;
+    this->clock.Start();
+    this->isUpdated = false;
+    this->initFonts();
+
+    this->win_line_y = 200;
+    this->current_level = 1;
+    this->distance_between_lane = 100;
+
+    map.init("grasses.png");
     if (!saved)
     {
         //if (!this->theme.openFromFile("sound\\music_theme.ogg"))
         //    cout << "COULD NOT LOAD THEME MUSIC" << endl;
-        this->theme.setLoop(true);
-        this->theme.play();
-        this->win.init("sound\\win.wav");
-        this->lose.init("sound\\lose.wav");
-        this->levelup.init("sound\\complete_level.wav");
-        this->charging.init("sound\\player_reset.wav");
-
-        this->mode = mode; 
-        this->restart = false;
-        this->ok = false;
-        this->clock.Start();
-        this->isUpdated = false;
-        this->initFonts();
-
-        this->win_line_y = 200;
-        this->current_level = 1;
-        this->distance_between_lane = 100;
-
-        map.init("grasses.png");
+        
         view = new CView;
         view->init((*app), map.getSize());
 
@@ -78,17 +79,20 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
     
-        this->buttons.clear();
-
-        this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button");
-        this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button");
-        std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
+        
 
     }
     else {
-        // Phan nay tu canh minh code 
+
+        loadGame();
+    
     }
+    this->buttons.clear();
+
+    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button");
+    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button");
+    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
+    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }
 
 
@@ -283,14 +287,13 @@ void GameState::updatePaused()
 
         if (this->pmenu.getHome())
         {
-
+            this->saveGame();
+            this->quit = true;
         }
     }
 }
 
-void GameState::endGame()
-{
-}
+
 
 void GameState::update()
 {
@@ -397,4 +400,38 @@ const bool& GameState::isPassLevel() const {
 void GameState::playAgain() {
     this->Reset();
 
+}
+
+// Load and save 
+
+void GameState::saveGame()
+{
+    // Save 4 files txt in the folder External/Data... : view , player , lanepack , game .
+    // Save in the order : Game , Player , Lanepack , view 
+    ofstream outLanePack("External/Data/lane_pack_data.txt");
+    lane_management->saveLanePack(outLanePack);
+    ofstream outView("External/Data/view_data.txt");
+    view->saveGame(outView);
+
+}
+
+void GameState::loadGame()
+{
+    // Load game 
+    // .... 
+    // Load lane pack
+    ifstream inLanePack("External/Data/lane_pack_data.txt");
+    lane_management = new LanePack(this->distance_between_lane);
+    lane_management->loadLanePack(inLanePack);
+
+    // Load CVIEW 
+    ifstream inView("External/Data/view_data.txt");
+    view->loadGame(inView , (*app) , map.getSize());
+
+    // Load player , currently testing
+
+    starting_position.x = map.getSize().x / 2;
+    starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
+
+    player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 }

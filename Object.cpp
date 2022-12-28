@@ -222,7 +222,7 @@ void Object::saveObject(ostream& out)
 	// path 
 	out << path << '\n';
 	// speed and origin speed 
-	out << speed << ' ' << origin_speed; 
+	out << speed << ' ' << origin_speed << '\n';
 	// save position 
 	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n';
 	this->animation.saveAnimation(out);

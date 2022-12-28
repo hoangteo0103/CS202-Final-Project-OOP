@@ -114,9 +114,12 @@ int LanePack::getNumOfLanes() {
 
 void LanePack::saveLanePack(ostream& out)
 {
-	out << speed << ' ' << numberLanes << distance_factor << win_line_y;
+	out << speed << ' ' << numberLanes << distance_factor << win_line_y << '\n';
+	for (int i = 0; i < numberLanes; i++)
+	{
+		lanes[i]->saveLane(out);
+	}
 }
-
 void LanePack::loadLanePack(istream& in)
 {
 	in >> speed >> numberLanes >> distance_factor >> win_line_y; 

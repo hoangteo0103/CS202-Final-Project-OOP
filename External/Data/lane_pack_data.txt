@@ -1,0 +1,169 @@
+200 6100200
+0 250
+3 0 -842150451 -842150451
+asset\animal\bear.png asset\road\road1.png
+asset\animal\bear.png
+200 200
+4480.87 250
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bear.png
+200 200
+3760.87 250
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bear.png
+200 200
+3040.87 250
+0.00729597 0.1
+4 1
+0 0
+0 0 64 64
+2
+0 500
+3 0 -842150451 -842150451
+asset\animal\antelope.png asset\road\road1.png
+asset\animal\antelope.png
+200 200
+3519.06 500
+0.00470597 0.1
+4 1
+0 0
+0 0 64 64
+1
+asset\animal\antelope.png
+200 200
+3118.87 500
+0.00563797 0.1
+4 1
+0 0
+0 0 64 64
+1
+asset\animal\antelope.png
+200 200
+2718.54 500
+0.00729597 0.1
+4 1
+0 0
+0 0 64 64
+1
+0 750
+3 1 -842150451 -842150451
+asset\vehicle\tank.png asset\road\road2.png
+asset\vehicle\tank.png
+200 200
+3519.06 750
+0.00470597 0.1
+1 1
+0 0
+0 0 242 109
+1
+asset\vehicle\tank.png
+200 200
+3118.87 750
+0.00563797 0.1
+1 1
+0 0
+0 0 242 109
+1
+asset\vehicle\tank.png
+200 200
+2718.54 750
+0.00729597 0.1
+1 1
+0 0
+0 0 242 109
+1
+0 0.807296
+20 20 20
+1500 690
+0 1000
+3 0 -842150451 -842150451
+asset\animal\bird.png asset\road\road1.png
+asset\animal\bird.png
+200 200
+4480.87 1000
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bird.png
+200 200
+3760.87 1000
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bird.png
+200 200
+3040.87 1000
+0.00729597 0.1
+4 1
+0 0
+0 0 64 64
+2
+0 1250
+3 1 -842150451 -842150451
+asset\vehicle\bus.png asset\road\road3.png
+asset\vehicle\bus.png
+200 200
+4480.87 1250
+0.00435697 0.1
+1 1
+0 0
+0 0 254 100
+2
+asset\vehicle\bus.png
+200 200
+3760.87 1250
+0.00435697 0.1
+1 1
+0 0
+0 0 254 100
+2
+asset\vehicle\bus.png
+200 200
+3040.87 1250
+0.00729597 0.1
+1 1
+0 0
+0 0 254 100
+2
+0 0.807296
+20 20 20
+1500 1190
+0 1500
+3 0 -842150451 -842150451
+asset\animal\bird.png asset\road\road1.png
+asset\animal\bird.png
+200 200
+4480.87 1500
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bird.png
+200 200
+3760.87 1500
+0.00435697 0.1
+4 1
+0 0
+0 0 64 64
+2
+asset\animal\bird.png
+200 200
+3040.87 1500
+0.00729597 0.1
+4 1
+0 0
+0 0 64 64
+2

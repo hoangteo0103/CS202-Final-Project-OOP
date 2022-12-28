@@ -1,6 +1,17 @@
-﻿  GameState.cpp
-D:\CS202-Final-Project-OOP\GameState.cpp(110): warning C4172: returning address of local variable or temporary
-D:\CS202-Final-Project-OOP\GameState.cpp(117): warning C4172: returning address of local variable or temporary
-D:\CS202-Final-Project-OOP\GameState.cpp(119): warning C4172: returning address of local variable or temporary
-D:\CS202-Final-Project-OOP\GameState.cpp(394): warning C4172: returning address of local variable or temporary
+﻿  CPEOPLE.cpp
+  ChooseModeState.cpp
+  Game.cpp
+  GameState.cpp
+  LanePack.cpp
+  LoseState.cpp
+  MainMenuState.cpp
+  PauseState.cpp
+  PlayAgainState.cpp
+  Source.cpp
+  WinState.cpp
+  Generating Code...
+D:\CS202-Final-Project-OOP\GameState.cpp(114): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(121): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(123): warning C4172: returning address of local variable or temporary
+D:\CS202-Final-Project-OOP\GameState.cpp(397): warning C4172: returning address of local variable or temporary
   Crossy Road.vcxproj -> D:\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe

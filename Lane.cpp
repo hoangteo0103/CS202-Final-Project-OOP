@@ -218,8 +218,8 @@ Lane::Lane(istream& in)
 void Lane::saveLane(ostream& out)
 {
 	out << position.x << ' ' << position.y << '\n';
-	out << num << ' ' << numTrafficLight << ' ' << type << ' ' << dir;
-	out << obstacle_path << ' ' << road_path;
+	out << num << ' ' << numTrafficLight << ' ' << type << ' ' << dir << '\n';
+	out << obstacle_path << ' ' << road_path << '\n';
 	// save obstacle first then trafficlight
 
 	for (int i = 0; i < num; i++)

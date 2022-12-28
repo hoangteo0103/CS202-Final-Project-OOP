@@ -3,7 +3,7 @@
 #include "Base.h"
 #include <random>
 
-const vector<string> OBSTACLETEXTUREPATH = { "asset\\obstacle\\obstacle0.png" ,  "asset\\obstacle\\obstacle1" , "asset\\obstacle\\obstacle2.png" ,
+const vector<string> OBSTACLETEXTUREPATH = { "asset\\obstacle\\obstacle0.png" ,  "asset\\obstacle\\obstacle1.png" , "asset\\obstacle\\obstacle2.png" ,
 "asset\\obstacle\\obstacle3.png" , "asset\\obstacle\\obstacle4.png" , "asset\\obstacle\\obstacle5.png"
 };
 const vector<int> SIZEOBSTACLE = { 118 , 89 , 117 , 84  , 92 , 114  }; // "asset\\road\\road1.png", "asset\\road\\road2.png", "asset\\road\\road3.png" };

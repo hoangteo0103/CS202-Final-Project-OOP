@@ -70,7 +70,8 @@ public:
     const bool& getLose() const;
     const bool& getWin() const;
     void endState();
-    void endGame(); 
+    void loadGame();
+    void saveGame(); 
     void update();
     void render(RenderTarget* target = NULL);
     void renderButtons(RenderTarget* target = NULL);
