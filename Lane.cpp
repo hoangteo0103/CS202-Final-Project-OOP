@@ -206,12 +206,11 @@ Lane::Lane(istream& in)
 	}
 
 	// Init 
-	Texture texture;
-	if (!(texture.loadFromFile(this->road_path)))
+	if (!(texture.loadFromFile("asset/road/road0.png")))
 	{
 		cout << "Could Not Load Lane File.." << endl;
 	}
-	sprite.setTexture(texture);
+	this->sprite.setTexture(texture);
 	this->sprite.setPosition(position);
 }
 
