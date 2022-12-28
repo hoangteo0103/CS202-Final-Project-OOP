@@ -48,6 +48,10 @@ void CView::reset(sf::RenderWindow& window, Object& player) {
 
 void CView::loadGame(istream& in, sf::RenderWindow& window, const sf::Vector2u& map_size) {
 	in >> this->position.x >> this->position.y;
+	//cout << "position x: " << position.x << endl;
+	//cout << "position y: " << position.y << endl;
+	this->window_size.x = window.getSize().x;
+	this->window_size.y = window.getSize().y;
 	this->map_size = map_size;
 	_view.reset(sf::FloatRect(0, 0, this->window_size.x, this->window_size.y));
 	_view.setViewport(sf::FloatRect(0, 0, 1.0f, 1.0f));

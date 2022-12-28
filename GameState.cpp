@@ -58,13 +58,14 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     this->win_line_y = 200;
     this->current_level = 1;
     this->distance_between_lane = 100;
-
     map.init("grasses.png");
+
+
+
     if (!saved)
     {
         //if (!this->theme.openFromFile("sound\\music_theme.ogg"))
         //    cout << "COULD NOT LOAD THEME MUSIC" << endl;
-        
         view = new CView;
         view->init((*app), map.getSize());
 
@@ -83,7 +84,6 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
     }
     else {
-
         loadGame();
     
     }
@@ -424,8 +424,10 @@ void GameState::loadGame()
     lane_management = new LanePack(this->distance_between_lane);
     lane_management->loadLanePack(inLanePack);
 
-    // Load CVIEW 
 
+
+
+    // Load CVIEW 
     ifstream inView("External/Data/view_data.txt");
     view = new CView;
     view->loadGame(inView, (*app), map.getSize()); 
