@@ -79,6 +79,7 @@ public:
     void updateMovingButton(Vector2f& distance);
     void hideButton(bool hide);
     void resetButton();
+    void resetView(RenderWindow* app);
 
     const bool& isPassLevel() const;
     void playAgain();

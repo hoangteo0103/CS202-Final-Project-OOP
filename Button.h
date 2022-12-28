@@ -24,8 +24,6 @@ private:
     Texture hoverTexture;
 
 public:
-    /*Button(float x, float y, float width, float height, Font* font,
-        string text, Color idleColor, Color hoverColor, Color activeColor);*/
     Button(string path, float x, float y, float width, float height, string name);
     ~Button();
     const bool isPressed() const;

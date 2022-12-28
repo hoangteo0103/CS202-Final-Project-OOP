@@ -183,7 +183,10 @@ void GameState::updateLoseState()
             this->Reset();
         }
         if (this->againState.getNo())
+        {
             this->endState();
+            this->resetView(app);
+        }
     }
     else
     {
@@ -281,14 +284,17 @@ void GameState::updatePaused()
 
         if (this->pmenu.getRestart())
         {
+            this->pmenu.Reset();
             this->Reset();
             this->paused = false;
         }
 
         if (this->pmenu.getHome())
         {
+            this->pmenu.Reset();
             this->saveGame();
-            this->quit = true;
+            this->endState();
+            this->resetView(app);
         }
     }
 }
@@ -392,6 +398,12 @@ void GameState::resetButton()
     it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }
 
+void GameState::resetView(RenderWindow* app)
+{
+    View _view;
+    _view.setCenter(sf::Vector2f(app->getSize().x / 2, app->getSize().y / 2));
+    app->setView(_view);
+}
 
 const bool& GameState::isPassLevel() const {
     return (player->getPosition().y < win_line_y - player->animation.uv_rect.height / 2);
