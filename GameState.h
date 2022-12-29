@@ -53,6 +53,7 @@ private:
     int win_line_y;
     int distance_between_lane;
     void initFonts();
+    void initSounds();
     //void initButtons();
 
 public:

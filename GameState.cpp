@@ -37,19 +37,26 @@ void GameState::initFonts()
     this->background.setTexture(texture);
 }
 
+void GameState::initSounds()
+{
+    if (!this->theme.openFromFile("sound/game_state/summer.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
+    this->theme.setLoop(true);
+    this->theme.play();
+    this->theme.setVolume(50);
+    this->win.init("sound/game_state/win.wav");
+    this->lose.init("sound/game_state/lose.wav");
+    this->levelup.init("sound/game_state/complete_level.wav");
+    this->charging.init("sound/game_state/player_reset.wav");
+    this->win.setVolume(25);
+    this->lose.setVolume(25);
+    this->charging.setVolume(25);
+    this->levelup.setVolume(25);
+}
 GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
 //, PauseState(app, states)
 {
     // Init
-    //if (!this->theme.openFromFile("sound\\new_job.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
-    this->theme.setLoop(true);
-    this->theme.play();
-    this->theme.setVolume(50);
-    this->win.init("sound\\win.wav");
-    this->lose.init("sound\\lose.wav");
-    this->levelup.init("sound\\complete_level.wav");
-    this->charging.init("sound\\player_reset.wav");
-
+    this->initSounds();
     this->mode = mode;
     this->restart = false;
     this->ok = false;
@@ -90,8 +97,8 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     }
     this->buttons.clear();
 
-    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button");
-    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button");
+    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
     it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }

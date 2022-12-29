@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(string path, float x, float y, float width, float height, string name)
+Button::Button(string path, float x, float y, float width, float height, string name, string hover, string active)
 {
     this->path = path;
     this->name = name;
@@ -13,6 +13,8 @@ Button::Button(string path, float x, float y, float width, float height, string 
     if (!this->hoverTexture.loadFromFile(this->path + "/" + this->name + "/" + this->name + "_hover.png"));
     {
     }
+    this->hover.init(hover);
+    this->active.init(active);
 }
 
 Button::~Button()
@@ -42,12 +44,14 @@ void Button::update(const Vector2f mousePos)
     switch (this->buttonState)
     {
     case BTN_IDLE:
+        this->hover.play();
         this->shape.setTexture(&this->idleTexture);
         break;
     case BTN_HOVER:
         this->shape.setTexture(&this->hoverTexture);
         break;
     case BTN_ACTIVE:
+        this->active.play();
         //this->shape.setFillColor(this->activeColor);
         break;
     default:

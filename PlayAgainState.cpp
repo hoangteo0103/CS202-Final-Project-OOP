@@ -44,8 +44,8 @@ void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
     
-    this->buttons["YES"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 100.0, 400, 100, "yes_button");
-    this->buttons["NO"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 +25.0, 400, 100, "no_button");
+    this->buttons["YES"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 100.0, 400, 100, "yes_button", "sound/main_menu/hover.ogg", "");
+    this->buttons["NO"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 +25.0, 400, 100, "no_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
     // Init Text
     this->menutext.setFont(font);

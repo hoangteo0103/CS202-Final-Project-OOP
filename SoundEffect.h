@@ -14,6 +14,7 @@ public:
 	void init(const string& path_sound);
 	void play();
 	bool isPlaying();
+	void setVolume(int vol);
 };
 
 

@@ -1,11 +1,13 @@
 #ifndef BUTTON_H
 #define BUTTON_H
+#include "Base.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <time.h>
 #include<iostream>
 #include<fstream>
+#include "SoundEffect.h"
 
 using namespace sf;
 using namespace std;
@@ -14,17 +16,17 @@ class Button
 {
 private:
     short unsigned buttonState;
-    bool pressed;
-    bool hover;
     RectangleShape shape;
     string name;
     string path;
 
     Texture idleTexture;
     Texture hoverTexture;
+    SoundEffect hover, active;
+
 
 public:
-    Button(string path, float x, float y, float width, float height, string name);
+    Button(string path, float x, float y, float width, float height, string name, string hover, string active);
     ~Button();
     const bool isPressed() const;
     virtual void setOutline(Color color);

@@ -69,6 +69,6 @@ CTRAFFICLIGHT::CTRAFFICLIGHT(istream& in)
 void CTRAFFICLIGHT::saveLight(ostream& out)
 {
 	out << state << ' ' << now_time << '\n';
-	out << red_time << ' ' << yellow_time << ' ' << green_time << '\n'; 
-	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n'; 
+	out << red_time << ' ' << yellow_time << ' ' << green_time << '\n';
+	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n';
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "State.h"
+#include "Button.h"
 
 class ChooseModeState :
     public State
@@ -9,8 +11,12 @@ private:
     Font font;
     Texture texture;
     Sprite background;
+    Music theme;
+
+private:
     void initFonts();
     void initButtons();
+    void initSounds();
 
 public:
     ChooseModeState(RenderWindow* app, stack<State*>* states);

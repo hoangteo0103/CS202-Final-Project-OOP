@@ -45,7 +45,7 @@ void WinState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
 
-    this->buttons["OK"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100, "ok_button");
+    this->buttons["OK"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100, "ok_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
     // Init Text
     this->menutext.setFont(font);

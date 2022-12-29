@@ -7,6 +7,7 @@ void SoundEffect::init(const string& path_sound) {
 		return;
 	}
 	this->sound.setBuffer(this->buffer);
+	this->sound.setVolume(40);
 }
 
 void SoundEffect::play() {
@@ -15,4 +16,9 @@ void SoundEffect::play() {
 
 bool SoundEffect::isPlaying() {
 	return sound.Playing;
+}
+
+void SoundEffect::setVolume(int vol)
+{
+	this->sound.setVolume(vol);
 }

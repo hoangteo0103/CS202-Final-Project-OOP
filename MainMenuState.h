@@ -15,9 +15,7 @@ private:
     void initFonts();
     void initButtons();
     void initSounds();
-    SoundEffect idle, hover;
-
-    sf::Music theme;
+    Music theme;
 
 public:
     MainMenuState(RenderWindow* app, stack<State*>* states);
