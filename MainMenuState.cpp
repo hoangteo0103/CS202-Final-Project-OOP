@@ -16,7 +16,7 @@ void MainMenuState::initButtons()
     this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 200, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 260, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["HIGH_SCORE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 320, 400, 50, "high_score_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["AUTHOR_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 380, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 380, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 440, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 500, 400, 50, "test_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
@@ -75,8 +75,20 @@ void MainMenuState::updateButtons()
         this->states->push(new ChooseModeState(this->app, this->states));
     }
 
+    if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
+    {
+        this->theme.stop();
+        this->states->push(new GameState(this->app, this->states, 0, true));
+    }
+    
+    if (this->buttons["AUTHOR_BTN"]->isPressed())
+    {
+        this->theme.stop();
+        this->states->push(new Author(this->app, this->states));
+    }
+
     if (this->buttons["GAME_QUIT_BTN"]->isPressed())
-    {   
+    {
         this->app->close();
     }
 
@@ -86,11 +98,6 @@ void MainMenuState::updateButtons()
         this->states->push(new GameState(this->app, this->states, 0, false));
     }
 
-    if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
-    {
-        this->theme.stop();
-        this->states->push(new GameState(this->app, this->states, 0 , true));
-    }
 }
 
 void MainMenuState::update()
