@@ -92,18 +92,14 @@ void Mouvment::goDirection(const int& dir, sf::Sprite& spritesheet, float speed,
 {
 	float dis = speed * delta_time;
 	switch (dir) {
-	case 0:
-		spritesheet.move(sf::Vector2f(0, -dis));
-		break;
 	case 1:
-		spritesheet.move(sf::Vector2f(0, dis));
+		spritesheet.move(sf::Vector2f(-dis, 0));
 		break;
 	case 2:
 		spritesheet.move(sf::Vector2f(dis, 0));
 		break;
-	case 3:
-		spritesheet.move(sf::Vector2f(-dis, 0));
-		break;
+	default:
+		cout << "UNDEFINED OBSTACLE MOVE." << endl;
 	}
 }
 void Mouvment::goDirectionPlayer(const int& dir, sf::Sprite& spritesheet, float speed, float delta_time, vector<Sprite> obstacles)
