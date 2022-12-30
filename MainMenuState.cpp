@@ -13,12 +13,11 @@ void MainMenuState::initFonts()
 }
 void MainMenuState::initButtons()
 {
-    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 200, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 260, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["HIGH_SCORE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 320, 400, 50, "high_score_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 380, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 440, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 500, 400, 50, "test_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 310, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 370, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 430, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 490, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 550, 400, 50, "test_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 

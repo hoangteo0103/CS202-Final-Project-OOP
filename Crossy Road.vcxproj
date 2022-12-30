@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Author.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChooseModeState.cpp" />
     <ClCompile Include="CMap.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Author.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ChooseModeState.h" />
