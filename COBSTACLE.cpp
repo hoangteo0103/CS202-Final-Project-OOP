@@ -10,8 +10,8 @@ COBSTACLE::COBSTACLE(string path, sf::Vector2u image_contain, float switch_time,
 void COBSTACLE::move(float delta_time)
 {
 	Mouvment mouvment;
-	// 1 Left 2 Right 
-	mouvment.goDirection(4 - direction, sprite, speed, delta_time);
+	// 1 face Left, 2 face Right 
+	mouvment.goDirection(this->direction, sprite, speed, delta_time);
 	//cout << sprite.getPosition().x << ' ' << sprite.getPosition().y << endl; 
 	this->animation.update(0 , delta_time);
 	this->sprite.setTextureRect(this->animation.uv_rect);
