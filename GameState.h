@@ -39,7 +39,7 @@ private:
     bool isUpdated;
     bool ok;
     bool restart;
-    bool resume;
+    bool resume; //
     bool paused = false;
     CMap map; 
     CPEOPLE *player;

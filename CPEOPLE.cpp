@@ -96,3 +96,12 @@ void CPEOPLE::reset(sf::Vector2f pos) {
 	this->setPosition(pos);
 	this->state = PLAYERSTATE::IDLE;
 }
+
+CPEOPLE::CPEOPLE(istream& in): Object(in) {
+	in >> this->state >> this->row >> this->face_direction;
+}
+
+void CPEOPLE::saveCPeople(ostream& out) {
+	Object::saveObject(out);
+	out << this->state << '\n' << this->row << '\n' << this->face_direction << '\n';
+}

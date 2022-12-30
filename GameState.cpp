@@ -57,7 +57,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 {
     // Init
     this->initSounds();
-    this->mode = mode;
+    // this->mode = mode; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
     this->restart = false;
     this->ok = false;
     this->clock.Start();
@@ -65,7 +65,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     this->initFonts();
 
     this->win_line_y = 200;
-    this->current_level = 1;
+    // this->current_level = 1; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
     this->distance_between_lane = 100;
     map.init("grasses.png");
 
@@ -435,6 +435,13 @@ void GameState::saveGame()
 {
     // Save 4 files txt in the folder External/Data... : view , player , lanepack , game .
     // Save in the order : Game , Player , Lanepack , view 
+    ofstream outGame("External/Data/game_data.txt");
+    outGame << this->mode << ' ' << this->current_level;
+
+    ofstream outPlayer("External/Data/player_data.txt");
+    outPlayer << this->starting_position.x << ' ' << this->starting_position.y << '\n';
+    player->saveCPeople(outPlayer);
+
     ofstream outLanePack("External/Data/lane_pack_data.txt");
     lane_management->saveLanePack(outLanePack);
     ofstream outView("External/Data/view_data.txt");
@@ -445,13 +452,14 @@ void GameState::saveGame()
 void GameState::loadGame()
 {
     // Load game 
-    // .... 
+    ifstream inGame("External/Data/game_data.txt");
+    inGame >> this->mode;
+    inGame >> this->current_level;
+
     // Load lane pack
     ifstream inLanePack("External/Data/lane_pack_data.txt");
     lane_management = new LanePack(this->distance_between_lane);
     lane_management->loadLanePack(inLanePack);
-
-
 
 
     // Load CVIEW 
@@ -466,8 +474,12 @@ void GameState::loadGame()
 
     // Load player , currently testing
 
-    starting_position.x = map.getSize().x / 2;
-    starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
-
-    player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
+    //starting_position.x = map.getSize().x / 2;
+    //starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
+    //player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
+    
+    // @tcm: Tui sua lai ham load/save nhu sau nhe
+    ifstream inPlayer("External/Data/player_data.txt");
+    inPlayer >> starting_position.x >> starting_position.y;
+    player = new CPEOPLE(inPlayer); // load = constructor
 }

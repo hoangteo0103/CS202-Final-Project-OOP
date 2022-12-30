@@ -25,5 +25,10 @@ private:
 	int row;
 	int face_direction; // 0 - down, 1 - left, 2 - right, 3 - up
 	bool pause;
+
+public:
+	//Load and save 
+	CPEOPLE(istream& in);
+	void saveCPeople(ostream& out);
 };
 
