@@ -7,9 +7,8 @@ void Author::initFonts()
     {
 
     }
-    texture.loadFromFile("External/images/mainmenu.jpg");
+    texture.loadFromFile("External/images/mainmenu.png");
     this->background.setTexture(texture);
-    this->background.setScale(4.f, 4.f);
 }
 void Author::initButtons()
 {
