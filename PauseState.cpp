@@ -10,6 +10,7 @@ void PauseState::initFonts()
 void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
     this->resume = false;
+    this->save = false;
     this->restart = false;
     this->home = false;
 
@@ -41,14 +42,15 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->container.setSize(
         Vector2f(
             static_cast<float> (app.getSize().x) / 2.f,
-            static_cast<float> (app.getSize().y) / 1.5f));
+            static_cast<float> (app.getSize().y) / 1.2f));
     this->container.setFillColor(Color::Black);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
 
-    this->buttons["RESUME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 150.0, 400, 100, "resume_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "");
-    this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 100.0, 400, 100, "home_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["RESUME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 210.0, 400, 100, "resume_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["SAVE"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 85.0, 400, 100, "save_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 40.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "");
+    this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 165.0, 400, 100, "home_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     // Init Text
     this->menutext.setFont(font);
     this->menutext.setFillColor(Color(255, 255, 255, 200));
@@ -75,12 +77,18 @@ PauseState::~PauseState()
         delete it->second;
     }
     this->resume = false;
+    this->save = false;
     this->restart = false;
     this->home = false;
 }
 const bool& PauseState::getResume() const
 {
     return this->resume;
+}
+
+const bool& PauseState::getSave() const
+{
+    return this->save;
 }
 
 const bool& PauseState::getRestart() const
@@ -96,6 +104,7 @@ const bool& PauseState::getHome() const
 void PauseState::Reset()
 {
     this->resume = false;
+    this->save = false;
     this->restart = false;
     this->home = false;
 }
@@ -117,6 +126,10 @@ void PauseState::update()
     if (this->buttons["RESUME"]->isPressed())
     {
         this->resume = true;
+    }
+    if (this->buttons["SAVE"]->isPressed())
+    {
+        this->save = true;
     }
     if (this->buttons["RESTART"]->isPressed())
     {

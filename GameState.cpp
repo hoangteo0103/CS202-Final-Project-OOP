@@ -65,7 +65,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     this->initFonts();
 
     this->win_line_y = 200;
-    // this->current_level = 1; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
+    this->current_level = 1; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
     this->distance_between_lane = 100;
     map.init("grasses.png");
 

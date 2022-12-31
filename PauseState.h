@@ -15,6 +15,7 @@ private:
 
     map<string, Button* > buttons;
     bool resume;
+    bool save;
     bool restart;
     bool home;
     void initFonts();
@@ -26,6 +27,7 @@ public:
     void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
     void updateButtons();
     const bool& getResume() const;
+    const bool& getSave() const;
     const bool& getRestart() const;
     const bool& getHome() const;
     void updateMousePositions(Vector2f mousePosView);
