@@ -41,6 +41,7 @@ private:
     bool restart;
     bool resume; //
     bool paused = false;
+    bool escape;
     CMap map; 
     CPEOPLE *player;
     CView* view;

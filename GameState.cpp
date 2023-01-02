@@ -12,6 +12,7 @@ void GameState::Reset(int level)
     this->isUpdated = false;
     this->paused = false;
     this->restart = false;
+    this->escape = false;
     this->current_level = level;
     //this->clock.Reset();
     lane_management->reset(speed[mode], this->current_level, map.getSize(), this->win_line_y);
@@ -141,11 +142,11 @@ const bool& GameState::getWin() const
 void GameState::endState()
 {
     this->quit = true;
-    cout << "End MainMenu" << endl;
 }
 
 void GameState::updateWinState()
 {
+    this->escape = true;
     if (!this->isUpdated)
     {
         this->hideButton(true);
@@ -164,6 +165,7 @@ void GameState::updateWinState()
 
         {
             this->Reset();
+            this->theme.stop();
             this->returnMenu();
         }
           
@@ -182,6 +184,7 @@ void GameState::updateWinState()
 
 void GameState::updateLoseState()
 {
+    this->escape = true;
     if (!this->isUpdated)
     {
         this->hideButton(true);
@@ -221,11 +224,12 @@ void GameState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
-    if (this->buttons["PAUSE_STATE_BTN"]->isPressed() || Keyboard::isKeyPressed(Keyboard::Escape))
+    if (this->buttons["PAUSE_STATE_BTN"]->isPressed() || (Keyboard::isKeyPressed(Keyboard::Escape) && this->escape == false))
     {
-            this->clock.Pause();
-            this->paused = true;
-            this->pmenu.initState(*app, player, &map);
+        this->clock.Pause();
+        this->paused = true;
+        this->escape = true;
+        this->pmenu.initState(*app, player, &map);
     }
 
 }
@@ -233,6 +237,7 @@ void GameState::updateButtons()
 
 void GameState::updateUnpaused()
 {
+    this->escape = false;
     float now_time = clock.GetElapsedSeconds();
     delta_time = now_time - previous_time;
     previous_time = now_time;
@@ -297,6 +302,14 @@ void GameState::updatePaused()
             this->theme.play();
         }
 
+        if (this->pmenu.getSave())
+        {
+            this->pmenu.Reset();
+            this->saveGame();
+            this->endState();
+            this->returnMenu();
+        }
+
         if (this->pmenu.getRestart())
         {
             this->pmenu.Reset();
@@ -307,7 +320,6 @@ void GameState::updatePaused()
         if (this->pmenu.getHome())
         {
             this->pmenu.Reset();
-            this->saveGame();
             this->endState();
             this->returnMenu();
         }

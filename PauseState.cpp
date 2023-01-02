@@ -43,7 +43,9 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         Vector2f(
             static_cast<float> (app.getSize().x) / 2.f,
             static_cast<float> (app.getSize().y) / 1.2f));
-    this->container.setFillColor(Color::Black);
+    //this->container.setFillColor(Color::Black);
+    this->texture.loadFromFile("External/images/pause_menu.png");
+    this->container.setTexture(&this->texture);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
 
@@ -51,13 +53,13 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     this->buttons["SAVE"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 85.0, 400, 100, "save_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 40.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "");
     this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 165.0, 400, 100, "home_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    // Init Text
-    this->menutext.setFont(font);
-    this->menutext.setFillColor(Color(255, 255, 255, 200));
-    this->menutext.setCharacterSize(40);
-    this->menutext.setString("PAUSED");
-    this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
-        this->container.getPosition().y + 20.f);
+    //// Init Text
+    //this->menutext.setFont(font);
+    //this->menutext.setFillColor(Color(255, 255, 255, 200));
+    //this->menutext.setCharacterSize(40);
+    //this->menutext.setString("PAUSED");
+    //this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
+    //    this->container.getPosition().y + 20.f);
 }
 
 void PauseState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)

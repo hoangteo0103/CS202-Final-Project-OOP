@@ -1,172 +1,178 @@
 200 6 100 200
 0 250
-3 0 -842150451 -842150451
-asset\animal\wolf.png asset\road\road1.png
-asset\animal\wolf.png
-200 200
-4772.96 250
-0.064769 0.1
-5 1
-2 0
-0 338 169 105
-2
-asset\animal\wolf.png
-200 200
-4052.96 250
-0.064769 0.1
-5 1
-2 0
-0 338 169 105
-2
-asset\animal\wolf.png
-200 200
-3332.96 250
-0.028278 0.1
-5 1
-2 0
-0 338 169 105
-2
-0 500
-3 0 -842150451 -842150451
-asset\animal\slime.png asset\road\road1.png
-asset\animal\slime.png
-200 200
-4772.96 500
-0.064769 0.1
-10 1
-2 0
-0 308 154 120
-2
-asset\animal\slime.png
-200 200
-4052.96 500
-0.064769 0.1
-10 1
-2 0
-0 308 154 120
-2
-asset\animal\slime.png
-200 200
-3332.96 500
-0.028278 0.1
-10 1
-7 0
-0 1078 154 120
-2
-0 750
 3 1 -842150451 -842150451
-asset\vehicle\mer.png asset\road\road2.png
+asset\vehicle\mer.png asset\road\road3.png
 asset\vehicle\mer.png
 200 200
-4772.96 750
-0.064769 0.1
-2 1
-0 0
-0 0 175 95
-2
-asset\vehicle\mer.png
-200 200
-4052.96 750
-0.064769 0.1
-2 1
-0 0
-0 0 175 95
-2
-asset\vehicle\mer.png
-200 200
-3332.96 750
-0.028278 0.1
+3486.53 250
+0.067371 0.1
 2 1
 1 0
 0 175 175 95
-2
-0 2.72828
+1
+asset\vehicle\mer.png
+200 200
+3086.45 250
+0.067731 0.1
+2 1
+1 0
+0 175 175 95
+1
+asset\vehicle\mer.png
+200 200
+2685.88 250
+0.070613 0.1
+2 1
+1 0
+0 175 175 95
+1
+0 0.970613
+20 20 20
+1500 190
+0 500
+3 0 -842150451 -842150451
+asset\animal\bird.png asset\road\road1.png
+asset\animal\bird.png
+200 200
+3486.53 500
+0.067371 0.1
+4 1
+1 0
+0 64 64 64
+1
+asset\animal\bird.png
+200 200
+3086.45 500
+0.067731 0.1
+4 1
+1 0
+0 64 64 64
+1
+asset\animal\bird.png
+200 200
+2685.88 500
+0.070613 0.1
+4 1
+1 0
+0 64 64 64
+1
+0 750
+3 1 -842150451 -842150451
+asset\vehicle\tank.png asset\road\road2.png
+asset\vehicle\tank.png
+200 200
+3486.53 750
+0.067371 0.1
+1 1
+0 0
+0 0 242 109
+1
+asset\vehicle\tank.png
+200 200
+3086.45 750
+0.067731 0.1
+1 1
+0 0
+0 0 242 109
+1
+asset\vehicle\tank.png
+200 200
+2685.88 750
+0.070613 0.1
+1 1
+0 0
+0 0 242 109
+1
+0 0.970613
 20 20 20
 1500 690
 0 1000
-3 0 -842150451 -842150451
-asset\animal\slime.png asset\road\road1.png
-asset\animal\slime.png
+3 1 -842150451 -842150451
+asset\vehicle\ambu.png asset\road\road3.png
+asset\vehicle\ambu.png
 200 200
-3147.17 1000
-0.064146 0.1
-10 1
-8 0
-0 1232 154 120
+3486.53 1000
+0.067371 0.1
+1 1
+0 0
+0 0 220 111
 1
-asset\animal\slime.png
+asset\vehicle\ambu.png
 200 200
-2747.04 1000
-0.064769 0.1
-10 1
-2 0
-0 308 154 120
+3086.45 1000
+0.067731 0.1
+1 1
+0 0
+0 0 220 111
 1
-asset\animal\slime.png
+asset\vehicle\ambu.png
 200 200
-2334.34 1000
-0.028278 0.1
-10 1
-7 0
-0 1078 154 120
+2685.88 1000
+0.070613 0.1
+1 1
+0 0
+0 0 220 111
 1
+0 0.970613
+20 20 20
+1500 940
 0 1250
 3 1 -842150451 -842150451
-asset\vehicle\van.png asset\road\road2.png
-asset\vehicle\van.png
+asset\vehicle\ambu.png asset\road\road2.png
+asset\vehicle\ambu.png
 200 200
-3147.17 1250
-0.064146 0.1
-2 1
+4433.54 1250
+0.067731 0.1
+1 1
 0 0
-0 0 188 100
-1
-asset\vehicle\van.png
+0 0 220 111
+2
+asset\vehicle\ambu.png
 200 200
-2747.04 1250
-0.064769 0.1
-2 1
+3713.55 1250
+0.067731 0.1
+1 1
 0 0
-0 0 188 100
-1
-asset\vehicle\van.png
+0 0 220 111
+2
+asset\vehicle\ambu.png
 200 200
-2334.34 1250
-0.028278 0.1
-2 1
-1 0
-0 188 188 100
-1
-0 2.72828
+2993.55 1250
+0.070613 0.1
+1 1
+0 0
+0 0 220 111
+2
+0 0.970613
 20 20 20
 1500 1190
 0 1500
 3 1 -842150451 -842150451
-asset\vehicle\truct.png asset\road\road2.png
-asset\vehicle\truct.png
+asset\vehicle\ambu.png asset\road\road3.png
+asset\vehicle\ambu.png
 200 200
-4772.96 1500
-0.064769 0.1
+3486.53 1500
+0.067371 0.1
 1 1
 0 0
-0 0 184 120
-2
-asset\vehicle\truct.png
+0 0 220 111
+1
+asset\vehicle\ambu.png
 200 200
-4052.96 1500
-0.064769 0.1
+3086.45 1500
+0.067731 0.1
 1 1
 0 0
-0 0 184 120
-2
-asset\vehicle\truct.png
+0 0 220 111
+1
+asset\vehicle\ambu.png
 200 200
-3332.96 1500
-0.028278 0.1
+2685.88 1500
+0.070613 0.1
 1 1
 0 0
-0 0 184 120
-2
-0 2.72828
+0 0 220 111
+1
+0 0.970613
 20 20 20
 1500 1440

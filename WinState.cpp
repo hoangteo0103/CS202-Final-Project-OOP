@@ -40,20 +40,22 @@ void WinState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         Vector2f(
             static_cast<float> (app.getSize().x) / 2.f,
             static_cast<float> (app.getSize().y) / 1.5f));
-    this->container.setFillColor(Color::Black);
+    //this->container.setFillColor(Color::Black);
+    this->texture.loadFromFile("External/images/win_menu.png");
+    this->container.setTexture(&this->texture);
     this->container.setPosition(
         background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
     // Init buttons
 
-    this->buttons["OK"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 25.0, 400, 100, "ok_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["OK"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 10.0, 400, 100, "ok_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
     // Init Text
-    this->menutext.setFont(font);
+    /*this->menutext.setFont(font);
     this->menutext.setFillColor(Color(255, 255, 255, 200));
     this->menutext.setCharacterSize(35);
-    this->menutext.setString("You Win!!!!");
+    this->menutext.setString("You Win!!!");
     this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
-        this->container.getPosition().y + 20.f);
+        this->container.getPosition().y + 20.f);*/
 }
 void WinState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {

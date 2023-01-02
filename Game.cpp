@@ -8,7 +8,7 @@ using namespace sf;
 void Game::initWindow()
 {
     ifstream ifs("Data/window.ini");
-    string title = "CROSSY ROAD";
+    string title = "CROSSY ROADS";
 
     VideoMode Size(1280, 720);
     this->app = new RenderWindow(Size, title);

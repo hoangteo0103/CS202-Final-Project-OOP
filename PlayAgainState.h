@@ -7,6 +7,7 @@ class PlayAgainState
 private:
     RectangleShape background;
     RectangleShape container;
+    Texture texture;
     Font font;
     Text menutext;
     Vector2i mousePosWindow;
