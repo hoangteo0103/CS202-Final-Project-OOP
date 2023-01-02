@@ -1,22 +1,22 @@
-#include "MainMenuState.h"
+ #include "MainMenuState.h"
 
 void MainMenuState::initFonts()
 {
     if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
 
-    }
+    } 
 
     t.loadFromFile("External/images/mainmenu.png");
-    this->background.setTexture(t);
+    this->background.setTexture(t); 
 }
 void MainMenuState::initButtons()
 {
-    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 310, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 370, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 430, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 490, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 550, 400, 50, "test_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 390, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 450, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 510, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    //this->buttons["TEST_GAME"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 630, 400, 50, "test_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 
@@ -90,11 +90,11 @@ void MainMenuState::updateButtons()
         this->app->close();
     }
 
-    if (this->buttons["TEST_GAME"]->isPressed())
+    /*if (this->buttons["TEST_GAME"]->isPressed())
     {
         this->theme.stop();
         this->states->push(new GameState(this->app, this->states, 0, false));
-    }
+    }*/  
 
 }
 
