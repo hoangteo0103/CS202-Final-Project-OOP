@@ -22,7 +22,7 @@ public:
     Author(RenderWindow* app, stack<State*>* states);
     virtual ~Author();
     // Functions
-    void updateKeyBinds();
+    //void updateKeyBinds();
     void updateButtons();
     void endState();
     void update();

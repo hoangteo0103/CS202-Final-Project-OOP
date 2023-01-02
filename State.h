@@ -27,8 +27,8 @@ public:
     void pauseState();
     void unpauseState();
     const bool& getQuit() const;
-    virtual void checkForQuit();
-    virtual void updateKeyBinds() = 0;
+    //virtual void checkForQuit();
+    //virtual void updateKeyBinds() = 0;
     virtual void updateMousePositions();
     virtual void endState() = 0;
     virtual void update() = 0;

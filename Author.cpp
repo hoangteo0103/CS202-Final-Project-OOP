@@ -7,7 +7,7 @@ void Author::initFonts()
     {
 
     }
-    texture.loadFromFile("External/images/mainmenu.png");
+    texture.loadFromFile("External/images/mainmenu1.png");
     this->background.setTexture(texture);
 }
 void Author::initButtons()
@@ -18,7 +18,7 @@ void Author::initButtons()
 
 void Author::initSounds()
 {
-    if (!this->theme.openFromFile("sound/main_menu/Cloudy_country.ogg"))
+    if (!this->theme.openFromFile("sound/main_menu/Load_game.ogg"))
         cout << "COULD NOT LOAD THEME MUSIC" << endl;
     this->theme.setLoop(true);
     this->theme.setVolume(40);
@@ -40,10 +40,10 @@ Author ::~Author()
         delete it->second;
     }
 }
-void Author::updateKeyBinds()
-{
-    this->checkForQuit();
-}
+//void Author::updateKeyBinds()
+//{
+//    this->checkForQuit();
+//}
 void Author::endState()
 {
     cout << "End MainMenu" << endl;
@@ -65,7 +65,7 @@ void Author::updateButtons()
 void Author::update()
 {
     this->updateMousePositions();
-    this->updateKeyBinds();
+    //this->updateKeyBinds();
     this->updateButtons();
 }
 

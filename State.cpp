@@ -28,10 +28,11 @@ const bool& State::getQuit() const
 {
     return this->quit;
 }
-void State::checkForQuit()
-{
-    if (Keyboard::isKeyPressed(Keyboard::Escape))
-    {
-        this->quit = true;
-    }
-}
+//void State::checkForQuit()
+//{
+//    if (Keyboard::isKeyPressed(Keyboard::Escape))
+//    {
+//        this->quit = true;
+//    }
+//}
+ 

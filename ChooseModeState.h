@@ -22,7 +22,7 @@ public:
     ChooseModeState(RenderWindow* app, stack<State*>* states);
     virtual ~ChooseModeState();
     // Functions
-    void updateKeyBinds();
+    //void updateKeyBinds();
     void updateButtons();
     void endState();
     void update();

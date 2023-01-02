@@ -23,7 +23,7 @@ public:
     virtual ~MainMenuState();
     // Functions
     bool checkSaved();
-    void updateKeyBinds();
+    //void updateKeyBinds();
     void updateButtons();
     void endState();
     void update();

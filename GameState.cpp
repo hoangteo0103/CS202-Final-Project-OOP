@@ -133,10 +133,10 @@ const bool& GameState::getWin() const
 }
 
 
-void GameState::updateKeyBinds()
-{
-    this->checkForQuit();
-}
+//void GameState::updateKeyBinds()
+//{
+//    this->checkForQuit();
+//}
 
 void GameState::endState()
 {
@@ -221,7 +221,7 @@ void GameState::updateButtons()
     {
         it.second->update(this->mousePosView);
     }
-    if (this->buttons["PAUSE_STATE_BTN"]->isPressed())
+    if (this->buttons["PAUSE_STATE_BTN"]->isPressed() || Keyboard::isKeyPressed(Keyboard::Escape))
     {
             this->clock.Pause();
             this->paused = true;
@@ -319,7 +319,7 @@ void GameState::updatePaused()
 void GameState::update()
 {
     this->updateMousePositions();
-    this->updateKeyBinds();
+    //this->updateKeyBinds();
     this->updateButtons();
 
     if (!this->paused)

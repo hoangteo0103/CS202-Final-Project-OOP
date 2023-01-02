@@ -8,16 +8,16 @@ void ChooseModeState::initFonts()
     {
 
     }
-    texture.loadFromFile("External/images/mainmenu.png");
+    texture.loadFromFile("External/images/mainmenu2.png");
     this->background.setTexture(texture);
 }
 void ChooseModeState::initButtons()
 {
 
-    this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 260, 400, 50, "easy_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 320, 400, 50, "medium_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 380, 400, 50, "hard_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 440, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 390, 400, 50, "easy_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 450, 400, 50, "medium_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 510, 400, 50, "hard_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 
@@ -45,10 +45,10 @@ ChooseModeState ::~ChooseModeState()
         delete it->second;
     }
 }
-void ChooseModeState::updateKeyBinds()
-{
-    this->checkForQuit();
-}
+//void ChooseModeState::updateKeyBinds()
+//{
+//    this->checkForQuit();
+//}
 void ChooseModeState::endState()
 {
     cout << "End MainMenu" << endl;
@@ -91,7 +91,7 @@ void ChooseModeState::updateButtons()
 void ChooseModeState::update()
 {
     this->updateMousePositions();
-    this->updateKeyBinds();
+    //this->updateKeyBinds();
     this->updateButtons();
 
     //system("cls") ;

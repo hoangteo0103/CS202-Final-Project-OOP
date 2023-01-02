@@ -61,7 +61,7 @@ public:
     virtual ~GameState();
     // Functions
     void Reset(int level = 1);
-    void updateKeyBinds();
+    //void updateKeyBinds();
     void updateButtons();
     void updateWinState();
     void updateLoseState();

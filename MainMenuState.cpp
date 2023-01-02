@@ -7,7 +7,7 @@ void MainMenuState::initFonts()
 
     } 
 
-    t.loadFromFile("External/images/mainmenu.png");
+    t.loadFromFile("External/images/mainmenu1.png");
     this->background.setTexture(t); 
 }
 void MainMenuState::initButtons()
@@ -44,10 +44,10 @@ MainMenuState ::~MainMenuState()
         delete it->second;
     }
 }
-void MainMenuState::updateKeyBinds()
-{
-    this->checkForQuit();
-}
+//void MainMenuState::updateKeyBinds()
+//{
+//    this->checkForQuit();
+//}
 void MainMenuState::endState()
 {
     cout << "End MainMenu" << endl;
@@ -101,7 +101,7 @@ void MainMenuState::updateButtons()
 void MainMenuState::update()
 {
     this->updateMousePositions();
-    this->updateKeyBinds();
+    //this->updateKeyBinds();
     this->updateButtons();
     //system("cls") ;
     //cout << mousePosView.x <<' ' << mousePosView.y <<endl;
