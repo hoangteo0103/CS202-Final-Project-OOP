@@ -7,12 +7,12 @@ void Author::initFonts()
     {
 
     }
-    texture.loadFromFile("External/images/mainmenu1.png");
+    texture.loadFromFile("External/images/author.png");
     this->background.setTexture(texture);
 }
 void Author::initButtons()
 {
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 440, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 
