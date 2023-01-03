@@ -4,7 +4,7 @@ CTRAFFICLIGHT::CTRAFFICLIGHT(Vector2f pos, float red_time, float yellow_time, fl
 {
 	now_time = 0;
 	state = 0;
-	texture.loadFromFile("trafficlight.png");
+	texture.loadFromFile("asset/trafficlight/trafficlight.png");
 	this->red_time = red_time;
 	this->yellow_time = yellow_time;	
 	this->green_time = green_time;
@@ -63,7 +63,7 @@ void CTRAFFICLIGHT::transition(float delta_time)
 
 CTRAFFICLIGHT::CTRAFFICLIGHT(istream& in)
 {
-	texture.loadFromFile("trafficlight.png");
+	texture.loadFromFile("asset/trafficlight/trafficlight.png");
 	in >> state >> now_time; 
 	in >> red_time >> yellow_time >> green_time; 
 	float x, y;

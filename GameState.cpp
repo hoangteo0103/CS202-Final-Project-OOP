@@ -67,7 +67,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     this->win_line_y = 200;
     this->current_level = 1; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
     this->distance_between_lane = 100;
-    map.init("grasses.png");
+    map.init("asset/grass/grass.png");
     this->mode = mode;
 
 
@@ -85,7 +85,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         starting_position.x = map.getSize().x / 2;
         starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
-        player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
+        player = new CPEOPLE("asset/skin/skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
     }
     else {
@@ -471,7 +471,7 @@ void GameState::loadGame()
 
     //starting_position.x = map.getSize().x / 2;
     //starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
-    //player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
+    //player = new CPEOPLE("asset/skin/skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
     
     // @tcm: Tui sua lai ham load/save nhu sau nhe
     ifstream inPlayer("External/Data/player_data.txt");
