@@ -1,22 +1,23 @@
 #pragma once
-
 #include "Base.h"
+using namespace sf;
+using namespace std;
 
 class CMap
 {
 private:
-	sf::Vector2u size;
-	sf::Texture texture;
-	sf::Sprite sprite;
+	Vector2u size;
+	Texture texture;
+	Sprite sprite;
 	
 
 public:
 	CMap() {};
-	CMap(std::string dir);
+	CMap(string dir);
 	void init(string dir); 
 
-	void draw(sf::RenderWindow& window);
-	sf::Vector2u getSize() const;
+	void draw(RenderWindow& window);
+	Vector2u getSize() const;
 };
 
 

@@ -1,6 +1,5 @@
 #include "CPEOPLE.h"
 
-
 CPEOPLE::CPEOPLE(string path,  sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos) : Object(path , image_contain , switch_time , speed , pos) {
 	row = 0;
 	face_direction = 0;

@@ -1,11 +1,4 @@
 #include "PauseState.h"
-void PauseState::initFonts()
-{
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-
-    }
-}
 
 void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
@@ -31,6 +24,7 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         if (pos.y < app.getSize().y / 2) setPos.y = 0;
         if (pos.y > map->getSize().y - app.getSize().y / 2) setPos.y = map->getSize().y - app.getSize().y;
     }
+
     //Init background
     this->background.setSize(
         Vector2f(
@@ -38,37 +32,31 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
             static_cast<float> (app.getSize().y)));
     this->background.setFillColor(Color(20, 20, 20, 100));
     this->background.setPosition(setPos);
+
     // Init container
     this->container.setSize(
         Vector2f(
             static_cast<float> (app.getSize().x) / 2.f,
             static_cast<float> (app.getSize().y) / 1.2f));
-    //this->container.setFillColor(Color::Black);
     this->texture.loadFromFile("External/images/pause_menu.png");
     this->container.setTexture(&this->texture);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
+    
     // Init buttons
-
     this->buttons["RESUME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 210.0, 400, 100, "resume_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["SAVE"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 85.0, 400, 100, "save_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 40.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "");
     this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 165.0, 400, 100, "home_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    //// Init Text
-    //this->menutext.setFont(font);
-    //this->menutext.setFillColor(Color(255, 255, 255, 200));
-    //this->menutext.setCharacterSize(40);
-    //this->menutext.setString("PAUSED");
-    //this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
-    //    this->container.getPosition().y + 20.f);
 }
 
 void PauseState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
-    this->initFonts();
     this->initButtons(app, player, map);
 }
-PauseState::PauseState()
+
+PauseState::PauseState(): resume(false), save(false), restart(false), home(false)
 {
+
 }
 
 PauseState::~PauseState()
@@ -83,6 +71,7 @@ PauseState::~PauseState()
     this->restart = false;
     this->home = false;
 }
+
 const bool& PauseState::getResume() const
 {
     return this->resume;
@@ -115,6 +104,7 @@ void PauseState::updateMousePositions(Vector2f mousePosView)
 {
     this->mousePosView = mousePosView;
 }
+
 void PauseState::updateButtons()
 {
     for (auto& it : this->buttons)
@@ -122,6 +112,7 @@ void PauseState::updateButtons()
         it.second->update(this->mousePosView);
     }
 }
+
 void PauseState::update()
 {
     this->updateButtons();
@@ -155,7 +146,5 @@ void PauseState::render(RenderTarget* target)
 {
     target->draw(background);
     target->draw(container);
-    target->draw(menutext);
     this->renderButtons(target);
-
 }

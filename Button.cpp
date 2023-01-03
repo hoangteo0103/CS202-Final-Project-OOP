@@ -19,11 +19,7 @@ Button::Button(string path, float x, float y, float width, float height, string 
 
 Button::~Button()
 {
-}
-void Button::setOutline(Color  color)
-{
-    this->shape.setOutlineThickness(1.0f);
-    this->shape.setOutlineColor(color);
+
 }
 
 void Button::update(const Vector2f mousePos)
@@ -39,7 +35,8 @@ void Button::update(const Vector2f mousePos)
         {
             leftPress = true;
         }
-        if (leftPress)  this->buttonState = BTN_ACTIVE;
+        if (leftPress)  
+            this->buttonState = BTN_ACTIVE;
     }
     switch (this->buttonState)
     {
@@ -52,23 +49,17 @@ void Button::update(const Vector2f mousePos)
         break;
     case BTN_ACTIVE:
         this->active.play();
-        //this->shape.setFillColor(this->activeColor);
         break;
     default:
-        //this->shape.setFillColor(Color::Red);
         break;
     }
 }
 
 const bool Button::isPressed() const
 {
-    if (this->buttonState == BTN_ACTIVE)
+    if (this->buttonState == BTN_ACTIVE) 
         return true;
     return false;
-}
-void Button::render(RenderTarget* target)
-{
-    target->draw(this->shape);
 }
 
 void Button::move(const Vector2f distance)
@@ -90,4 +81,9 @@ void Button::setTexture(string path)
     if (!this->hoverTexture.loadFromFile(path + "_button_hover.png"));
     {
     }
+}
+
+void Button::render(RenderTarget* target)
+{
+    target->draw(this->shape);
 }

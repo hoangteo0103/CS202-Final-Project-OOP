@@ -13,10 +13,7 @@ public :
 	void draw(RenderWindow& window);
 	void render(RenderTarget* target);
 	void transition(float delta_time);
-	bool isVehiclePass()
-	{
-		return state != 2;
-	}
+	bool isVehiclePass();
 	float getPos();
 
 	// Load and save 

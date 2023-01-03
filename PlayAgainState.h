@@ -5,27 +5,37 @@
 class PlayAgainState
 {
 private:
+    // Texture
     RectangleShape background;
     RectangleShape container;
     Texture texture;
-    Font font;
-    Text menutext;
+
+    // Update
     Vector2i mousePosWindow;
     Vector2f mousePosView;
-    bool Yes, No;
     map<string, Button* > buttons;
-    void initFonts();
+    bool Yes;
+    bool No;
+
+private:
+    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+
 public:
     PlayAgainState();
     virtual ~PlayAgainState();
     //functions
-    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+
+    // Init
     void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
-    void updateButtons();
+
+    // Update
     const bool& getYes() const;
     const bool& getNo() const;
     void updateMousePositions(Vector2f mousePosView);
+    void updateButtons();
     void update();
+
+    // Render
     void renderButtons(RenderTarget* target);
     void render(RenderTarget* target);
 };

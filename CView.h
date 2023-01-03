@@ -1,22 +1,26 @@
 #pragma once
-
 #include "Base.h"
+#include <iostream>
+
+using namespace sf;
+using namespace std;
 
 class CView
 {
 private:
-	sf::View _view;
-	sf::Vector2u window_size, map_size;
-	sf::Vector2f position;
+	View _view;
+	Vector2u window_size, map_size;
+	Vector2f position;
+
 public:
 	CView() {};
-	CView(sf::RenderWindow& window, const sf::Vector2u& map_size);
-	void init(sf::RenderWindow& window, const sf::Vector2u& map_size);
-	void update(sf::RenderWindow& window, Object& player);
-	sf::Vector2f getCenter();
-	void reset(sf::RenderWindow& window, Object& player);
+	CView(RenderWindow& window, const Vector2u& map_size);
+	void init(RenderWindow& window, const Vector2u& map_size);
+	void update(RenderWindow& window, Object& player);
+	Vector2f getCenter();
+	void reset(RenderWindow& window, Object& player);
 
-	void loadGame(istream& in, sf::RenderWindow& window, const sf::Vector2u& map_size);
+	void loadGame(istream& in, RenderWindow& window, const Vector2u& map_size);
 	void saveGame(ostream& out);
 };
 

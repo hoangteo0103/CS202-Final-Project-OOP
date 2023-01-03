@@ -1,19 +1,13 @@
-
 #include "ChooseModeState.h"
 
-
-void ChooseModeState::initFonts()
+void ChooseModeState::initBackground()
 {
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-
-    }
     texture.loadFromFile("External/images/mainmenu2.png");
     this->background.setTexture(texture);
 }
+
 void ChooseModeState::initButtons()
 {
-
     this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 390, 400, 50, "easy_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 450, 400, 50, "medium_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 510, 400, 50, "hard_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
@@ -33,8 +27,8 @@ void ChooseModeState::initSounds()
 ChooseModeState::ChooseModeState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
+    this->initBackground();
     this->initButtons();
-    this->initFonts();
     this->initSounds();
 }
 
@@ -45,14 +39,12 @@ ChooseModeState ::~ChooseModeState()
         delete it->second;
     }
 }
-//void ChooseModeState::updateKeyBinds()
-//{
-//    this->checkForQuit();
-//}
+
 void ChooseModeState::endState()
 {
-    cout << "End MainMenu" << endl;
+
 }
+
 void ChooseModeState::updateButtons()
 {
     for (auto& it : this->buttons)
@@ -91,13 +83,9 @@ void ChooseModeState::updateButtons()
 void ChooseModeState::update()
 {
     this->updateMousePositions();
-    //this->updateKeyBinds();
     this->updateButtons();
-
-    //system("cls") ;
-    //cout << mousePosView.x <<' ' << mousePosView.y <<endl;
-
 }
+
 void ChooseModeState::renderButtons(RenderTarget* target)
 {
     for (auto& it : this->buttons)
@@ -105,6 +93,7 @@ void ChooseModeState::renderButtons(RenderTarget* target)
         it.second->render(target);
     }
 }
+
 void ChooseModeState::render(RenderTarget* target)
 {
     if (!target)

@@ -5,29 +5,37 @@
 class WinState
 {
 private:
+    bool ok;
+
+    // Texure
     RectangleShape background;
     RectangleShape container;
     Texture texture;
-    Font font;
-    Text menutext;
+
+    // Update
     Vector2i mousePosWindow;
     Vector2f mousePosView;
-
     map<string, Button* > buttons;
-    bool ok;
-    void initFonts();
+
+private:
+    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+
 public:
     WinState();
     virtual ~WinState();
     //functions
-    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+    // Init
     void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
-    void updateButtons();
+
+    // Update
     const bool& getOk() const;
     void updateMousePositions(Vector2f mousePosView);
+    void updateButtons();
     void update();
+    void hide();
+
+    // Render
     void renderButtons(RenderTarget* target);
     void render(RenderTarget* target);
-    void hide();
 };
 #endif 

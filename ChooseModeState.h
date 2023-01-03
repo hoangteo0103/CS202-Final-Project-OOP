@@ -8,13 +8,12 @@ class ChooseModeState :
 {
 private:
     map<string, Button* > buttons;
-    Font font;
     Texture texture;
     Sprite background;
     Music theme;
 
 private:
-    void initFonts();
+    void initBackground();
     void initButtons();
     void initSounds();
 
@@ -22,10 +21,13 @@ public:
     ChooseModeState(RenderWindow* app, stack<State*>* states);
     virtual ~ChooseModeState();
     // Functions
-    //void updateKeyBinds();
-    void updateButtons();
+    
+    // Update
     void endState();
+    void updateButtons();
     void update();
+
+    // Render
     void render(RenderTarget* target = NULL);
     void renderButtons(RenderTarget* target = NULL);
 

@@ -12,28 +12,39 @@
 using namespace sf;
 using namespace std;
 enum button_states { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
+
 class Button
 {
 private:
-    short unsigned buttonState;
-    RectangleShape shape;
+    // Name
     string name;
     string path;
 
+    // Shape
+    short unsigned buttonState;
+    RectangleShape shape;
+
+    //Texture
     Texture idleTexture;
     Texture hoverTexture;
-    SoundEffect hover, active;
 
+    // SoundEffect
+    SoundEffect hover, active;
 
 public:
     Button(string path, float x, float y, float width, float height, string name, string hover, string active);
     ~Button();
-    const bool isPressed() const;
-    virtual void setOutline(Color color);
+
+    // Update
     void update(const Vector2f mousePos);
-    void render(RenderTarget* target);
+    const bool isPressed() const;
+
+    // Position
     void move(const Vector2f distance);
     void setPosition(const Vector2f pos);
+
+    // Render
     void setTexture(string path);
+    void render(RenderTarget* target);
 };
 #endif // BUTTON_H

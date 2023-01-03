@@ -26,6 +26,12 @@ void CTRAFFICLIGHT::draw(RenderWindow& window)
 
 void CTRAFFICLIGHT::render(RenderTarget* target)
 {
+
+}
+
+bool CTRAFFICLIGHT::isVehiclePass()
+{
+	return state != 2;
 }
 
 float CTRAFFICLIGHT::getPos()

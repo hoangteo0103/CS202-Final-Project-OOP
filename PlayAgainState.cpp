@@ -1,16 +1,10 @@
 #include "PlayAgainState.h"
-void PlayAgainState::initFonts()
-{
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-
-    }
-}
 
 void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
     this->Yes = false;
     this->No = false;
+
     // Calculate position
     Vector2f pos = player->getPosition();
     Vector2f setPos = pos;
@@ -28,6 +22,7 @@ void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
         if (pos.y < app.getSize().y / 2) setPos.y = 0;
         if (pos.y > map->getSize().y - app.getSize().y / 2) setPos.y = map->getSize().y - app.getSize().y;
     }
+
     //Init background
     this->background.setSize(
         Vector2f(
@@ -35,37 +30,30 @@ void PlayAgainState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
             static_cast<float> (app.getSize().y)));
     this->background.setFillColor(Color(20, 20, 20, 100));
     this->background.setPosition(setPos);
+
     // Init container
     this->container.setSize(
         Vector2f(
             static_cast<float> (app.getSize().x)/2.f,
             static_cast<float> (app.getSize().y) / 1.5f));
-    //this->container.setFillColor(Color::Black);
     this->texture.loadFromFile("External/images/play_again_menu.png");
     this->container.setTexture(&this->texture);
     this->container.setPosition(background.getPosition().x + app.getSize().x / 2 - this->container.getSize().x / 2.f, background.getPosition().y + app.getSize().y / 2 - this->container.getSize().y / 2.f);
-    // Init buttons
     
+    // Init buttons
     this->buttons["YES"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 -75.0, 400, 100, "yes_button", "sound/main_menu/hover.ogg", "");
     this->buttons["NO"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 55.0, 400, 100, "no_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-
-    // Init Text
-    /*this->menutext.setFont(font);
-    this->menutext.setFillColor(Color(255, 255, 255, 200));
-    this->menutext.setCharacterSize(40);
-    this->menutext.setString("Do you want to play again ?");
-    this->menutext.setPosition(this->container.getPosition().x + this->container.getSize().x / 2.f - this->menutext.getGlobalBounds().width / 2.f,
-        this->container.getPosition().y + 20.f);*/
 }
 
 
 void PlayAgainState::initState(RenderWindow& app, CPEOPLE* player, CMap* map)
 {
-    this->initFonts();
     this->initButtons(app,player,map);
 }
-PlayAgainState::PlayAgainState()
+
+PlayAgainState::PlayAgainState(): Yes(false), No(false)
 {
+
 }
 
 PlayAgainState::~PlayAgainState()
@@ -78,18 +66,22 @@ PlayAgainState::~PlayAgainState()
     this->Yes = false;
     this->No = false;
 }
+
 const bool& PlayAgainState::getYes() const
 {
     return this->Yes;
 }
+
 const bool& PlayAgainState::getNo() const
 {
     return this->No;
 }
+
 void PlayAgainState::updateMousePositions(Vector2f mousePosView)
 {
     this->mousePosView = mousePosView;
 }
+
 void PlayAgainState::updateButtons()
 {
     for (auto& it : this->buttons)
@@ -97,6 +89,7 @@ void PlayAgainState::updateButtons()
         it.second->update(this->mousePosView);
     }
 }
+
 void PlayAgainState::update()
 {
     this->updateButtons();
@@ -122,6 +115,5 @@ void PlayAgainState::render(RenderTarget* target)
 {
     target->draw(background);
     target->draw(container);
-    target->draw(menutext);
     this->renderButtons(target);
 }

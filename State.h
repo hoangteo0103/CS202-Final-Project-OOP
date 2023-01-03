@@ -27,12 +27,11 @@ public:
     void pauseState();
     void unpauseState();
     const bool& getQuit() const;
-    //virtual void checkForQuit();
-    //virtual void updateKeyBinds() = 0;
-    virtual void updateMousePositions();
+
+    // Update
     virtual void endState() = 0;
+    virtual void updateMousePositions();
     virtual void update() = 0;
     virtual void render(RenderTarget* target = nullptr) = 0;
-
 };
 #endif

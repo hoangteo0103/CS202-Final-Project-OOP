@@ -1,8 +1,5 @@
 #include "CMap.h"
 
-
-using namespace std;
-
 CMap::CMap(string dir) {
 	if (!texture.loadFromFile(dir)) {
 		cout << "Could Not Load Map" << endl;
@@ -23,12 +20,12 @@ void CMap::init(string dir)
 	size = texture.getSize();
 }
 
-void CMap::draw(sf::RenderWindow& window) {
+void CMap::draw(RenderWindow& window) {
 	window.draw(sprite);
 }
 
 
 
-sf::Vector2u CMap::getSize() const{
+Vector2u CMap::getSize() const{
 	return size;
 }

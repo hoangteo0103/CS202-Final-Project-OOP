@@ -29,16 +29,6 @@ void GameState::Reset(int level)
     
 }
 
-void GameState::initFonts()
-{
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-
-    }
-    //texture.loadFromFile("images/game1.png");
-    this->background.setTexture(texture);
-}
-
 void GameState::initSounds()
 {
     if (!this->theme.openFromFile("sound/game_state/summer.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
@@ -54,8 +44,17 @@ void GameState::initSounds()
     this->charging.setVolume(25);
     this->levelup.setVolume(25);
 }
+
+void GameState::initButtons()
+{
+    this->buttons.clear();
+    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
+    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
+}
+
 GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
-//, PauseState(app, states)
 {
     // Init
     this->initSounds();
@@ -64,7 +63,6 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
     this->ok = false;
     this->clock.Start();
     this->isUpdated = false;
-    this->initFonts();
 
     this->win_line_y = 200;
     this->current_level = 1; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
@@ -89,26 +87,16 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
         player = new CPEOPLE("skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
-    
-        
-
     }
     else {
         loadGame();
-    
     }
-    this->buttons.clear();
-
-    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
+    this->initButtons();
 }
 
 
 GameState ::~GameState()
 {
-    //delete this->pmenu;
     for (auto it = this->buttons.begin(); it != this->buttons.end(); ++it)
     {
         delete it->second;
@@ -132,12 +120,6 @@ const bool& GameState::getWin() const
     }
     return false;
 }
-
-
-//void GameState::updateKeyBinds()
-//{
-//    this->checkForQuit();
-//}
 
 void GameState::endState()
 {
@@ -333,9 +315,7 @@ void GameState::updatePaused()
 void GameState::update()
 {
     this->updateMousePositions();
-    //this->updateKeyBinds();
     this->updateButtons();
-
     if (!this->paused)
     {
         updateUnpaused();

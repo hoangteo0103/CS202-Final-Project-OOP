@@ -1,14 +1,18 @@
 #pragma once
 #include "Base.h"
-
 #include "LanePack.h"
 enum PLAYERSTATE { MOVE = 0, IDLE = 1, DEATH = 2 };
 
 
 class CPEOPLE : public Object
 {
+private:
+	int state;
+	int row;
+	int face_direction; // 0 - down, 1 - left, 2 - right, 3 - up
+	bool pause;
+
 public:
-	
 	CPEOPLE() {};
 	CPEOPLE(string path, sf::Vector2u image_contain, float switch_time, float speed, Vector2f pos);
 	void move(float delta_time, const sf::Vector2u map_size, LanePack*& lane_management);
@@ -20,13 +24,6 @@ public:
 	bool isDead();
 	bool isDeadFrameEnd();
 
-private:
-	int state;
-	int row;
-	int face_direction; // 0 - down, 1 - left, 2 - right, 3 - up
-	bool pause;
-
-public:
 	//Load and save 
 	CPEOPLE(istream& in);
 	void saveCPeople(ostream& out);

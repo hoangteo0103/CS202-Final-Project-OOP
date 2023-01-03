@@ -6,6 +6,11 @@ COBSTACLE::COBSTACLE(string path, sf::Vector2u image_contain, float switch_time,
 	this->direction = dir;
 }
 		
+void COBSTACLE::setSpeed(int s)
+{
+	this->speed = s;
+}
+
 
 void COBSTACLE::move(float delta_time)
 {

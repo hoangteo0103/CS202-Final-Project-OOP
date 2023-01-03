@@ -31,7 +31,6 @@ private:
     Clock delta_clock;
     //ostringstream ssTime;
     map<string, Button* > buttons;
-    Font font;
     Texture texture;
     Sprite background;
     float previous_time = 0.0f; 
@@ -53,16 +52,14 @@ private:
     int current_level;
     int win_line_y;
     int distance_between_lane;
-    void initFonts();
     void initSounds();
-    //void initButtons();
+    void initButtons();
 
 public:
     GameState(RenderWindow* app, stack<State*>* states,int mode, bool saved);
     virtual ~GameState();
     // Functions
     void Reset(int level = 1);
-    //void updateKeyBinds();
     void updateButtons();
     void updateWinState();
     void updateLoseState();

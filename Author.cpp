@@ -1,15 +1,11 @@
 #include "Author.h"
 
-
-void Author::initFonts()
+void Author::initBackground()
 {
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-
-    }
     texture.loadFromFile("External/images/author.png");
     this->background.setTexture(texture);
 }
+
 void Author::initButtons()
 {
     this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
@@ -27,9 +23,9 @@ void Author::initSounds()
 
 Author::Author(RenderWindow* app, stack<State*>* states)
     :State(app, states)
-{
+{   
+    this->initBackground();
     this->initButtons();
-    this->initFonts();
     this->initSounds();
 }
 
@@ -39,15 +35,14 @@ Author ::~Author()
     {
         delete it->second;
     }
+    this->theme.stop();
 }
-//void Author::updateKeyBinds()
-//{
-//    this->checkForQuit();
-//}
+
 void Author::endState()
 {
-    cout << "End MainMenu" << endl;
+
 }
+
 void Author::updateButtons()
 {
     for (auto& it : this->buttons)
@@ -65,7 +60,6 @@ void Author::updateButtons()
 void Author::update()
 {
     this->updateMousePositions();
-    //this->updateKeyBinds();
     this->updateButtons();
 }
 
