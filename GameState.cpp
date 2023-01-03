@@ -159,10 +159,10 @@ void GameState::updateWinState()
         this->againState.update();
         if (this->againState.getYes())
         {
+            this->winState.hide();
             this->Reset();
         }
         if (this->againState.getNo())
-
         {
             this->Reset();
             this->theme.stop();
@@ -197,11 +197,13 @@ void GameState::updateLoseState()
         this->againState.update();
         if (this->againState.getYes())
         {
+            this->loseState.hide();
             this->Reset();
         }
         if (this->againState.getNo())
         {
             this->endState();
+            this->theme.stop();
             this->returnMenu();
         }
     }

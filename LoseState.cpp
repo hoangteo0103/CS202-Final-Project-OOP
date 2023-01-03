@@ -115,3 +115,15 @@ void LoseState::render(RenderTarget* target)
     target->draw(menutext);
     this->renderButtons(target);
 }
+
+void LoseState::hide()
+{
+    Vector2f des(0.f - this->background.getSize().x, 0.f);
+    Vector2f dis = this->background.getPosition() - des;
+    this->background.move(dis);
+    this->container.move(dis);
+    for (auto& it : this->buttons)
+    {
+        it.second->move(dis);
+    }
+}

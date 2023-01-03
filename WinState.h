@@ -28,5 +28,6 @@ public:
     void update();
     void renderButtons(RenderTarget* target);
     void render(RenderTarget* target);
+    void hide();
 };
 #endif 

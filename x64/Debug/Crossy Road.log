@@ -1,2 +1,13 @@
-﻿  Lane.cpp
-  Crossy Road.vcxproj -> C:\Users\asus\source\repos\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
+﻿  Author.cpp
+  ChooseModeState.cpp
+  Game.cpp
+  GameState.cpp
+  MainMenuState.cpp
+  Source.cpp
+  WinState.cpp
+  Generating Code...
+D:\Download\GitHub\CS202-Final-Project-OOP\GameState.cpp(124): warning C4172: returning address of local variable or temporary
+D:\Download\GitHub\CS202-Final-Project-OOP\GameState.cpp(131): warning C4172: returning address of local variable or temporary
+D:\Download\GitHub\CS202-Final-Project-OOP\GameState.cpp(133): warning C4172: returning address of local variable or temporary
+D:\Download\GitHub\CS202-Final-Project-OOP\GameState.cpp(439): warning C4172: returning address of local variable or temporary
+  Crossy Road.vcxproj -> D:\Download\GitHub\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
