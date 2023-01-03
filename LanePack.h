@@ -19,6 +19,8 @@ private:
 	vector<Sprite> obstacleSprites;
 	vector<int> posObstacles; 
 	vector<sf::Vector2f> position;
+	vector<vector<pair<int , int > > > listPosObstacle;
+	vector<int> listNumObstacle;
 	int distance_factor;
 	int win_line_y; 
 public:

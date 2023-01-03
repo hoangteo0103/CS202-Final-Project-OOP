@@ -32,7 +32,6 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 	int offset = 50;
 	this->numberLanes = numberLane;
 	this->win_line_y = win_line_y;
-
 	random_device rd;
 	mt19937 rng(rd());
 
@@ -55,26 +54,30 @@ void LanePack::generateObstacle()
 {
 	random_device rd;
 	mt19937 rng(rd());
+	listPosObstacle.resize(numberLanes-1);
 	for (int i = 0; i < numberLanes - 1; i++)
 	{
 		uniform_int_distribution<int> rangeType(0, OBSTACLETEXTUREPATH.size() - 1);
 		uniform_int_distribution<int> rangeNum(10 , 20);
 		int num = rangeNum(rng);
-		int previous = 0; 
+		int previous = 0;
+		int realNum = 0;
 		for (int j = 0; j < num; j++)
 		{
 			
 			int type = rangeType(rng);
 			if (2880 < previous + SIZEOBSTACLE[type]) break;
 			uniform_int_distribution <int > range2(previous, min(2880 , previous + ( j + 2 ) *  SIZEOBSTACLE[type]));
-			Vector2f pos = Vector2f(range2(rng), posObstacles[i] + ROADHEIGHT);
+			int posX = range2(rng);
+			Vector2f pos = Vector2f(posX, posObstacles[i] + ROADHEIGHT);
 			COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0);
+			listPosObstacle[i].push_back({ posX , type });
 			obstacles.push_back(now);
 			previous = pos.x + SIZEOBSTACLE[type];
 			obstacleSprites.push_back(now->sprite);
-
+			realNum++;
 		}
-		
+		listNumObstacle.push_back(realNum);
 	}
 }
 
@@ -104,6 +107,8 @@ void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_
 	obstacleSprites.clear();
 	posObstacles.clear();
 	lanes.clear();
+	listNumObstacle.clear();
+	listPosObstacle.clear();
 	this->init(speed , level, map_size, win_line_y);
 }
 
@@ -113,23 +118,47 @@ int LanePack::getNumOfLanes() {
 
 void LanePack::saveLanePack(ostream& out)
 {
-	out << speed << ' ' << numberLanes << ' ' << distance_factor << ' ' <<  win_line_y << '\n';
+	out << speed << ' ' << numberLanes << ' ' << distance_factor << ' ' <<  win_line_y << '\n';\
+	
 	for (int i = 0; i < numberLanes; i++)
 	{
 		lanes[i]->saveLane(out);
+	}
+	for (int i = 0; i < numberLanes - 1; i++)
+	{
+		out << listNumObstacle[i] << '\n';
+		for (int j = 0; j < listNumObstacle[i]; j++)
+			out << listPosObstacle[i][j].first << ' ' << listPosObstacle[i][j].second << '\n';
 	}
 }
 void LanePack::loadLanePack(istream& in)
 {
 	in >> speed >> numberLanes >> distance_factor >> win_line_y; 
-
+	listNumObstacle.resize(numberLanes-1);
+	listPosObstacle.resize(numberLanes-1);
+	
+	
 	int offset = 50;
 	for (int i = 0; i < this->numberLanes; ++i) {
 		int y_position = (distance_factor + ROADHEIGHT) * i + win_line_y + offset;
 		Lane* new_lane = new Lane(in);
 		lanes.push_back(new_lane);
 		posObstacles.push_back(y_position);
-
 	}
-	this->generateObstacle();
+
+	for (int i = 0; i < numberLanes - 1; i++)
+	{
+		in >> listNumObstacle[i];
+		listPosObstacle[i].resize(listNumObstacle[i]);
+		for (int j = 0; j < listNumObstacle[i]; j++)
+		{
+			in >> listPosObstacle[i][j].first >> listPosObstacle[i][j].second;
+			int type = listPosObstacle[i][j].second;
+			int posX = listPosObstacle[i][j].first;
+			Vector2f pos = Vector2f(posX, posObstacles[i] + ROADHEIGHT);
+			COBSTACLE* now = new COBSTACLE(OBSTACLETEXTUREPATH[type], Vector2u(1, 1), 0, 0, pos, 0);
+			obstacles.push_back(now);
+			obstacleSprites.push_back(now->sprite);
+		}
+	}
 }
