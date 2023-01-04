@@ -67,7 +67,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 
 	if (dir!=1)
 	{
-		Vector2f nowPos = {0.f - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
+		Vector2f nowPos = {0.f - (num - 2) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
 		for (int i = 1; i <= num; i++)
 		{
 			COBSTACLE* now = new COBSTACLE(this->obstacle_path, imageContainer, 0.1f, speed, nowPos, dir);
@@ -77,7 +77,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		reverse(obstacle.begin(), obstacle.end());
 	}
 	else {
-		Vector2f nowPos = { 2880.f +  (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
+		Vector2f nowPos = { 2880.f +  (num - 2) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y };
 		for (int i = 1; i <= num; i++)
 		{
 			COBSTACLE* now = new COBSTACLE(this->obstacle_path, imageContainer, 0.1f, speed, nowPos, dir);
