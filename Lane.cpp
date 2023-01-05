@@ -1,7 +1,7 @@
 #include "Lane.h"
 vector<Vector2u> imageContainVc = { Vector2u(14,1) };
 vector<string> pathTexture = { "Skin1.png" };
-vector<int> sizeTexture = { 120};
+vector<int> sizeTexture = { 200};
 
 
 Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f pos)
@@ -152,8 +152,8 @@ void Lane::checkEnd()
 	if (dir == 2)
 	{
 		int typeObstacle = 0;
-		if (obstacle[0]->getPosition().x < 2880.f) return;
-		int disBetweenObstacle = 600;
+		if (obstacle[num-1]->getPosition().x < 2880.f) return;
+		int disBetweenObstacle = 200;
 		Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle) , position.y };
 		for (int i = 0; i < num; i++)
 		{
@@ -165,7 +165,7 @@ void Lane::checkEnd()
 		int typeObstacle = 0;
 		//cout << obstacle[0]->getPosition().x << endl; 
 		if (obstacle[0]->getPosition().x > 0.f) return;
-		int disBetweenObstacle = 600;
+		int disBetweenObstacle = 200;
 		Vector2f nowPos = { 2880.f + (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , position.y };
 		for (int i = 0; i < num; i++)
 		{
@@ -183,10 +183,18 @@ void Lane::update(float delta_time)
 	{
 		lights[i]->transition(delta_time);
 	}
+	if(dir == 1 )
 	for (int i = 0; i < num; i++)
 	{	
 		if (i != (num - 1) && (abs(obstacle[i]->getPosition().x - obstacle[i + 1]->getPosition().x) < 400.f)) continue;
 		obstacle[i]->move(delta_time);
+	}
+	else {
+		for (int i = 0; i < num; i++)
+		{
+			if (i != 0 && (abs(obstacle[i]->getPosition().x - obstacle[i - 1]->getPosition().x) < 400.f)) continue;
+			obstacle[i]->move(delta_time);
+		}
 	}
 	checkEnd();
 }
