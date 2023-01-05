@@ -45,7 +45,7 @@ void PauseState::initButtons(RenderWindow& app, CPEOPLE* player, CMap* map)
     // Init buttons
     this->buttons["RESUME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 210.0, 400, 100, "resume_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["SAVE"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 - 85.0, 400, 100, "save_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 40.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "");
+    this->buttons["RESTART"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 40.0, 400, 100, "restart_button", "sound/main_menu/hover.ogg", "sound/main_menu/empty.ogg");
     this->buttons["HOME"] = new Button("External/texture", background.getPosition().x + app.getSize().x / 2 - 200.0, background.getPosition().y + app.getSize().y / 2 + 165.0, 400, 100, "home_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 }
 

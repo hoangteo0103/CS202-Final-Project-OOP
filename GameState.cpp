@@ -48,17 +48,32 @@ void GameState::initSounds()
 void GameState::initButtons()
 {
     this->buttons.clear();
-    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    // Calculate position
+    Vector2f pausePos(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2);
+    Vector2f levelPos(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2);
+    if (player->getPosition().x <= app->getSize().x / 2 || player->getPosition().x >= map.getSize().x - app->getSize().x / 2)
+    {
+        pausePos.x = map.getSize().x - 50.0f;
+        levelPos.x = map.getSize().x - this->app->getSize().x;
+    }
+    if (player->getPosition().y <= app->getSize().y / 2 || player->getPosition().y >= map.getSize().y - app->getSize().y / 2)
+    {
+        pausePos.y = map.getSize().y - this->app->getSize().y;
+        levelPos.y = map.getSize().y - this->app->getSize().y;
+    }
+
+    // Set position
+    this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", pausePos.x, pausePos.y, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", levelPos.x, levelPos.y, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
+    it->second->setTexture("External/texture/lv_button/lv" + to_string(this->current_level));
 }
 
 GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
 {
     // Init
     this->initSounds();
-    // this->mode = mode; // @tcm: tui load/save thong so nay = loadGame()/saveGame()
+    // this->mode = mode; // @tcm: tui load/save thong so nay = loadGame()/saveGame()   
     this->restart = false;
     this->ok = false;
     this->clock.Start();
@@ -89,7 +104,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
 
     }
     else {
-        loadGame();
+        this->loadGame();
     }
     this->initButtons();
 }
@@ -431,17 +446,21 @@ void GameState::saveGame()
     // Save 4 files txt in the folder External/Data... : view , player , lanepack , game .
     // Save in the order : Game , Player , Lanepack , view 
     ofstream outGame("External/Data/game_data.txt");
-    outGame << this->mode << ' ' << this->current_level;
+    outGame << this->mode << " " << this->current_level;
+    outGame.close();
 
     ofstream outPlayer("External/Data/player_data.txt");
     outPlayer << this->starting_position.x << ' ' << this->starting_position.y << '\n';
     player->saveCPeople(outPlayer);
+    outPlayer.close();
 
     ofstream outLanePack("External/Data/lane_pack_data.txt");
     lane_management->saveLanePack(outLanePack);
+    outLanePack.close();
+
     ofstream outView("External/Data/view_data.txt");
     view->saveGame(outView);
-
+    outView.close();
 }
 
 void GameState::loadGame()
@@ -450,22 +469,20 @@ void GameState::loadGame()
     ifstream inGame("External/Data/game_data.txt");
     inGame >> this->mode;
     inGame >> this->current_level;
+    inGame.close();
 
     // Load lane pack
     ifstream inLanePack("External/Data/lane_pack_data.txt");
     lane_management = new LanePack(this->distance_between_lane);
     lane_management->loadLanePack(inLanePack);
+    inLanePack.close();
 
 
     // Load CVIEW 
     ifstream inView("External/Data/view_data.txt");
     view = new CView;
-    view->loadGame(inView, (*app), map.getSize()); 
-    cout << "DM"; 
-    
-    
-
-    
+    view->loadGame(inView, (*app), map.getSize());
+    inView.close();
 
     // Load player , currently testing
 
@@ -477,4 +494,5 @@ void GameState::loadGame()
     ifstream inPlayer("External/Data/player_data.txt");
     inPlayer >> starting_position.x >> starting_position.y;
     player = new CPEOPLE(inPlayer); // load = constructor
+    inPlayer.close();
 }
