@@ -8,7 +8,7 @@ const vector<string> ROAD_ANIMAL_TEXTURE_PATH = { "asset\\road\\road0.png", "ass
 const vector<string> ROAD_VEHICLE_TEXTURE_PATH = { "asset\\road\\road2.png" , "asset\\road\\road3.png" };
 
 
-const vector<pair<string, sf::Vector2u>> VEHICLE_TEXTURE_PATH = { {"asset\\vehicle\\ambu.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\bus.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\tank.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\truct.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\mer.png", sf::Vector2u(2,1)}, {"asset\\vehicle\\van.png", sf::Vector2u(2,1)} };
+const vector<pair<string, sf::Vector2u>> VEHICLE_TEXTURE_PATH = { {"asset\\vehicle\\ambu.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\bus.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\tank.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\truck.png", sf::Vector2u(1,1)}, {"asset\\vehicle\\mer.png", sf::Vector2u(2,1)}, {"asset\\vehicle\\van.png", sf::Vector2u(2,1)} };
 const vector<pair<string, sf::Vector2u>> ANIMAL_TEXTURE_PATH = { {"asset\\animal\\snake.png", sf::Vector2u(3,1)}, {"asset\\animal\\bird.png", sf::Vector2u(4,1)}, /*{"asset\\animal\\anaconda.png", sf::Vector2u(4,1)},*/ /*{"asset\\animal\\antelope.png", sf::Vector2u(4,1)},*/ {"asset\\animal\\wolf.png", sf::Vector2u(5,1)}, {"asset\\animal\\bear.png", sf::Vector2u(4,1)}, /*{"asset\\animal\\rat.png", sf::Vector2u(4,1)},*/ {"asset\\animal\\slime.png", sf::Vector2u(10,1)}, };
 class Lane
 {

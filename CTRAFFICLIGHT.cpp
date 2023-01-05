@@ -20,7 +20,7 @@ void CTRAFFICLIGHT::draw(RenderWindow& window)
 	rect.top = 0;
 	rect.left = (state + 1 ) * rect.width; 
 	sprite.setTextureRect(rect);
-	sprite.setScale(2.f, 2.f); 
+	sprite.setScale(2.5f, 2.5f); 
 	window.draw(sprite);
 }
 
@@ -76,5 +76,5 @@ void CTRAFFICLIGHT::saveLight(ostream& out)
 {
 	out << state << ' ' << now_time << '\n';
 	out << red_time << ' ' << yellow_time << ' ' << green_time << '\n';
-	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y << '\n';
+	out << this->sprite.getPosition().x << ' ' << this->sprite.getPosition().y<< '\n';
 }
