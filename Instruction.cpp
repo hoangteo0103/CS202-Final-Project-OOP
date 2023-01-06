@@ -86,7 +86,7 @@ void Instruction::updateInstructions()
         this->background.setTexture(texture);
         break;
     case 3:
-        texture.loadFromFile("External/images/author.png");
+        texture.loadFromFile("External/images/mainmenu3.png");
         this->background.setTexture(texture);
         break;
     case 4:
@@ -100,7 +100,7 @@ void Instruction::updateInstructions()
     case 6:
         this->buttons["NEXT_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, app->getSize().y));
         this->buttons["PREVIOUS_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, 555));
-        texture.loadFromFile("External/images/author.png");
+        texture.loadFromFile("External/images/mainmenu3.png");
         this->background.setTexture(texture);
         break;
     default:
