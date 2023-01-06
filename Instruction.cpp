@@ -8,8 +8,8 @@ void Instruction::initBackground()
 
 void Instruction::initButtons()
 {
-    this->buttons["NEXT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "next_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["PREVIOUS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, app->getSize().y, 400, 50, "previous_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["NEXT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "next_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["PREVIOUS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "previous_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 }
 
@@ -54,12 +54,12 @@ void Instruction::updateButtons()
 
     if (this->buttons["NEXT_BTN"]->isPressed())
     {
-
+        ++this->stage_count;
     }
 
     if (this->buttons["PREVIOUS_BTN"]->isPressed())
     {
-
+        --this->stage_count;
     }
 
     if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
@@ -69,10 +69,50 @@ void Instruction::updateButtons()
     }
 }
 
+void Instruction::updateInstructions()
+{
+    switch (stage_count)
+    {
+    case 1:
+        this->buttons["NEXT_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, 555));
+        this->buttons["PREVIOUS_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, app->getSize().y));
+        texture.loadFromFile("External/images/mainmenu1.png");
+        this->background.setTexture(texture);
+        break;
+    case 2:
+        this->buttons["NEXT_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, 495));
+        this->buttons["PREVIOUS_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, 555));
+        texture.loadFromFile("External/images/mainmenu2.png");
+        this->background.setTexture(texture);
+        break;
+    case 3:
+        texture.loadFromFile("External/images/author.png");
+        this->background.setTexture(texture);
+        break;
+    case 4:
+        texture.loadFromFile("External/images/mainmenu1.png");
+        this->background.setTexture(texture);
+        break;
+    case 5:
+        texture.loadFromFile("External/images/mainmenu2.png");
+        this->background.setTexture(texture);
+        break;
+    case 6:
+        this->buttons["NEXT_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, app->getSize().y));
+        this->buttons["PREVIOUS_BTN"]->setPosition(Vector2f(app->getSize().x / 2 - 200.0, 555));
+        texture.loadFromFile("External/images/author.png");
+        this->background.setTexture(texture);
+        break;
+    default:
+        break;
+    }
+}
+
 void Instruction::update()
 {
     this->updateMousePositions();
     this->updateButtons();
+    this->updateInstructions();
 }
 
 void Instruction::renderButtons(RenderTarget* target)

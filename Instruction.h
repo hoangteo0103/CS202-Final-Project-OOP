@@ -26,6 +26,7 @@ public:
     // Update
     void endState();
     void updateButtons();
+    void updateInstructions();
     void update();
 
     // Render

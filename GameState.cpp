@@ -65,8 +65,7 @@ void GameState::initButtons()
     // Set position
     this->buttons["PAUSE_STATE_BTN"] = new Button("External/texture", pausePos.x, pausePos.y, 50.0, 50.0, "pause_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["CURRENT_LEVEL_BTN"] = new Button("External/texture", levelPos.x, levelPos.y, 75.0, 50.0, "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    std::map<string, Button*>::iterator it = this->buttons.find("CURRENT_LEVEL_BTN");
-    it->second->setTexture("External/texture/lv_button/lv" + to_string(this->current_level));
+    this->buttons["CURRENT_LEVEL_BTN"]->setTexture("External/texture/lv_button/lv" + to_string(this->current_level));
 }
 
 GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
@@ -398,28 +397,22 @@ void GameState::hideButton(bool hide)
 {
     if (hide)
     {
-        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(+50.f, 0));
-        it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->move(Vector2f(-75.f, 0));
+        this->buttons["PAUSE_STATE_BTN"]->move(Vector2f(+50.f, 0));
+        this->buttons["CURRENT_LEVEL_BTN"]->move(Vector2f(-75.f, 0));
     }
     else
     {
-        std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-        it->second->move(Vector2f(-50.f, 0));
-        it = this->buttons.find("CURRENT_LEVEL_BTN");
-        it->second->move(Vector2f(+75.f, 0));
+        this->buttons["PAUSE_STATE_BTN"]->move(Vector2f(-50.f, 0));
+        this->buttons["CURRENT_LEVEL_BTN"]->move(Vector2f(+75.f, 0));
     }
    
 }
 
 void GameState::resetButton()
 {
-    std::map<string, Button*>::iterator it = this->buttons.find("PAUSE_STATE_BTN");
-    it->second->setPosition(Vector2f(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2));
-    it = this->buttons.find("CURRENT_LEVEL_BTN");
-    it->second->setPosition(Vector2f(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2));
-    it->second->setTexture("External/texture/lv_button/lv" + to_string(current_level));
+    this->buttons["PAUSE_STATE_BTN"]->setPosition(Vector2f(player->getPosition().x + this->app->getSize().x / 2 - 50.0, player->getPosition().y - this->app->getSize().y / 2));
+    this->buttons["CURRENT_LEVEL_BTN"]->setPosition(Vector2f(player->getPosition().x - this->app->getSize().x / 2, player->getPosition().y - this->app->getSize().y / 2));
+    this->buttons["CURRENT_LEVEL_BTN"]->setTexture("External/texture/lv_button/lv" + to_string(current_level));
 }
 
 void GameState::returnMenu()
