@@ -129,6 +129,7 @@
     <ClCompile Include="CView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Instruction.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LanePack.cpp" />
     <ClCompile Include="LoseState.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="CView.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Instruction.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LanePack.h" />
     <ClInclude Include="LoseState.h" />

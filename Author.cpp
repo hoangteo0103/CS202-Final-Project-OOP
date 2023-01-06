@@ -8,7 +8,8 @@ void Author::initBackground()
 
 void Author::initButtons()
 {
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["FOLLOW_US"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "follow_us_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 
@@ -48,6 +49,12 @@ void Author::updateButtons()
     for (auto& it : this->buttons)
     {
         it.second->update(this->mousePosView);
+    }
+
+    if (this->buttons["FOLLOW_US"]->isPressed())
+    {
+        string web = "start https://github.com/hoangteo0103/CS202-Final-Project-OOP";
+        system(web.c_str());
     }
 
     if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())

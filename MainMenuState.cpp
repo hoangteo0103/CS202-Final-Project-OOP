@@ -9,10 +9,11 @@ void MainMenuState::initBackground()
 void MainMenuState::initButtons()
 {
     
-    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 390, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 450, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 510, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 375, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 435, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["INSTRUCTIONS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "instructions_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 }
 
 void MainMenuState::initSounds()
@@ -71,6 +72,12 @@ void MainMenuState::updateButtons()
     {
         this->theme.stop();
         this->states->push(new GameState(this->app, this->states, 0, true));
+    }
+
+    if (this->buttons["INSTRUCTIONS_BTN"]->isPressed())
+    {
+        this->theme.stop();
+        this->states->push(new Instruction(this->app, this->states));
     }
     
     if (this->buttons["AUTHOR_BTN"]->isPressed())

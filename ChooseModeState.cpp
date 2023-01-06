@@ -8,10 +8,10 @@ void ChooseModeState::initBackground()
 
 void ChooseModeState::initButtons()
 {
-    this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 390, 400, 50, "easy_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 450, 400, 50, "medium_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 510, 400, 50, "hard_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 570, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["EASY_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 375, 400, 50, "easy_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["MEDIUM_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 435, 400, 50, "medium_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["HARD_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "hard_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
 }
 

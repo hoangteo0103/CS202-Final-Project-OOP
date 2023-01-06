@@ -4,6 +4,7 @@
 #include "GameState.h"
 #include "SoundEffect.h"
 #include "Author.h"
+#include "Instruction.h"
 class MainMenuState :
     public State
 {

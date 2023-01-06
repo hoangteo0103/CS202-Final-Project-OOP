@@ -1,2 +1,2 @@
-﻿  Lane.cpp
-  Crossy Road.vcxproj -> D:\Download\GitHub\CS202-Final-Project-OOP\x64\Debug\Crossy Road.exe
+﻿  Instruction.cpp
+D:\Download\GitHub\CS202-Final-Project-OOP\Instruction.cpp(29,5): error C2143: syntax error: missing ';' before 'this'
