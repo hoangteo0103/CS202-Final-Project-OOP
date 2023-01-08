@@ -9,12 +9,12 @@ void MainMenuState::initBackground()
 void MainMenuState::initButtons()
 {
     
-    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 375, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 435, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["INSTRUCTIONS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "instructions_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["LEADERBOARD_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 675, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 355, 400, 50, "new_game_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["CONTINUE_STATE_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 415, 400, 50, "continue_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["LEADERBOARD_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 475, 400, 50, "leaderboards_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["INSTRUCTIONS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 535, 400, 50, "instructions_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 595, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 655, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 }
 
 void MainMenuState::initSounds()
