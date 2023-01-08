@@ -84,6 +84,9 @@
     <ClCompile Include="Instruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LeaderboardState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPEOPLE.h">
@@ -153,6 +156,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Instruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderboardState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

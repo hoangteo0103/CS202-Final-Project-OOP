@@ -5,6 +5,7 @@
 #include "SoundEffect.h"
 #include "Author.h"
 #include "Instruction.h"
+#include "LeaderBoardState.h"
 class MainMenuState :
     public State
 {

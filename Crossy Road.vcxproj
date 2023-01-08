@@ -132,6 +132,7 @@
     <ClCompile Include="Instruction.cpp" />
     <ClCompile Include="Lane.cpp" />
     <ClCompile Include="LanePack.cpp" />
+    <ClCompile Include="LeaderboardState.cpp" />
     <ClCompile Include="LoseState.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="Lane.h" />
     <ClInclude Include="LanePack.h" />
+    <ClInclude Include="LeaderboardState.h" />
     <ClInclude Include="LoseState.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Object.h" />

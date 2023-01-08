@@ -14,6 +14,7 @@ void MainMenuState::initButtons()
     this->buttons["INSTRUCTIONS_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "instructions_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["AUTHOR_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "author_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
     this->buttons["GAME_QUIT_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["LEADERBOARD_BTN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 675, 400, 50, "exit_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 }
 
 void MainMenuState::initSounds()
@@ -84,6 +85,12 @@ void MainMenuState::updateButtons()
     {
         this->theme.stop();
         this->states->push(new Author(this->app, this->states));
+    }
+
+    if (this->buttons["LEADERBOARD_BTN"]->isPressed())
+    {
+        this->theme.stop();
+        this->states->push(new LeaderboardState(this->app, this->states));
     }
 
     if (this->buttons["GAME_QUIT_BTN"]->isPressed())
