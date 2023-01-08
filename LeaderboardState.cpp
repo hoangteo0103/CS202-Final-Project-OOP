@@ -1,12 +1,12 @@
 #include "LeaderboardState.h"
 
-void LeaderboardState::initFonts()
-{
-    if (!this->font.loadFromFile("External/font/Contb.ttf"))
-    {
-    }
-    
-}
+//void LeaderboardState::initFonts()
+//{
+//    if (!this->font.loadFromFile("External/font/Contb.ttf"))
+//    {
+//    }
+//    
+//}
 
 void LeaderboardState::initBackground()
 {
@@ -90,8 +90,7 @@ void LeaderboardState::initExpert()
 LeaderboardState::LeaderboardState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
-
-    this->initFonts();
+    //this->initFonts();
     this->initBackground();
     this->initSounds();
     this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");

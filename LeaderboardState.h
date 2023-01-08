@@ -8,13 +8,13 @@ class LeaderboardState :
 {
 private:
     map<string, Button* > buttons;
-    Font font;
+    //Font font;
     Texture texture;
     Sprite background;
     Music theme;
 
 private:
-    void initFonts();
+    //void initFonts();
     void initBackground();
     void initButtons();
     void initSounds();
