@@ -140,11 +140,83 @@ void GameState::endState()
     this->quit = true;
 }
 
+void GameState::updateBeginner(int level)
+{
+    ifstream ifs("Leaderboard/leaderboardBeginner.ini");
+    vector< int > tmp;
+    tmp.push_back(level);
+    int time;
+    while (ifs >> time)
+    {
+        tmp.push_back(time);
+    }
+    sort(tmp.begin(), tmp.end());
+    ofstream ofs("Leaderboard/leaderboardBeginner.ini");
+    for (int i = 0; i < min(10, (int)tmp.size()); i++)
+    {
+        ofs << tmp[i] << endl;
+    }
+}
+void GameState::updateIntermediate(int level)
+{
+    ifstream ifs("Leaderboard/leaderboardIntermediate.ini");
+    vector< int > tmp;
+    tmp.push_back(level);
+    int time;
+    while (ifs >> time)
+    {
+        tmp.push_back(time);
+    }
+    sort(tmp.begin(), tmp.end());
+    ofstream ofs("Leaderboard/leaderboardIntermediate.ini");
+    for (int i = 0; i < min(10, (int)tmp.size()); i++)
+    {
+        ofs << tmp[i] << endl;
+    }
+}
+
+void GameState::updateExpert(int level)
+{
+    ifstream ifs("Leaderboard/leaderboardExpert.ini");
+    vector< int > tmp;
+    tmp.push_back(level);
+    int time;
+    while (ifs >> time)
+    {
+        tmp.push_back(time);
+    }
+    sort(tmp.begin(), tmp.end());
+    ofstream ofs("Leaderboard/leaderboardExpert.ini");
+    for (int i = 0; i < min(10, (int)tmp.size()); i++)
+    {
+        ofs << tmp[i] << endl;
+    }
+}
+
+void GameState::updateLeaderBoard()
+{
+    this->isUpdated = true;
+    ofstream del("Save/PreviousBoard.ini");
+    if (this->mode == 0)
+    {
+        this->updateBeginner(current_level);
+    }
+    if (mode == 1 )
+    {
+        this->updateIntermediate(current_level);
+    }
+    if (mode == 2 )
+    {
+        this->updateExpert(current_level);
+    }
+}
+
 void GameState::updateWinState()
 {
     this->escape = true;
     if (!this->isUpdated)
     {
+        this->updateLeaderBoard();
         this->hideButton(true);
         this->winState.initState(*app, player, &map);
         this->isUpdated = true;
@@ -184,6 +256,7 @@ void GameState::updateLoseState()
     if (!this->isUpdated)
     {
         this->hideButton(true);
+        this->updateLeaderBoard();
         this->loseState.initState(*app, player, &map);
         this->isUpdated = true;
     }

@@ -67,6 +67,12 @@ public:
     void updateUnpaused();
     void updatePaused();
 
+
+    void updateLeaderBoard(); 
+    void updateBeginner(int level);
+    void updateIntermediate(int level);
+    void updateExpert(int level);
+
     const bool& getLose() const;
     const bool& getWin() const;
     void endState();
