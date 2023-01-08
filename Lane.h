@@ -19,6 +19,8 @@ private:
 	int numTrafficLight; 
 	int type; 
 	int dir;
+	float now_time;
+	float switch_time; 
 	Texture texture;
 	Sprite sprite;
 	Vector2f position;

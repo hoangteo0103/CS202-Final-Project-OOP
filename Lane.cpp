@@ -6,12 +6,16 @@ vector<int> sizeTexture = { 200};
 
 Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f pos)
 {
+	random_device rd;
+	mt19937 rng(rd());
+
+	uniform_real_distribution<float> time_rand(0, 10.0f);
+	switch_time = time_rand(rng);
+	now_time = 0;
 	this->numTrafficLight = 0;
 
 	sf::Vector2u imageContainer;
 
-	random_device rd;
-	mt19937 rng(rd());
 
 	if (type == 0) {
 		// random road texture
@@ -136,6 +140,7 @@ void Lane::updateSpeed()
 void Lane::draw(sf::RenderWindow& window)
 {
 	window.draw(this->sprite);
+	if(now_time >= switch_time) 
 	for (int i = 0; i < num; i++)
 	{
 		//cout << obstacle[i]->sprite.getPosition().x << ' ' << obstacle[i]->sprite.getPosition().y << endl;
@@ -179,10 +184,12 @@ void Lane::checkEnd()
 
 void Lane::update(float delta_time)
 {
+	now_time += delta_time; 
 	for (int i = 0; i < numTrafficLight; i++)
 	{
 		lights[i]->transition(delta_time);
 	}
+	if (now_time < switch_time) return;
 	if(dir == 1 )
 	for (int i = 0; i < num; i++)
 	{	
@@ -201,6 +208,7 @@ void Lane::update(float delta_time)
 
 Lane::Lane(istream& in)
 {
+	in >> now_time >> switch_time;
 	in >> position.x >> position.y;
 	in >> num >> numTrafficLight >> type >> dir;
 	in >> obstacle_path >> road_path; 
@@ -226,6 +234,7 @@ Lane::Lane(istream& in)
 
 void Lane::saveLane(ostream& out)
 {
+	out << now_time << ' ' << switch_time << '\n';
 	out << position.x << ' ' << position.y << '\n';
 	out << num << ' ' << numTrafficLight << ' ' << type << ' ' << dir << '\n';
 	out << obstacle_path << ' ' << road_path << '\n';
