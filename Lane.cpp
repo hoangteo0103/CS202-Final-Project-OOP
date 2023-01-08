@@ -80,7 +80,6 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 			nowPos.x += (sizeTexture[typeObstacle] + disBetweenObstacle);
 			obstacle.push_back(now);
 		}
-		reverse(obstacle.begin(), obstacle.end());
 	}
 	else {
 		Vector2f nowPos = { 2880.f +  (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
@@ -131,7 +130,7 @@ void Lane::updateSpeed()
 			for (int j = 0; j < numTrafficLight; j++)
 			{
 				if ((obstacle[i]->sprite.getPosition().x  <= lights[j]->getPos()) || lights[j]->isVehiclePass()) continue;
-				int dis = obstacle[i]->sprite.getPosition().x - lights[j]->getPos()  - obstacle[i]->animation.uv_rect.width - 100.f;
+				int dis = obstacle[i]->sprite.getPosition().x - lights[j]->getPos()  - obstacle[i]->animation.uv_rect.width - 200.f;
 
 				if (dis < obstacle[i]->speed)
 					obstacle[i]->setSpeed(dis);
@@ -161,7 +160,7 @@ void Lane::checkEnd()
 	if (dir == 2)
 	{
 		int typeObstacle = 0;
-		if (obstacle[num-1]->getPosition().x < 2880.f) return;
+		if (obstacle[0]->getPosition().x < 2880.f) return;
 		int disBetweenObstacle = 250;
 		Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle) , position.y };
 		for (int i = 0; i < num; i++)
@@ -194,19 +193,15 @@ void Lane::update(float delta_time)
 		lights[i]->transition(delta_time);
 	}
 	if (now_time < switch_time) return;
-	for (int i = 0; i < num; i++)
+	for (int i = num - 1; i >= 0; i--)
 	{
-		bool ok = true;
-
-		for (int j = 0; j < num; j++)
-		{
-			{
-				if (i != j && (abs(obstacle[i]->getPosition().x - obstacle[j]->getPosition().x) < 300.f))
-					ok = false;
-			}
-
-		}
-		if (ok) obstacle[i]->move(delta_time);
+		//int dis = obstacle[i].get
+		if (i == num - 1) {
+			obstacle[i]->move(delta_time); continue;
+		};
+		int dis = (obstacle[i]->speed * delta_time);
+		if(abs(obstacle[i]->getPosition().x + dis * (dir == 2 ? 1 : -1) - obstacle[i + 1]->getPosition().x) < 400.f) continue ;
+			obstacle[i]->move(delta_time);
 	}
 
 	checkEnd();
