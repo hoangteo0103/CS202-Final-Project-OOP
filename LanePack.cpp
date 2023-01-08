@@ -44,7 +44,9 @@ void LanePack::init(int speed , int level, sf::Vector2u map_size, int win_line_y
 		uniform_int_distribution<int> range(0, 1);
 		int type = range(rng);
 		int dir = range(rng) + 1;
-		Lane *new_lane = new Lane(0, dir, 8, speed, type, sf::Vector2f(0, y_position));
+
+		uniform_int_distribution<int> numObs(5, 10);
+		Lane *new_lane = new Lane(0, dir, numObs(rng), speed, type, sf::Vector2f(0, y_position));
 		lanes.push_back(new_lane);
 	}
 	this->generateObstacle();
@@ -93,10 +95,12 @@ void LanePack::update(float delta_time)
 }
 
 void LanePack::draw(sf::RenderWindow& window) {
-	for (auto lane : lanes)
-		lane->draw(window);
+
 	for (auto obstacle : obstacles)
 		 obstacle->draw(window);
+
+	for (auto lane : lanes)
+		lane->draw(window);
 }
 
 void LanePack::reset(int speed , int level, sf::Vector2u map_size, int win_line_y)

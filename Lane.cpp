@@ -1,7 +1,7 @@
 #include "Lane.h"
 vector<Vector2u> imageContainVc = { Vector2u(14,1) };
 vector<string> pathTexture = { "Skin1.png" };
-vector<int> sizeTexture = { 200};
+vector<int> sizeTexture = { 250};
 
 
 Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f pos)
@@ -9,7 +9,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 	random_device rd;
 	mt19937 rng(rd());
 
-	uniform_real_distribution<float> time_rand(0, 10.0f);
+	uniform_real_distribution<float> time_rand(0, 5.0f);
 	switch_time = time_rand(rng);
 	now_time = 0;
 	this->numTrafficLight = 0;
@@ -35,12 +35,14 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		int random_road = road_pool(rng);
 		this->road_path = ROAD_VEHICLE_TEXTURE_PATH[random_road];
 
-		numTrafficLight = 1;
+		uniform_int_distribution<int> num_light(1, 3);
+
+		numTrafficLight = num_light(rng);
 		float start = 1500.f;
 		for (int i = 0; i < numTrafficLight; i++)
 		{
-			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y-70.f), 20.0f, 20.0f, 20.0f);
-			start += 500.f;
+			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y-70.f), 15.0f, 5.0f, 10.0f);
+			start += 1000.f;
 			lights.push_back(tmp);
 		}
 
@@ -67,11 +69,11 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 	cout << "dir: " << dir << endl;
 
 	this->num = num;
-	int disBetweenObstacle = 200;
+	int disBetweenObstacle = 250;
 
 	if (dir!=1)
 	{
-		Vector2f nowPos = {0.f - (num - 2) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
+		Vector2f nowPos = {0.f - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
 		for (int i = 1; i <= num; i++)
 		{
 			COBSTACLE* now = new COBSTACLE(this->obstacle_path, imageContainer, 0.1f, speed, nowPos, dir);
@@ -81,7 +83,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		reverse(obstacle.begin(), obstacle.end());
 	}
 	else {
-		Vector2f nowPos = { 2880.f +  (num - 2) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
+		Vector2f nowPos = { 2880.f +  (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
 		for (int i = 1; i <= num; i++)
 		{
 			COBSTACLE* now = new COBSTACLE(this->obstacle_path, imageContainer, 0.1f, speed, nowPos, dir);
@@ -140,7 +142,7 @@ void Lane::updateSpeed()
 void Lane::draw(sf::RenderWindow& window)
 {
 	window.draw(this->sprite);
-	if(now_time >= switch_time) 
+	if(switch_time <= now_time)
 	for (int i = 0; i < num; i++)
 	{
 		//cout << obstacle[i]->sprite.getPosition().x << ' ' << obstacle[i]->sprite.getPosition().y << endl;
@@ -158,7 +160,7 @@ void Lane::checkEnd()
 	{
 		int typeObstacle = 0;
 		if (obstacle[num-1]->getPosition().x < 2880.f) return;
-		int disBetweenObstacle = 200;
+		int disBetweenObstacle = 250;
 		Vector2f nowPos = { position.x - (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle) , position.y };
 		for (int i = 0; i < num; i++)
 		{
@@ -170,7 +172,7 @@ void Lane::checkEnd()
 		int typeObstacle = 0;
 		//cout << obstacle[0]->getPosition().x << endl; 
 		if (obstacle[0]->getPosition().x > 0.f) return;
-		int disBetweenObstacle = 200;
+		int disBetweenObstacle = 250;
 		Vector2f nowPos = { 2880.f + (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , position.y };
 		for (int i = 0; i < num; i++)
 		{
