@@ -41,7 +41,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 		float start = 1500.f;
 		for (int i = 0; i < numTrafficLight; i++)
 		{
-			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y-70.f), 10.0f, 1.0f, 5.0f);
+			CTRAFFICLIGHT* tmp = new CTRAFFICLIGHT(Vector2f(start, pos.y-70.f), 10.0f, 1.0f, 8.0f);
 			start += 1000.f;
 			lights.push_back(tmp);
 		}
