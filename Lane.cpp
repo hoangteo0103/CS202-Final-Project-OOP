@@ -80,6 +80,7 @@ Lane::Lane(int typeObstacle, int dir, int num, float speed, int type, Vector2f p
 			nowPos.x += (sizeTexture[typeObstacle] + disBetweenObstacle);
 			obstacle.push_back(now);
 		}
+		reverse(obstacle.begin(), obstacle.end());
 	}
 	else {
 		Vector2f nowPos = { 2880.f +  (num - 1) * (sizeTexture[typeObstacle] + disBetweenObstacle)  , pos.y};
@@ -107,37 +108,16 @@ Lane::~Lane() {
 void Lane::updateSpeed()
 {	
 	if (type == 0) return; 
-	if (this->dir == 2)
-	{
 		for (int i = 0; i < num; i++)
 		{
-
-			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
+			bool ok = true;
 			for (int j = 0; j < numTrafficLight; j++)
 			{
-				if ((obstacle[i]->sprite.getPosition().x > lights[j]->getPos() + 48.f) || lights[j]->isVehiclePass()) continue;
-				int dis = lights[j]->getPos() - (obstacle[i]->sprite.getPosition().x + obstacle[i]->animation.uv_rect.width);
-
-				if(dis < obstacle[i]->speed) 
-					obstacle[i]->setSpeed(dis);
+				ok &= lights[j]->isVehiclePass();
+					obstacle[i]->setSpeed(obstacle[i]->origin_speed);
 			}
+			obstacle[i]->setSpeed(ok ? obstacle[i]->origin_speed : 0);
 		}
-	}
-	else {
-		for (int i = 0; i < num; i++)
-		{
-			obstacle[i]->setSpeed(obstacle[i]->origin_speed);
-			for (int j = 0; j < numTrafficLight; j++)
-			{
-				if ((obstacle[i]->sprite.getPosition().x  <= lights[j]->getPos()) || lights[j]->isVehiclePass()) continue;
-				int dis = obstacle[i]->sprite.getPosition().x - lights[j]->getPos()  - obstacle[i]->animation.uv_rect.width - 200.f;
-
-				if (dis < obstacle[i]->speed)
-					obstacle[i]->setSpeed(dis);
-			}
-		}
-	}
-
 }
 
 void Lane::draw(sf::RenderWindow& window)
@@ -193,17 +173,9 @@ void Lane::update(float delta_time)
 		lights[i]->transition(delta_time);
 	}
 	if (now_time < switch_time) return;
-	for (int i = num - 1; i >= 0; i--)
-	{
-		//int dis = obstacle[i].get
-		if (i == num - 1) {
-			obstacle[i]->move(delta_time); continue;
-		};
-		int dis = (obstacle[i]->speed * delta_time);
-		if(abs(obstacle[i]->getPosition().x + dis * (dir == 2 ? 1 : -1) - obstacle[i + 1]->getPosition().x) < 400.f) continue ;
-			obstacle[i]->move(delta_time);
-	}
-
+	
+	for (int i = 0; i < num; i++)
+		obstacle[i]->move(delta_time);
 	checkEnd();
 }
 
