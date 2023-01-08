@@ -1,15 +1,28 @@
 #include "LeaderboardState.h"
 
-
 void LeaderboardState::initFonts()
 {
-    if (!this->font.loadFromFile("font/Contb.ttf"))
+    if (!this->font.loadFromFile("External/font/Contb.ttf"))
     {
-
     }
-    texture.loadFromFile("images/HIGHSCR.png");
+    
+}
+
+void LeaderboardState::initBackground()
+{
+    texture.loadFromFile("External/images/high_score.png");
     this->background.setTexture(texture);
 }
+
+void LeaderboardState::initSounds()
+{
+    if (!this->theme.openFromFile("sound/main_menu/Movie_theater.ogg"))
+        cout << "COULD NOT LOAD THEME MUSIC" << endl;
+    this->theme.setLoop(true);
+    this->theme.setVolume(40);
+    this->theme.play();
+}
+
 void LeaderboardState::initBeginner()
 {
     ifstream ifs("Leaderboard/leaderboardBeginner.ini");
@@ -19,17 +32,18 @@ void LeaderboardState::initBeginner()
     {
         tmp.push_back(time);
     }
-    int x = 450, y = 220;
+    int x = 450, y = 140;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "a";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture", x, y, 150, 50,
-            "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+        this->buttons[label] = new Button("External/texture", x, y, 75, 50,
+            "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
-        y += 50;
+        y += 60;
     }
 }
+
 void LeaderboardState::initIntermediate()
 {
     ifstream ifs("Leaderboard/leaderboardIntermediate.ini");
@@ -39,17 +53,18 @@ void LeaderboardState::initIntermediate()
     {
         tmp.push_back(time);
     }
-    int x = 600, y = 220;
+    int x = 600, y = 140;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "b";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture", x, y, 150, 50,
-            "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+        this->buttons[label] = new Button("External/texture", x, y, 75, 50,
+            "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
-        y += 50;
+        y += 60;
     }
 }
+
 void LeaderboardState::initExpert()
 {
     ifstream ifs("Leaderboard/leaderboardExpert.ini");
@@ -59,24 +74,27 @@ void LeaderboardState::initExpert()
     {
         tmp.push_back(time);
     }
-    int x = 750, y = 220;
+    int x = 750, y = 140;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "c";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture" , x, y, 150, 50,
-            "lv_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+        this->buttons[label] = new Button("External/texture" , x, y, 75, 50,
+            "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
 
-        y += 50;
+        y += 60;
     }
 }
+
 LeaderboardState::LeaderboardState(RenderWindow* app, stack<State*>* states)
     :State(app, states)
 {
 
     this->initFonts();
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture",83 , 83 , 150 , 50 , "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->initBackground();
+    this->initSounds();
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
     this->initBeginner();
     this->initIntermediate();
@@ -91,10 +109,12 @@ LeaderboardState ::~LeaderboardState()
         delete it->second;
     }
 }
+
 void LeaderboardState::endState()
 {
-    cout << "End MainMenu" << endl;
+
 }
+
 void LeaderboardState::updateButtons()
 {
     for (auto& it : this->buttons)
@@ -103,20 +123,17 @@ void LeaderboardState::updateButtons()
     }
     if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
     {
-        this->quit = true;
+        this->theme.stop();
+        this->states->push(new MainMenuState(this->app, this->states));
     }
 }
 
 void LeaderboardState::update()
 {
-
     this->updateMousePositions();
     this->updateButtons();
-
-    //system("cls") ;
-    //cout << mousePosView.x <<' ' << mousePosView.y <<endl;
-
 }
+
 void LeaderboardState::renderButtons(RenderTarget* target)
 {
     for (auto& it : this->buttons)
@@ -124,6 +141,7 @@ void LeaderboardState::renderButtons(RenderTarget* target)
         it.second->render(target);
     }
 }
+
 void LeaderboardState::render(RenderTarget* target)
 {
     if (!target)
