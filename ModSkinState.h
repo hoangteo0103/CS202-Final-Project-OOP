@@ -1,4 +1,3 @@
-
 #ifndef MODSKINSTATE_H
 #define MODSKINSTATE_H
 #include "Button.h"
@@ -6,7 +5,7 @@
 class ModSkinState
 {
 private:
-    bool ok;
+    int choice;
 
     // Texure
     RectangleShape background;
@@ -29,11 +28,10 @@ public:
     void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
 
     // Update
-    const bool& getOk() const;
+    const int& getChoice() const;
     void updateMousePositions(Vector2f mousePosView);
     void updateButtons();
     void update();
-    void hide();
 
     // Render
     void renderButtons(RenderTarget* target);
