@@ -62,7 +62,7 @@ void Instruction::updateButtons()
         --this->stage_count;
     }
 
-    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
+    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed() || (Keyboard::isKeyPressed(Keyboard::Escape)))
     {
         this->theme.stop();
         this->states->push(new MainMenuState(this->app, this->states));

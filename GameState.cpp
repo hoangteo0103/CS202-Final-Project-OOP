@@ -31,7 +31,7 @@ void GameState::Reset(int level)
 
 void GameState::initSounds()
 {
-    //if (!this->theme.openFromFile("sound/game_state/summer.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
+    if (!this->theme.openFromFile("sound/game_state/summer.ogg")) cout << "COULD NOT LOAD THEME MUSIC" << endl;
     this->theme.setLoop(true);
     this->theme.play();
     this->theme.setVolume(50);
