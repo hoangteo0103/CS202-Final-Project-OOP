@@ -32,15 +32,15 @@ void LeaderboardState::initBeginner()
     {
         tmp.push_back(time);
     }
-    int x = 450, y = 140;
+    int x = this->app->getSize().x / 2.f - 30 - 215, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "a";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture", x, y, 75, 50,
+        this->buttons[label] = new Button("External/texture", x, y, 60, 40,
             "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
-        y += 60;
+        y += 44;
     }
 }
 
@@ -53,15 +53,15 @@ void LeaderboardState::initIntermediate()
     {
         tmp.push_back(time);
     }
-    int x = 600, y = 140;
+    int x = this->app->getSize().x/2.f-30, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "b";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture", x, y, 75, 50,
+        this->buttons[label] = new Button("External/texture", x, y, 60, 40,
             "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
-        y += 60;
+        y += 44;
     }
 }
 
@@ -74,16 +74,16 @@ void LeaderboardState::initExpert()
     {
         tmp.push_back(time);
     }
-    int x = 750, y = 140;
+    int x = this->app->getSize().x / 2.f - 30 + 215, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {
         string label = to_string(i) + "c";
         string str_time = to_string(tmp[i]);
-        this->buttons[label] = new Button("External/texture" , x, y, 75, 50,
+        this->buttons[label] = new Button("External/texture" , x, y, 60, 40,
             "lv_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
         this->buttons[label]->setTexture("External/texture/lv_button/lv" + to_string(tmp[i]));
 
-        y += 60;
+        y += 44;
     }
 }
 
@@ -93,7 +93,7 @@ LeaderboardState::LeaderboardState(RenderWindow* app, stack<State*>* states)
     //this->initFonts();
     this->initBackground();
     this->initSounds();
-    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 615, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
+    this->buttons["BACK_TO_MENU_STATE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 655, 400, 50, "back_to_menu_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
 
     this->initBeginner();
     this->initIntermediate();
