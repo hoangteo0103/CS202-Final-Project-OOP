@@ -99,7 +99,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         starting_position.x = map.getSize().x / 2;
         starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
-        player = new CPEOPLE("asset/skin/skin_1_vertical.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
+        player = new CPEOPLE("asset/skin/skin_1.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
 
     }
     else {
