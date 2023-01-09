@@ -32,6 +32,8 @@ void LeaderboardState::initBeginner()
     {
         tmp.push_back(time);
     }
+    sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
     int x = this->app->getSize().x / 2.f - 30 - 215, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {
@@ -53,6 +55,8 @@ void LeaderboardState::initIntermediate()
     {
         tmp.push_back(time);
     }
+    sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
     int x = this->app->getSize().x/2.f-30, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {
@@ -74,6 +78,9 @@ void LeaderboardState::initExpert()
     {
         tmp.push_back(time);
     }
+    sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
+
     int x = this->app->getSize().x / 2.f - 30 + 215, y = 198;
     for (int i = 0; i < tmp.size(); i++)
     {

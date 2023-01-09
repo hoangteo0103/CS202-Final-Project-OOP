@@ -151,6 +151,8 @@ void GameState::updateBeginner(int level)
         tmp.push_back(time);
     }
     sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
+
     ofstream ofs("Leaderboard/leaderboardBeginner.ini");
     for (int i = 0; i < min(10, (int)tmp.size()); i++)
     {
@@ -168,6 +170,7 @@ void GameState::updateIntermediate(int level)
         tmp.push_back(time);
     }
     sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
     ofstream ofs("Leaderboard/leaderboardIntermediate.ini");
     for (int i = 0; i < min(10, (int)tmp.size()); i++)
     {
@@ -186,6 +189,8 @@ void GameState::updateExpert(int level)
         tmp.push_back(time);
     }
     sort(tmp.begin(), tmp.end());
+    reverse(tmp.begin(), tmp.end());
+
     ofstream ofs("Leaderboard/leaderboardExpert.ini");
     for (int i = 0; i < min(10, (int)tmp.size()); i++)
     {
