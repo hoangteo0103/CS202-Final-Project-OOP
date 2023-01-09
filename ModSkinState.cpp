@@ -10,22 +10,21 @@ ModSkinState::ModSkinState(RenderWindow* app, stack<State*>* states, int mode)
 
 void ModSkinState::initBackground()
 {
-    texture.loadFromFile("External/images/mod_skin.png");
-    this->background.setTexture(texture);
+    
+
 }
 
 void ModSkinState::initButtons()
 {
-    this->buttons["GREEN"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 375, 400, 50, "yes_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["RED"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 435, 400, 50, "yes_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["ORANGE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 495, 400, 50, "yes_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-    this->buttons["BLUE"] = new Button("External/texture", app->getSize().x / 2 - 200.0, 555, 400, 50, "yes_button", "sound/main_menu/hover.ogg", "sound/main_menu/active.ogg");
-
+    this->buttons["GREEN"] = new Button("External/texture", 0, 0, app->getSize().x/4, app->getSize().y, "green_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
+    this->buttons["RED"] = new Button("External/texture", app->getSize().x/4, 0, app->getSize().x / 4, app->getSize().y, "red_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
+    this->buttons["ORANGE"] = new Button("External/texture", 2* app->getSize().x / 4, 0, app->getSize().x / 4, app->getSize().y, "orange_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
+    this->buttons["BLUE"] = new Button("External/texture", 3* app->getSize().x / 4, 0, app->getSize().x / 4, app->getSize().y, "blue_button", "sound/main_menu/empty.ogg", "sound/main_menu/empty.ogg");
 }
 
 void ModSkinState::initSounds()
 {
-    if (!this->theme.openFromFile("sound/main_menu/Cloudy_country.ogg"))
+    if (!this->theme.openFromFile("sound/main_menu/Echos.ogg"))
         cout << "COULD NOT LOAD THEME MUSIC" << endl;
     this->theme.setLoop(true);
     this->theme.setVolume(40);
@@ -78,6 +77,12 @@ void ModSkinState::updateButtons()
     {
         this->theme.stop();
         this->states->push(new GameState(this->app, this->states, 2, 0, "asset/skin/blue.png"));
+    }
+
+    if (Keyboard::isKeyPressed(Keyboard::Escape))
+    {
+        this->theme.stop();
+        this->states->push(new MainMenuState(this->app, this->states));
     }
 }
 

@@ -73,7 +73,7 @@ void ChooseModeState::updateButtons()
         this->states->push(new ModSkinState(this->app, this->states, 2));
     }
 
-    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())
+    if (this->buttons["BACK_TO_MENU_STATE"]->isPressed() || (Keyboard::isKeyPressed(Keyboard::Escape)))
     {
         this->theme.stop();
         this->states->push(new MainMenuState(this->app, this->states));

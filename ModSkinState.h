@@ -10,6 +10,7 @@ private:
     Texture texture;
     Sprite background;
     Music theme;
+    RectangleShape container;
 
 private:
     void initBackground();
