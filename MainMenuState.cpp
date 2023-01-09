@@ -72,7 +72,7 @@ void MainMenuState::updateButtons()
     if (this->buttons["CONTINUE_STATE_BTN"]->isPressed())
     {
         this->theme.stop();
-        this->states->push(new GameState(this->app, this->states, 0, true));
+        this->states->push(new GameState(this->app, this->states, 0, true, "asset/skin/blue.png"));
     }
 
     if (this->buttons["INSTRUCTIONS_BTN"]->isPressed())

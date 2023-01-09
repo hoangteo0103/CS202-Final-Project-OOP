@@ -1,40 +1,33 @@
-#ifndef MODSKINSTATE_H
-#define MODSKINSTATE_H
+#pragma once
+#include "GameState.h"
 #include "Button.h"
-#include "CPEOPLE.h"
-class ModSkinState
+#include "State.h"
+class ModSkinState :
+    public State
 {
 private:
-    int choice;
-
-    // Texure
-    RectangleShape background;
-    RectangleShape container;
-    Texture texture;
-
-    // Update
-    Vector2i mousePosWindow;
-    Vector2f mousePosView;
     map<string, Button* > buttons;
+    Texture texture;
+    Sprite background;
+    Music theme;
 
 private:
-    void initButtons(RenderWindow& app, CPEOPLE* player, CMap* map);
+    void initBackground();
+    void initButtons();
+    void initSounds();
 
 public:
-    ModSkinState();
+    ModSkinState(RenderWindow* app, stack<State*>* states, int mode);
     virtual ~ModSkinState();
-    //functions
-    // Init
-    void initState(RenderWindow& app, CPEOPLE* player, CMap* map);
+    // Functions
 
     // Update
-    const int& getChoice() const;
-    void updateMousePositions(Vector2f mousePosView);
+    void endState();
     void updateButtons();
     void update();
 
     // Render
-    void renderButtons(RenderTarget* target);
-    void render(RenderTarget* target);
+    void render(RenderTarget* target = NULL);
+    void renderButtons(RenderTarget* target = NULL);
+
 };
-#endif 

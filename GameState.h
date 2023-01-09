@@ -56,7 +56,7 @@ private:
     void initButtons();
 
 public:
-    GameState(RenderWindow* app, stack<State*>* states,int mode, bool saved);
+    GameState(RenderWindow* app, stack<State*>* states,int mode, bool saved, string path_skin);
     virtual ~GameState();
     // Functions
     void Reset(int level = 1);
@@ -89,6 +89,8 @@ public:
 
     const bool& isPassLevel() const;
     void playAgain();
+
+    //void modSkin();
 };
 #endif
 

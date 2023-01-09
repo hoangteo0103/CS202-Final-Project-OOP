@@ -68,7 +68,7 @@ void GameState::initButtons()
     this->buttons["CURRENT_LEVEL_BTN"]->setTexture("External/texture/lv_button/lv" + to_string(this->current_level));
 }
 
-GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved) : State(app, states)
+GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool saved, string path_skin) : State(app, states)
 {
     // Init
     this->initSounds();
@@ -99,8 +99,7 @@ GameState::GameState(RenderWindow* app, stack<State*>* states, int mode, bool sa
         starting_position.x = map.getSize().x / 2;
         starting_position.y = lane_management->getNumOfLanes() * (this->distance_between_lane + ROADHEIGHT) + this->win_line_y;
 
-        player = new CPEOPLE("asset/skin/skin_1.png", sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
-
+        player = new CPEOPLE(path_skin, sf::Vector2u(9, 3), 0.1f, 300.0f, starting_position);
     }
     else {
         this->loadGame();
@@ -567,3 +566,35 @@ void GameState::loadGame()
     player = new CPEOPLE(inPlayer); // load = constructor
     inPlayer.close();
 }
+
+//void GameState::modSkin() {
+//    this->modskinState.updateMousePositions(mousePosView);
+//    this->modskinState.update();
+//
+//    string new_path = "";
+//
+//    switch (this->modskinState.getChoice()) {
+//    case 0:
+//        new_path = "asset/skin/green.png";
+//        break;
+//
+//    case 1:
+//        new_path = "asset/skin/red.png";
+//        break;
+//
+//    case 2:
+//        new_path = "asset/skin/orange.png";
+//        break;
+//
+//    case 3:
+//        new_path = "asset/skin/blue.png";
+//        break;
+//
+//    case -1:
+//        cout << "return -1" << endl;
+//        return;
+//    }
+//
+//    player->changeSkin(new_path);
+//    
+//}

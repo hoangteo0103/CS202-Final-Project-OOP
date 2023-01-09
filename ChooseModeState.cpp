@@ -58,19 +58,19 @@ void ChooseModeState::updateButtons()
     if (this->buttons["EASY_STATE"]->isPressed())
     {
         this->theme.stop();
-        this->states->push(new GameState(this->app , this->states , 0 ,  0 )) ;
+        this->states->push(new ModSkinState(this->app, this->states, 0));
     }
 
     if (this->buttons["MEDIUM_STATE"]->isPressed())
     {
         this->theme.stop();
-        this->states->push(new GameState(this->app, this->states, 1, 0));
+        this->states->push(new ModSkinState(this->app, this->states, 1));
     }
 
     if (this->buttons["HARD_STATE"]->isPressed())
     {
         this->theme.stop();
-        this->states->push(new GameState(this->app, this->states, 2, 0));
+        this->states->push(new ModSkinState(this->app, this->states, 2));
     }
 
     if (this->buttons["BACK_TO_MENU_STATE"]->isPressed())

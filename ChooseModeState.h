@@ -1,8 +1,7 @@
 #pragma once
-#include "GameState.h"
 #include "State.h"
 #include "Button.h"
-
+#include "ModSkinState.h"
 class ChooseModeState :
     public State
 {
