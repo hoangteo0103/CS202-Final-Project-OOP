@@ -104,3 +104,10 @@ void CPEOPLE::saveCPeople(ostream& out) {
 	Object::saveObject(out);
 	out << this->state << '\n' << this->row << '\n' << this->face_direction << '\n';
 }
+
+void CPEOPLE::changeSkin(string path) {
+	if (!this->texture.loadFromFile(path))
+		cout << "COULD NOT CHANGE TEXTURE" << endl;
+
+	this->sprite.setTexture(this->texture);
+}

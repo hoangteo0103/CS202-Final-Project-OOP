@@ -23,6 +23,7 @@ public:
 	void setDead() { this->state = PLAYERSTATE::DEATH; };
 	bool isDead();
 	bool isDeadFrameEnd();
+	void changeSkin(string path);
 
 	//Load and save 
 	CPEOPLE(istream& in);
